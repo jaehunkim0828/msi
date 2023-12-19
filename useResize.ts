@@ -1,10 +1,12 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { throttle } from "./helper";
 
 const useResize = (time: number) => {
   const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 0,
+    height: 0,
   });
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const useResize = (time: number) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [time]);
 
   return windowSize;
 };

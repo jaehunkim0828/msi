@@ -1,3 +1,4 @@
+"use client";
 import { Lang } from "@/app/dictionaries";
 import style from "@/styles/header.module.scss";
 import useResize from "@/useResize";
