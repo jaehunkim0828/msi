@@ -1,0 +1,83 @@
+@import "./variables";
+
+@mixin article($height) {
+  width: 100%;
+  height: $height;
+  @include flex-column(center, center);
+}
+
+@mixin wrapper {
+  width: 90%;
+  @include unit-break-point(max-width, $moblie-max-width, $desktop-max-width);
+}
+
+@mixin container {
+  @include flex-column(flex-start, center);
+  width: 100%;
+}
+
+@mixin flex-row($justify, $align) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin flex-column($justify, $align) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin unit-break-point($prop, $m: 0, $l: 0, $unit: "") {
+  @media (min-width: 0px) {
+    #{$prop}: #{$m}#{$unit};
+  }
+  @media (min-width: 1440px) {
+    #{$prop}: #{$l}#{$unit};
+  }
+}
+
+@mixin noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin custom-font($family, $size, $weight, $color: $black) {
+  font-family: $family;
+  font-size: #{$size}px;
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin font($size, $weight, $color: $black) {
+  font-size: #{$size}px;
+  font-weight: $weight;
+  color: $color;
+  @content;
+}
+
+// for mobile
+// chrome, safari, opera, samsung browser, webview android
+@mixin tab-highlight($color: rgba(32, 38, 52, 0.05)) {
+  -webkit-tap-highlight-color: $color;
+}
+
+@mixin hover-only-web {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin only-web {
+  @media (hover: hover) {
+    @content;
+  }
+}

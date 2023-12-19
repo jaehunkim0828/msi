@@ -1,0 +1,88 @@
+@import "./color.scss";
+@import "./viewSize";
+
+.headerContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  z-index: 101;
+
+  .container {
+    width: 100%;
+    height: 64px;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #{$background-color};
+  }
+  .logo {
+    font-size: 40px;
+    color: white;
+
+    @include mobile {
+      font-size: 24px;
+    }
+
+    strong {
+      margin-right: 20px;
+      @include mobile {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    height: 100%;
+
+    .navItems {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      width: 800px;
+      font-size: 20px;
+
+      .navBtn {
+      }
+    }
+  }
+  .translation {
+    display: flex;
+    align-items: center;
+    width: 80px;
+    font-size: 24px;
+    font-weight: 400;
+    height: 40px;
+    background-color: black;
+    color: #{$gray-color};
+    width: 100%;
+    justify-content: flex-end;
+    padding: 0 30px;
+
+    .transForm {
+      width: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+
+      .lang {
+        font-size: 20px;
+        font-weight: 400;
+      }
+
+      .seperator {
+        width: 1px;
+        height: 50%;
+        background-color: #{$gray-color};
+      }
+    }
+  }
+}

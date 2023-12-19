@@ -1,0 +1,20 @@
+.each-slide-effect > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: calc(100vh - 104px);
+  max-height: 800px;
+  width: 100%;
+}
+
+.each-slide-effect span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
+}
+
+.default-nav {
+  display: none !important;
+}
