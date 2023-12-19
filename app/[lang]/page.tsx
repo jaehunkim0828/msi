@@ -2,7 +2,6 @@
 
 import style from "@/styles/page/home.module.scss";
 
-// import { Slide } from "react-slideshow-image";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Product1 from "@/public/images/back1_img.png";
