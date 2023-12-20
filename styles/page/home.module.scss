@@ -142,6 +142,7 @@
 
         @include mobile {
           flex-wrap: wrap;
+          height: 260px;
         }
 
         .item {

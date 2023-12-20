@@ -69,7 +69,7 @@ export default function Page() {
                   <p>NXTR offers a truly modular design for the optimal line</p>
                   <p>configuration that caters to your production.</p>
                 </div>
-                <div style={{ flex: "1" }}>
+                <div style={{ flex: "1", position: "relative", top: "20px" }}>
                   <Image
                     src={Product1}
                     width={width > 1032 ? 600 : 300}
