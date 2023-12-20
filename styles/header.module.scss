@@ -1,5 +1,6 @@
 @import "./color.scss";
 @import "./viewSize";
+@import "./layout";
 
 .headerContainer {
   width: 100%;
@@ -16,7 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #{$background-color};
+    background-color: #333333;
   }
   .logo {
     font-size: 40px;
@@ -48,9 +49,6 @@
       height: 100%;
       width: 800px;
       font-size: 20px;
-
-      .navBtn {
-      }
     }
   }
   .translation {
@@ -82,6 +80,34 @@
         width: 1px;
         height: 50%;
         background-color: #{$gray-color};
+      }
+    }
+  }
+
+  .back {
+    @include flex-row(flex-end, flex-start);
+    width: 100%;
+    height: calc(100vh - 104px);
+    position: fixed;
+    top: 104px;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .navList {
+      width: 80%;
+      max-width: 500px;
+      height: 100%;
+      background-color: #474747;
+      z-index: 200;
+
+      .item {
+        width: 100%;
+        height: 70px;
+        background-color: #474747;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        font-size: 24px;
+        @include flex-row(center, center);
+        color: white;
+        cursor: pointer;
       }
     }
   }

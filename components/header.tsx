@@ -1,14 +1,18 @@
 "use client";
 import { Lang } from "@/app/dictionaries";
+import Burger from "@/burger";
+import Cancel from "@/cancel";
 import style from "@/styles/header.module.scss";
 import useResize from "@/useResize";
 import Link from "next/link";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
+import { useState } from "react";
 
 export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
   const router = useRouter();
   const segment = useSelectedLayoutSegment();
   const { width } = useResize(200);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className={style.headerContainer}>
@@ -53,9 +57,32 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
             </nav>
           </div>
         ) : (
-          <div></div>
+          <div>
+            {!isOpen ? (
+              <div onClick={() => setIsOpen(true)}>
+                <Burger />
+              </div>
+            ) : (
+              <div onClick={() => setIsOpen(false)}>
+                <Cancel />
+              </div>
+            )}
+          </div>
         )}
       </div>
+      {isOpen ? (
+        <div className={style.back}>
+          <div className={style.navList}>
+            {dict.header.nav.map((item: string, i: number) => (
+              <div key={`navL: ${i}`} className={style.item}>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
     </header>
   );
 }

@@ -2,7 +2,6 @@
 
 import style from "@/styles/page/home.module.scss";
 
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Product1 from "@/public/images/back1_img.png";
 import Product2 from "@/public/images/product2.png";
@@ -31,7 +30,7 @@ export default function Page() {
     {
       en: "Product Introduce",
       ko: "제품 소개",
-      image: "/images/company3.jpeg",
+      image: "/images/company4.png",
     },
   ];
 
@@ -239,6 +238,52 @@ export default function Page() {
             </div>
           )}
         />
+      </div>
+      <div className={style.vision}>
+        <div className={style.wrapper}>
+          <div className={style.content}>
+            <div className={style.left}>
+              <div className={style.title}>Vison & Misson ____</div>
+              <div className={style.desc}>
+                MSI is creating and providing the future.
+              </div>
+              <div className={style.desc}>
+                <p>In the vanguard of future industries, </p>
+                <p>we commit to enhancing </p>
+                <p>{`life's quality with our dedication,`}</p>
+                <p>quality, and service.</p>
+              </div>
+            </div>
+            <div className={style.right}>
+              <div className={style.rightWrapper}>
+                <img
+                  src={"/images/misssion.webp"}
+                  alt="mission"
+                  className={style.img}
+                />
+                <div className={style.desc2}>
+                  <div className={style.detail}>
+                    <h3>▶ Customer Satisfaction</h3>
+                    <p>
+                      We grow with customer satisfaction by providing the best
+                      products and services.
+                    </p>
+                  </div>
+                  <div className={style.detail}>
+                    <h3>▶ Esteem Human Culture</h3>
+                    <p>
+                      {`"We respect autonomy and creativity with the spirit of human dignity."`}
+                    </p>
+                  </div>
+                  <div className={style.detail}>
+                    <h3>▶ On time on space</h3>
+                    <p>Always be there</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

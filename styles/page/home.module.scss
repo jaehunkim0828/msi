@@ -9,7 +9,7 @@
   .wrapper {
     @include flex-row(space-between, center);
     width: 90%;
-    max-width: 1200px;
+    max-width: 1400px;
 
     @include mobile {
       @include flex-column(flex-start, center);
@@ -56,18 +56,19 @@
 
       h2 {
         text-shadow: 1px 1px 1px gray;
-        font-size: 40px;
+        font-size: 60px;
         margin-bottom: 20px;
         font-weight: 400;
+        font-family: Arial;
       }
 
       .sub {
         margin-bottom: 10px;
-        font-size: 20px;
+        font-size: 25px;
       }
 
       p {
-        font-size: 18px;
+        font-size: 25px;
         margin: 2px 0;
         @include mobile {
           font-size: 14px;
@@ -86,18 +87,18 @@
       }
 
       h2 {
-        font-size: 40px;
+        font-size: 60px;
         margin-bottom: 20px;
         font-weight: 500;
       }
 
       .sub {
-        font-size: 24px;
+        font-size: 25px;
         margin-bottom: 20px;
       }
 
       p {
-        font-size: 22px;
+        font-size: 25px;
         @include mobile {
           font-size: 14px;
         }
@@ -377,6 +378,113 @@
 
           @include mobile {
             font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .vision {
+    width: 100%;
+    @include flex-row(center, flex-start);
+    min-height: calc(100vh - 104px);
+    height: auto;
+
+    .content {
+      @include flex-row(center, flex-start);
+      width: 100%;
+      min-height: calc(100vh - 104px);
+      height: auto;
+      padding: 15% 0;
+      box-sizing: border-box;
+
+      @include mobile {
+        @include flex-column(space-between, center);
+        padding: 10% 0;
+      }
+
+      .left {
+        width: 50%;
+        @include flex-column(flex-start, flex-start);
+        gap: 60px;
+        @include mobile {
+          width: 100%;
+        }
+
+        .title {
+          font-size: 55px;
+
+          @include mobile {
+            font-size: 35px;
+          }
+        }
+
+        .desc {
+          font-size: 30px;
+          @include mobile {
+            font-size: 25px;
+          }
+        }
+      }
+
+      .right {
+        width: 50%;
+        @include flex-row(flex-start, flex-start);
+        margin-top: 100px;
+        height: 100%;
+
+        @include mobile {
+          width: 100%;
+          margin-top: 0;
+        }
+        .rightWrapper {
+          @include flex-row(flex-start, center);
+          gap: 30px;
+          height: 450px;
+
+          @media (max-width: 700px) {
+            @include flex-column(center, center);
+            height: auto;
+          }
+        }
+
+        .img {
+          width: 400px;
+          height: 500px;
+
+          @include mobile {
+            width: 100%;
+          }
+
+          @media (max-width: 700px) {
+            margin-top: 30px;
+          }
+        }
+
+        .desc2 {
+          @include flex-column(space-between, center);
+          width: 100%;
+          height: 100%;
+
+          .detail {
+            @include flex-column(flex-start, flex-start);
+            width: 100%;
+            h3 {
+              font-size: 25px;
+              margin: 0;
+              margin-bottom: 20px;
+
+              @include mobile {
+                font-size: 22px;
+              }
+            }
+
+            p {
+              font-size: 24px;
+              @include mobile {
+                font-size: 20px;
+              }
+            }
           }
         }
       }
