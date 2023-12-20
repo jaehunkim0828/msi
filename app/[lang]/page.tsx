@@ -41,8 +41,8 @@ export default function Page() {
       <div className={style.landingContainer}>
         <Swiper
           className={style.slider}
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
-          loop={true}
+          // autoplay={{ delay: 2000, disableOnInteraction: false }}
+          // loop={true}
         >
           <SwiperSlide>
             <div
@@ -147,6 +147,9 @@ export default function Page() {
               </div>
             ))}
           </div>
+          <div className={style.tel}>
+            Tel : 02-553-0903 ｜ Fax : 02-555-5584
+          </div>
         </div>
       </div>
       <div className={style.company}>
@@ -166,8 +169,10 @@ export default function Page() {
                   key={`company-${i}`}
                   className={style.companyItem}
                 >
-                  <div className={style.en}>{cp.en}</div>
-                  <div className={style.ko}>{cp.ko}</div>
+                  <div className={style.itemWrapper}>
+                    <div className={style.en}>{cp.en}</div>
+                    <div className={style.ko}>{cp.ko}</div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -176,12 +181,12 @@ export default function Page() {
       </div>
       <div className={style.infiniteContainer}>
         <InfiniteScroll
-          speed="35s"
+          speed="20s"
           isright={1}
-          width="3000"
+          width="3200"
           slideArr={["Think, Evolve, and Act,"]}
           itemElement={text => (
-            <div style={{ width: "3000px" }} className={style.act}>
+            <div style={{ width: "3200px" }} className={style.act}>
               {text}
             </div>
           )}
@@ -196,7 +201,7 @@ export default function Page() {
               <span className={style.highlight}> Providing </span> the Future.
             </span>
             <p>MSI is the trusted name in SMT.</p>
-            <p>Since our founding in 1989, </p>
+            <p>Since our founding in 1979, </p>
             <p>we have put evolvement first.</p>
           </div>
         </div>
@@ -228,12 +233,12 @@ export default function Page() {
       </div>
       <div className={style.infiniteContainer}>
         <InfiniteScroll
-          speed="35s"
+          speed="20s"
           isright={1}
-          width="2500"
+          width="2600"
           slideArr={["Major Society ‘人’"]}
           itemElement={text => (
-            <div style={{ width: "2500px" }} className={style.act}>
+            <div style={{ width: "2600px" }} className={style.act}>
               {text}
             </div>
           )}
@@ -256,11 +261,7 @@ export default function Page() {
             </div>
             <div className={style.right}>
               <div className={style.rightWrapper}>
-                <img
-                  src={"/images/misssion.webp"}
-                  alt="mission"
-                  className={style.img}
-                />
+                <div className={style.img}></div>
                 <div className={style.desc2}>
                   <div className={style.detail}>
                     <h3>▶ Customer Satisfaction</h3>
