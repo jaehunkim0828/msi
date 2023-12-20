@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postbuild": "next-on-netlify",
     "lint": "next lint"
   },
   "dependencies": {
@@ -28,6 +27,7 @@
     "typescript": "5.3.3"
   },
   "devDependencies": {
-    "@types/negotiator": "^0.6.3"
+    "@types/negotiator": "^0.6.3",
+    "@types/styled-components": "^5.1.34"
   }
 }
