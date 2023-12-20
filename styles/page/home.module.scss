@@ -267,10 +267,6 @@
     background-color: black;
     @include flex-row(center, center);
 
-    @include mobile {
-      height: calc(100vh - 104px);
-    }
-
     .act {
       @include flex-row(center, center);
       font-size: 300px;
