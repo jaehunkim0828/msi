@@ -147,9 +147,7 @@ export default function Page() {
               </div>
             ))}
           </div>
-          <div className={style.tel}>
-            Tel : 02-553-0903 ｜ Fax : 02-555-5584
-          </div>
+          <div className={style.tel}>Tel : 02-553-0903 | Fax : 02-555-5584</div>
         </div>
       </div>
       <div className={style.company}>
