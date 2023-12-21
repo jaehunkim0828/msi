@@ -257,7 +257,7 @@ export default function Page() {
                 MSI <strong>People</strong>
               </div>
               <div className={style.desc}>
-                <div>A taleted</div>
+                <div>A talented</div>
                 <div>and</div>
                 <div>dedicated</div>
                 <div>crew</div>
