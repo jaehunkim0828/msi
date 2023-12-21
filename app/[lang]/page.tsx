@@ -185,8 +185,7 @@ export default function Page() {
           <div className={style.content}>
             <div className={style.title}>MSI Coporation</div>
             <span className={style.desc}>
-              <span className={style.highlight}>Creating </span> and{" "}
-              <span className={style.highlight}> Providing </span> the Future.
+              Creating and Providing the Future.
             </span>
             <p>MSI is the trusted name in SMT.</p>
             <p>Since our founding in 1979, </p>
