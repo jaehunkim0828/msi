@@ -172,7 +172,7 @@ export default function Page() {
           speed="10s"
           isright={1}
           width="1200"
-          slideArr={["Think, Evolve, and Act,"]}
+          slideArr={["Think, Evolve, and Act."]}
           itemElement={text => (
             <div style={{ width: "1200px" }} className={style.act}>
               {text}
