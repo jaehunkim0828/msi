@@ -48,7 +48,7 @@ export default function Page() {
               className={style.background}
               style={{ backgroundImage: `url("/images/background1.jpg")` }}
             >
-              <div className={style.wrapper}>
+              <div className={style.wrapper2}>
                 <div className={`${style.sliderItem} ${style.slide_left}`}>
                   <h2>
                     <strong
@@ -79,7 +79,7 @@ export default function Page() {
               style={{ backgroundImage: `url("/images/background2.jpg")` }}
             >
               <div
-                className={style.wrapper}
+                className={style.wrapper2}
                 style={width < 1032 ? { flexDirection: "column-reverse" } : {}}
               >
                 <div style={{ flex: "1" }}>
@@ -265,10 +265,11 @@ export default function Page() {
             </div>
             <div className={style.right}>
               <div className={style.desc2}>
-                <p>The MSI crew—the people who serve</p>
-                <p>our clients and steward their assets with </p>
-                <p>dedication, integrity, and passion—are </p>
-                <p>critical to our success.</p>
+                <p>
+                  The MSI crew—the people who serve our clients and steward
+                  their assets with dedication, integrity, and passion—are
+                  critical to our success.
+                </p>
               </div>
             </div>
           </div>
