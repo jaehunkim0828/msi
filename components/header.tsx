@@ -21,9 +21,6 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
           <Link
             href={`/en/${segment ?? ""}`}
             className={style.lang}
-            style={{
-              fontWeight: lang === "en" || lang === "en-US" ? "700" : "400",
-            }}
             replace={true}
           >
             ENGLISH
@@ -32,9 +29,6 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
           <Link
             href={`/ko/${segment ?? ""}`}
             className={style.lang}
-            style={{
-              fontWeight: lang === "ko" || lang === "ko-KR" ? "700" : "400",
-            }}
             replace={true}
           >
             KOREAN
