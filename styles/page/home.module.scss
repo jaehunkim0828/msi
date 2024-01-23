@@ -181,7 +181,7 @@
           font-size: 20px;
           border-right: 1px solid white;
           gap: 10px;
-          height: 100%;
+
           cursor: pointer;
           &:last-child {
             border: none;
@@ -219,7 +219,7 @@
       width: 55%;
       min-width: 750px;
       height: 120px;
-      background-color: yellow;
+      background-color: rgb(230, 224, 203);
 
       @include mobile {
         width: 100%;

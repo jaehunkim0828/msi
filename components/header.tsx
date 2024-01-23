@@ -14,6 +14,15 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
   const { width } = useResize(200);
   const [isOpen, setIsOpen] = useState(false);
 
+  const onRoute = (path: string) => {
+    router.push(path);
+  };
+
+  const navitems = ["/company", "/product", "/", "/contact", "/"];
+  const navList = dict.header.nav.map((n: any, i: number) => {
+    return { item: n, route: navitems[i] };
+  });
+
   return (
     <header className={style.headerContainer}>
       <div className={style.translation}>
@@ -43,9 +52,13 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
         {width > 1200 ? (
           <div className={style.nav}>
             <nav className={style.navItems}>
-              {dict.header.nav.map((item: string, i: number) => (
-                <div key={`nav: ${i}`} className={style.navBtn}>
-                  {item}
+              {navList.map((item: any, i: number) => (
+                <div
+                  key={`nav: ${i}`}
+                  className={style.navBtn}
+                  onClick={() => onRoute(item.route)}
+                >
+                  {item.item}
                 </div>
               ))}
             </nav>
@@ -67,9 +80,13 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
       {isOpen ? (
         <div className={style.back}>
           <div className={style.navList}>
-            {dict.header.nav.map((item: string, i: number) => (
-              <div key={`navL: ${i}`} className={style.item}>
-                {item}
+            {navList.map((item: any, i: number) => (
+              <div
+                key={`navL: ${i}`}
+                className={style.item}
+                onClick={() => onRoute(item.route)}
+              >
+                {item.item}
               </div>
             ))}
           </div>
