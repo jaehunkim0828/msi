@@ -1,0 +1,354 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "AIMEXR",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "id": 2,
+      "name": "NXTR S model",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "High density placement",
+        "Large parts",
+        "LEDs",
+        "Low impact placement",
+        "Moblie devices",
+        "Quality",
+        "SiPs & modules",
+        "small components",
+        "Smart factory initiative",
+        "SMT mounter"
+      ],
+      "mainImg": "/images/NXTR-S.png",
+      "subImg": "/images/NXTR_S_LOGO.png",
+      "desc": "<p>NXTR offers a truly modular design for the optimal line configuration that caters to your production. <br>Real-time sensing placement, optimized placement actions, and part handling checks after placement are just a few examples. This high end model machine supports new functions that preserve a high level of QCD performance. <br><br>NXTR is the next stage toward the smart factory of the future.</p>"
+    },
+    {
+      "id": 3,
+      "name": "NXTR A model",
+      "tags": [
+        "Automation",
+        "Automotive",
+        "Communication infrastructure",
+        "Efficiency",
+        "Labor-saving",
+        "Large parts",
+        "LEDs",
+        "Low impact placement",
+        "Moblie devices",
+        "Quality",
+        "SiPs & modules",
+        "small components",
+        "Smart factory initiative",
+        "SMT mounter"
+      ],
+      "mainImg": "/images/NXTR_A.png",
+      "subImg": "/images/NXTR_A_LOGO.png",
+      "desc": "<p>Fuji is paving the way to the future of Smart Factories with NXTR.<br><br>The accompanying Smart Loader frees operators from changeover and supply work, with additional features that strengthen the ability to maintain high-quality and productivity.</p>"
+    },
+    {
+      "id": 4,
+      "name": "NXT III",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "High density placement",
+        "Large parts",
+        "LEDs",
+        "Low impact placement",
+        "Moblie devices",
+        "Quality",
+        "SiPs & modules",
+        "small components",
+        "Smart factory initiative",
+        "SMT mounter"
+      ],
+      "mainImg": "/images/nxt3.png",
+      "subImg": "/images/NXTLLL_LOGO.jpeg",
+      "desc": "<p>The proliferation of multifunction and high-performance electronics has been growing rapidly in areas such as mobile devices and car electronics. However, because these products tend to have short life cycles, production equipment that has the flexibility to respond to ramping up to mass production in a short amount of time and changes in demand is sought after.<br><br>The NXT III is a modular SMT mounter that is able to provide the best line every time for factories that have such kinds of frequent changes for producing electronics devices.</p>"
+    },
+    {
+      "id": 5,
+      "name": "NXT IIIc",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "High density placement",
+        "Large parts",
+        "LEDs",
+        "Low impact placement",
+        "Moblie devices",
+        "Quality",
+        "SiPs & modules",
+        "small components",
+        "Smart factory initiative",
+        "SMT mounter"
+      ],
+      "mainImg": "/images/AIMEXIII.png",
+      "subImg": "/images/NXTLLLc_LOGO.png",
+      "desc": "<p>One NXT IIIc module occupies just 0.46 m² of floorspace, making it an incredibly compact machine.</p>"
+    },
+    {
+      "id": 6,
+      "name": "AIMEX III",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "High density placement",
+        "Large parts",
+        "LEDs",
+        "Low impact placement",
+        "Quality",
+        "small components",
+        "Smart factory initiative",
+        "SMT mounter"
+      ],
+      "mainImg": "/images/AIMEXIII.png",
+      "subImg": "/images/AIMEXIII_LOGO.png",
+      "desc": "<p>This is an all-in-on machine with scalability and the ultimate level of versatility necessary for increasing productivity for high-mix production.<br>It features functions for performing operation smoothly in a short time for the work that comes with introducing new production and changing the product models to produce.<br>The machine flexibly supports various production for users in a variety of sectors including EMS, automotive industry, and more.</p>"
+    },
+    {
+      "id": 7,
+      "name": "AIMEX IIIc",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "High density placement",
+        "Large parts",
+        "LEDs",
+        "Low impact placement",
+        "Quality",
+        "small components",
+        "Smart factory initiative",
+        "SMT mounter"
+      ],
+      "mainImg": "/images/AIMEXIIIc.png",
+      "subImg": "/images/AIMEXIIIc_LOGO.png",
+      "desc": "<p>This is an all-in-on machine with scalability and the ultimate level of versatility necessary for increasing productivity for high-mix production.It features functions for performing operation smoothly in a short time for the work that comes with introducing new production and changing the product models to produce.The machine flexibly supports various production for users in a variety of sectors including EMS, automotive industry, and more.</p>"
+    },
+    {
+      "id": 8,
+      "name": "NXT-H",
+      "tags": [
+        "High density placement",
+        "Low impact placement",
+        "Quality",
+        "Semiconductor placement",
+        "SiPs & modules",
+        "SMT mounter"
+      ],
+      "mainImg": "/images/NXT-H.png",
+      "subImg": "/images/NXT-H_LOGO.png",
+      "desc": "<p>Wafer and reel part placement in a single unit.<br>Supports tray part and reel part placement as well as direct pickup from wafers.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    },
+    {
+      "name": "aimexr",
+      "tags": [
+        "Automotive",
+        "Communication infrastructure",
+        "Consumer electronics",
+        "Industrial equipment",
+        "Large panels",
+        "SMT mounter",
+        "Variable-mix variable-volume production"
+      ],
+      "mainImg": "/images/AIMEXR_product.png",
+      "subImg": "/images/AIMEXR_logo.png",
+      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+    }
+  ]
+}

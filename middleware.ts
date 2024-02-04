@@ -21,6 +21,7 @@ export function middleware(request: NextRequest) {
   const pathnameIsMissingLocale = locales.every(
     locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
+
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
     return NextResponse.redirect(

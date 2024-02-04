@@ -4,6 +4,7 @@
 
 import style from "@/styles/page/product.module.scss";
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Product() {
   const mecaRef = useRef(null);
@@ -13,6 +14,8 @@ export default function Product() {
   const automaticRef = useRef(null);
   const automationRef = useRef(null);
   const warehouseRef = useRef(null);
+
+  const router = useRouter();
 
   const onPushProduct = (ref: any) => {
     window.scrollTo({ top: ref.current.offsetTop - 104, behavior: "smooth" });
@@ -71,35 +74,59 @@ export default function Product() {
         <div ref={mecaRef} className={style.products}>
           <div className={style.sub}>SMT Pic and Place Machines</div>
           <div className={style.productList}>
-            <div className={style.item}>
+            <div
+              onClick={() => router.push("/product/AIMEXR")}
+              className={style.item}
+            >
               <img src={"/images/AIMEXR_product.png"} alt="product" />
               <div className={style.productName}>AIMEXR</div>
             </div>
-            <div className={style.item}>
+            <div
+              onClick={() => router.push("/product/NXTR S model")}
+              className={style.item}
+            >
               <img src={"/images/NXTR-S.png"} alt="product" />
               <div className={style.productName}>{`NXTR(S Model)`}</div>
             </div>
-            <div className={style.item}>
+            <div
+              onClick={() => router.push("/product/NXTR A model")}
+              className={style.item}
+            >
               <img src={"/images/NXTR_A.png"} alt="product" />
               <div className={style.productName}>{`NXTR(A Model)`}</div>
             </div>
-            <div className={style.item}>
+            <div
+              onClick={() => router.push("/product/NXT III")}
+              className={style.item}
+            >
               <img src={"/images/nxt3.png"} alt="product" />
               <div className={style.productName}>NXT III</div>
             </div>
-            <div className={style.item}>
+            <div
+              onClick={() => router.push("/product/NXT IIIc")}
+              className={style.item}
+            >
               <img src={"/images/nxt3c.png"} alt="product" />
               <div className={style.productName}>NXT IIIc</div>
             </div>
-            <div className={style.item}>
+            <div
+              onClick={() => router.push("/product/AIMEX III")}
+              className={style.item}
+            >
               <img src={"/images/AIMEXIII.png"} alt="product" />
               <div className={style.productName}>AIMEX III</div>
             </div>
-            <div className={style.item}>
+            <div
+              onClick={() => router.push("/product/AIMEX IIIc")}
+              className={style.item}
+            >
               <img src={"/images/AIMEXIIIc.png"} alt="product" />
               <div className={style.productName}>AIMEX IIIc</div>
             </div>
-            <div className={style.item}>
+            <div
+              onClick={() => router.push("/product/NXT-H")}
+              className={style.item}
+            >
               <img src={"/images/NXT-H.png"} alt="product" />
               <div className={style.productName}>NXT-H</div>
             </div>

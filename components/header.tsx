@@ -15,7 +15,7 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const onRoute = (path: string) => {
-    router.push(path);
+    router.push(`${lang}/${path}`);
   };
 
   const navitems = ["/company", "/product", "/", "/contact", "/"];
@@ -45,7 +45,7 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
         </div>
       </div>
       <div className={style.container}>
-        <div className={style.logo}>
+        <div onClick={() => onRoute("/")} className={style.logo}>
           <strong>MSI</strong>
           Corporation
         </div>
