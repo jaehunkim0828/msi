@@ -37,6 +37,7 @@ export default function Location() {
       <div className={style.desc}>
         <h1>How to find Us</h1>
       </div>
+
       {isLoaded && (
         <GoogleMap
           mapContainerClassName={style.googleMap}
