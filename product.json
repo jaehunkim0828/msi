@@ -156,199 +156,175 @@
       "desc": "<p>Wafer and reel part placement in a single unit.<br>Supports tray part and reel part placement as well as direct pickup from wafers.</p>"
     },
     {
-      "name": "aimexr",
+      "id": 9,
+      "name": "NXTR PM",
       "tags": [
+        "Automation",
         "Automotive",
         "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
+        "Efficiency",
+        "High density placement",
+        "LEDs",
+        "Moblie devices",
+        "Quality",
+        "Screen printing machine",
+        "Smart factory initiative"
       ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+      "mainImg": "/images/NXTRPM.png",
+      "subImg": "/images/nxtrpm_logo.png",
+      "desc": "<p>NXTR PM is a printer that embodies the NXTR concept of reducing line size, high area productivity, front operation, and ease of use.<br> It is built to support wide panel and frame sizes, and has the capability to print delicate solder patterns.<br> By creating optimum production schedules using the Fuji system, and linking with other machines in the line, it is possible to achieve stable production.<br> Various data is collected within the machine, which can then be used to maintain quality and the state of the machine.</p>"
     },
     {
-      "name": "aimexr",
+      "id": 10,
+      "name": "GPX-CII/GPX-CSII/GPX-CL",
       "tags": [
         "Automotive",
         "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
+        "Quality",
+        "Screen printing machine",
+        "Smart factory initiative"
       ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+      "mainImg": "/images/GPX-CII_00.png",
+      "subImg": "/images/GPX_CII.png",
+      "desc": "<p>GPX series machines provide a complete printing solution that combines superb cost performance with excellent printing accuracy, speed, and usability.</p>"
     },
     {
-      "name": "aimexr",
+      "id": 11,
+      "name": "sFAB-D",
       "tags": [
         "Automotive",
         "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
+        "Insertion machine",
+        "Insert parts",
+        "Labor-saving",
+        "Large parts"
       ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+      "mainImg": "/images/sFAB-D.png",
+      "subImg": "/images/sFAB-D_logo.png",
+      "desc": "<p>Generally, odd-form parts are inserted by hand because there are issues concerning what packaging to use and limitations on the part size that can be handled using SMT machines. However, there are problems in which manual insertion processes cause variations in quality and work time. Because of this, the demand for automation is increasing.<br> sFAB-D, the multi-purpose automated fabrication machine, flexibly supports various part sizes, shapes, and supply packages, from leaded parts to large odd-form parts, and automates insertion processes that are performed manually, providing stable quality and production.</p>"
     },
     {
-      "name": "aimexr",
+      "id": 12,
+      "name": "sFAB-SH",
       "tags": [
         "Automotive",
         "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
+        "Insertion machine",
+        "Insert parts",
+        "Labor-saving",
+        "Large parts"
       ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+      "mainImg": "/images/sFab-SH.png",
+      "subImg": "/images/sFAB-SH_LOGO.png",
+      "desc": "<p>sFAB-D machines have continued to evolve since their release to the market. They are able to insert parts into various panels with a wide range of support in part packaging. As an entry model, sFAB-SH machines are now added into the same product lineup.<br> In addition to the advanced versatility, scalability, and productivity of the sFAB-D machines, this machine specializes in general panel assembly as embodied in its simple platform that makes it easier to introduce.</p>"
     },
     {
-      "name": "aimexr",
-      "tags": [
-        "Automotive",
-        "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
-      ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+      "id": 13,
+      "name": "Nexim",
+      "tags": ["Efficiency", "Smart factory initiative"],
+      "mainImg": "/images/Nexim01.jpg",
+      "subImg": "/images/Nexim_Black_s.png",
+      "desc": "<p>As products become more varied, the shift toward variable-mix variable-volume production is accelerating. Changes to bewildering production schedules and frequent machine changes lead to defective products and missed deadlines, and several other difficult problems are arising such as increasing inventories of materials, parts, and products.<br> Nexim is a production system that integrates the functions of the production cycle (Plan, Do, See) for reliable planning support and changeover support, flexible data management, and maintaining high operation rates and quality.</p>"
     },
     {
-      "name": "aimexr",
+      "id": 14,
+      "name": "Auto Feeder Maintenance Unit",
       "tags": [
-        "Automotive",
-        "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
+        "Automatic maintenance unit",
+        "Automation",
+        "Efficiency",
+        "Labor-saving",
+        "Maintenance",
+        "Peripheral equipment",
+        "Quality",
+        "Smart factory initiative"
       ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+      "mainImg": "/images/AFMU_02.png",
+      "subImg": "/images/AFMU_logo.png",
+      "desc": "<p>Easy maintenance just by setting feeders<br>The Auto Feeder Maintenance Unit thoroughly cleans the interior of feeders, and then measures and corrects the tape indexing accuracy.The maintenance history and inspection results are automatically registered to the system.</p>"
     },
     {
-      "name": "aimexr",
+      "id": 15,
+      "name": "ASmart Nozzle Cleaner",
       "tags": [
-        "Automotive",
-        "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
+        "Automatic maintenance unit",
+        "Automation",
+        "Efficiency",
+        "Labor-saving",
+        "Maintenance",
+        "Peripheral equipment",
+        "Quality",
+        "Smart factory initiative"
       ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+      "mainImg": "/images/smart.png",
+      "subImg": "/images/SNC_logo.png",
+      "desc": "<p>Automates nozzle cleaning, inspection, and setting<br> Periodic maintenance for nozzles, which could directly affect placement quality, is vital. Smart Nozzle Cleaner does not just clean nozzles, it also performs inspection for items that are difficult to inspect using visual checks by operators. The maintenance history and inspection results are automatically registered to the system.</p>"
     },
     {
-      "name": "aimexr",
+      "id": 16,
+      "name": "Auto Head Cleaner-R",
       "tags": [
-        "Automotive",
-        "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
+        "Automatic maintenance unit",
+        "Automation",
+        "Efficiency",
+        "Labor-saving",
+        "Maintenance",
+        "Peripheral equipment",
+        "Quality",
+        "Smart factory initiative"
       ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+      "mainImg": "/images/AHC-R_00.png",
+      "subImg": "/images/AutoHeadCleanerR_LOGO-black-s-1.png",
+      "desc": "<p>Easy and reliable head maintenance. No training required<br> Automatically cleans and performs a series of maintenance tasks including cleaning the air channels inside the head and inspections. Maintenance quality is more stable and work time can be significantly reduced, compared with manual work. Accurately diagnoses the condition of heads with the enhanced inspection functions.</p>"
     },
     {
-      "name": "aimexr",
+      "id": 17,
+      "name": "Auto Head Cleaner",
       "tags": [
-        "Automotive",
-        "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
+        "Automatic maintenance unit",
+        "Automation",
+        "Efficiency",
+        "Labor-saving",
+        "Maintenance",
+        "Peripheral equipment",
+        "Quality",
+        "Smart factory initiative"
       ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+      "mainImg": "/images/cleaner.png",
+      "subImg": "/images/AHC_logo-1.png",
+      "desc": "<p>Easy and reliable head maintenance. No training required<br> Automatically cleans and performs a series of maintenance tasks including cleaning the air channels inside the head and inspections. Maintenance quality is more stable and work time can be significantly reduced, compared with manual work.</p>"
     },
     {
-      "name": "aimexr",
+      "id": 18,
+      "name": "Auto Splicing Unit",
       "tags": [
-        "Automotive",
-        "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
+        "Automation",
+        "Efficiency",
+        "Labor-saving",
+        "Maintenance",
+        "Peripheral equipment",
+        "Smart factory initiative"
       ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+      "mainImg": "/images/auto.png",
+      "subImg": "/images/ASU_logo.png",
+      "desc": "<p>It is not easy to maintain splicing quality when continuously splicing a huge number of tape reels. Splicing with low work quality causes short stops and becomes a factor in lowering productivity.<br>The Auto Splicing Unit automatically performs splicing work traditionally performed manually. Automating the splicing work makes quality stable and reduces the work time. Also, occurrences of short stops can be reduced and high productivity is maintained.</p>"
     },
     {
-      "name": "aimexr",
+      "id": 19,
+      "name": "Auto Loading Feeder",
       "tags": [
-        "Automotive",
-        "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
+        "Automation",
+        "Automation unit",
+        "Efficiency",
+        "Labor-saving",
+        "Maintenance",
+
+        "Smart factory initiative",
+        "Supply unit"
       ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
-    },
-    {
-      "name": "aimexr",
-      "tags": [
-        "Automotive",
-        "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
-      ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
-    },
-    {
-      "name": "aimexr",
-      "tags": [
-        "Automotive",
-        "Communication infrastructure",
-        "Consumer electronics",
-        "Industrial equipment",
-        "Large panels",
-        "SMT mounter",
-        "Variable-mix variable-volume production"
-      ],
-      "mainImg": "/images/AIMEXR_product.png",
-      "subImg": "/images/AIMEXR_logo.png",
-      "desc": "<p>This high end model machine supports the latest functions that support various production types flexibly on an advanced platform.<br><br>This machine is strong in flexible production such as NPI support for starting new production quickly and immediate support for production type change with batch changeover.<br>It inherits versatility which is a feature of the AIMEX series and features high productivity including high quality and mass production with new sensing functions.</p>"
+      "mainImg": "/images/ALF-3.png",
+      "subImg": "/images/ALF_karilogo.png",
+      "desc": "<p>Resupplying parts without splicing<br><br> Operators on SMT lines perform a wide variety of tasks. Of these, supplying parts to the placement machines is the most demanding, accounting for more than 30% of the total workload. The timing for performing this work often overlaps with that for other tasks and such concentrated workloads can cause supply delays and human errors, resulting in production stops.<br><br> Auto Loading Feeders have a next generation method for parts replenishment that solves the problems associated with part resupply and helps improve OEE.</p>"
     }
   ]
 }

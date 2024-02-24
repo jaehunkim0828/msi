@@ -11,6 +11,7 @@
     @include flex-row(center, flex-start);
     max-width: 1400px;
     margin: 50px 0;
+    gap: 30px;
 
     @include mobile {
       width: 80%;
@@ -102,6 +103,9 @@
       color: #fff;
       border: none;
       cursor: pointer;
+    }
+    .subImg {
+      height: 30px;
     }
   }
 }

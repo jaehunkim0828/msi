@@ -1,0 +1,44 @@
+@import "../layout";
+@import "../viewSize";
+
+.location {
+  @include flex-column(flex-start, center);
+  width: 100%;
+  margin-top: 154px;
+  margin-bottom: 50px;
+  min-height: 600px;
+  height: calc(100vh - 104px);
+
+  .desc {
+    @include flex-column(center, center);
+    max-width: 1200px;
+    width: 80%;
+    height: 200px;
+
+    font-size: 28px;
+  }
+
+  .googleMap {
+    max-width: 1200px;
+    width: 80%;
+    height: 500px;
+    background-color: grey;
+  }
+  .adress {
+    @include flex-column(center, flex-start);
+    max-width: 1200px;
+    width: 80%;
+    padding: 40px;
+    margin-top: 10px;
+    gap: 50px;
+    border: 1px solid #ccc;
+    .br {
+      width: 100%;
+
+      border-top: 2px #ccc dotted;
+    }
+    span {
+      font-size: 24px;
+    }
+  }
+}

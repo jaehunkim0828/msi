@@ -10,6 +10,7 @@
   background-image: url("/images/contact.webp");
   object-fit: cover;
   background-position: center;
+  background-size: 100%;
 
   .cover {
     @include flex-column(space-between, center);

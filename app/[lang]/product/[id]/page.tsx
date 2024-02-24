@@ -4,8 +4,8 @@ import json from "@/product.json";
 import style from "@/styles/page/productItem.module.scss";
 
 export default function ProductItem({ params }: { params: { id: string } }) {
-  const replaceId = params.id.replaceAll("%20", " ");
-  const info = json.products.find(pd => pd.name === replaceId);
+  const replaceId = params.id;
+  const info = json.products.find(pd => pd.id.toString() === replaceId);
   return (
     <div className={style.productItem}>
       <div className={style.name}>{info?.name.toUpperCase()}</div>

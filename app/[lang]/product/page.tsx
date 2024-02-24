@@ -22,25 +22,29 @@ export default function Product() {
   };
 
   const printers = [
-    { path: "/images/NXTRPM.png", name: "NXTRPM" },
-    { path: "/images/GPX-CII_00.png", name: "GPX-CII/GPX-CSII/GPX-CL" },
+    { path: "/images/NXTRPM.png", name: "NXTRPM", id: 9 },
+    { path: "/images/GPX-CII_00.png", name: "GPX-CII/GPX-CSII/GPX-CL", id: 10 },
   ];
 
   const inserts = [
-    { path: "/images/startWing.png", name: "SmartWing BA" },
-    { path: "/images/sFAB-D.png", name: "sFAB-D" },
-    { path: "/images/sFab-SH.png", name: "sFab-SH" },
+    { path: "/images/startWing.png", name: "SmartWing BA", id: -1 },
+    { path: "/images/sFAB-D.png", name: "sFAB-D", id: 11 },
+    { path: "/images/sFab-SH.png", name: "sFab-SH", id: 12 },
   ];
-  const software = [{ path: "/images/Nexim01.jpg", name: "Nexim" }];
+  const software = [{ path: "/images/Nexim01.jpg", name: "Nexim", id: 13 }];
   const automatic = [
-    { path: "/images/AFMU_02.png", name: "Auto Feeder Maintenance Unit" },
-    { path: "/images/smart.png", name: "Smart Nozzle Cleaner" },
-    { path: "/images/AHC-R_00.png", name: "Auto Head Cleaner-R" },
-    { path: "/images/cleaner.png", name: "Auto Head Cleaner" },
+    {
+      path: "/images/AFMU_02.png",
+      name: "Auto Feeder Maintenance Unit",
+      id: 14,
+    },
+    { path: "/images/smart.png", name: "Smart Nozzle Cleaner", id: 15 },
+    { path: "/images/AHC-R_00.png", name: "Auto Head Cleaner-R", id: 16 },
+    { path: "/images/cleaner.png", name: "Auto Head Cleaner", id: 17 },
   ];
   const automation = [
-    { path: "/images/auto.png", name: "Auto Splicing Unit" },
-    { path: "/images/ALF-3.png", name: "Auto Loading Feeder" },
+    { path: "/images/auto.png", name: "Auto Splicing Unit", id: 18 },
+    { path: "/images/ALF-3.png", name: "Auto Loading Feeder", id: 19 },
   ];
   const warehouse = [{ path: "/images/sTower2.png", name: "sTower II" }];
 
@@ -67,64 +71,64 @@ export default function Product() {
           <li onClick={() => onPushProduct(automationRef)}>
             <span>Automation units</span>
           </li>
-          <li onClick={() => onPushProduct(warehouseRef)}>
+          {/* <li onClick={() => onPushProduct(warehouseRef)}>
             <span>Automation warehouses</span>
-          </li>
+          </li> */}
         </ul>
         <div ref={mecaRef} className={style.products}>
           <div className={style.sub}>SMT Pic and Place Machines</div>
           <div className={style.productList}>
             <div
-              onClick={() => router.push("/product/AIMEXR")}
+              onClick={() => router.push("/product/1")}
               className={style.item}
             >
               <img src={"/images/AIMEXR_product.png"} alt="product" />
               <div className={style.productName}>AIMEXR</div>
             </div>
             <div
-              onClick={() => router.push("/product/NXTR S model")}
+              onClick={() => router.push("/product/2")}
               className={style.item}
             >
               <img src={"/images/NXTR-S.png"} alt="product" />
               <div className={style.productName}>{`NXTR(S Model)`}</div>
             </div>
             <div
-              onClick={() => router.push("/product/NXTR A model")}
+              onClick={() => router.push("/product/3")}
               className={style.item}
             >
               <img src={"/images/NXTR_A.png"} alt="product" />
               <div className={style.productName}>{`NXTR(A Model)`}</div>
             </div>
             <div
-              onClick={() => router.push("/product/NXT III")}
+              onClick={() => router.push("/product/4")}
               className={style.item}
             >
               <img src={"/images/nxt3.png"} alt="product" />
               <div className={style.productName}>NXT III</div>
             </div>
             <div
-              onClick={() => router.push("/product/NXT IIIc")}
+              onClick={() => router.push("/product/5")}
               className={style.item}
             >
               <img src={"/images/nxt3c.png"} alt="product" />
               <div className={style.productName}>NXT IIIc</div>
             </div>
             <div
-              onClick={() => router.push("/product/AIMEX III")}
+              onClick={() => router.push("/product/6")}
               className={style.item}
             >
               <img src={"/images/AIMEXIII.png"} alt="product" />
               <div className={style.productName}>AIMEX III</div>
             </div>
             <div
-              onClick={() => router.push("/product/AIMEX IIIc")}
+              onClick={() => router.push("/product/7")}
               className={style.item}
             >
               <img src={"/images/AIMEXIIIc.png"} alt="product" />
               <div className={style.productName}>AIMEX IIIc</div>
             </div>
             <div
-              onClick={() => router.push("/product/NXT-H")}
+              onClick={() => router.push("/product/8")}
               className={style.item}
             >
               <img src={"/images/NXT-H.png"} alt="product" />
@@ -136,7 +140,11 @@ export default function Product() {
           <div className={style.sub}>Printers</div>
           <div className={style.productList}>
             {printers.map((print, i) => (
-              <div className={style.item} key={`print-${i}`}>
+              <div
+                onClick={() => router.push(`/product/${print.id}`)}
+                className={style.item}
+                key={`print-${i}`}
+              >
                 <img src={print.path} alt="product" />
                 <div className={style.productName}>{print.name}</div>
               </div>
@@ -147,7 +155,13 @@ export default function Product() {
           <div className={style.sub}>Inserts</div>
           <div className={style.productList}>
             {inserts.map((print, i) => (
-              <div className={style.item} key={`print-${i}`}>
+              <div
+                onClick={() => {
+                  if (print.id !== -1) router.push(`/product/${print.id}`);
+                }}
+                className={style.item}
+                key={`print-${i}`}
+              >
                 <img src={print.path} alt="product" />
                 <div className={style.productName}>{print.name}</div>
               </div>
@@ -158,7 +172,11 @@ export default function Product() {
           <div className={style.sub}>Software</div>
           <div className={style.productList}>
             {software.map((print, i) => (
-              <div className={style.item} key={`print-${i}`}>
+              <div
+                onClick={() => router.push(`/product/${print.id}`)}
+                className={style.item}
+                key={`print-${i}`}
+              >
                 <img src={print.path} alt="product" />
                 <div className={style.productName}>{print.name}</div>
               </div>
@@ -169,7 +187,11 @@ export default function Product() {
           <div className={style.sub}>Automatic maintenance units</div>
           <div className={style.productList}>
             {automatic.map((print, i) => (
-              <div className={style.item} key={`print-${i}`}>
+              <div
+                onClick={() => router.push(`/product/${print.id}`)}
+                className={style.item}
+                key={`print-${i}`}
+              >
                 <img src={print.path} alt="product" />
                 <div className={style.productName}>{print.name}</div>
               </div>
@@ -181,14 +203,18 @@ export default function Product() {
 
           <div className={style.productList}>
             {automation.map((print, i) => (
-              <div className={style.item} key={`print-${i}`}>
+              <div
+                onClick={() => router.push(`/product/${print.id}`)}
+                className={style.item}
+                key={`print-${i}`}
+              >
                 <img src={print.path} alt="product" />
                 <div className={style.productName}>{print.name}</div>
               </div>
             ))}
           </div>
         </div>
-        <div ref={warehouseRef} className={style.products}>
+        {/* <div ref={warehouseRef} className={style.products}>
           <div className={style.sub}>Automatic Warehouse</div>
           <div className={style.productList}>
             {warehouse.map((print, i) => (
@@ -198,7 +224,7 @@ export default function Product() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
