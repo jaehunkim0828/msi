@@ -10,12 +10,12 @@ const useResize = (time: number) => {
   });
 
   useEffect(() => {
-    const handleResize = throttle(() => {
+    const handleResize = () => {
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-    }, time);
+    };
 
     window.addEventListener("resize", handleResize);
 

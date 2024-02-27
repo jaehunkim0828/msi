@@ -1,0 +1,35 @@
+@import "../layout";
+@import "../viewSize";
+
+.service {
+  @include flex-column(center, center);
+  width: 100%;
+  margin-top: 104px;
+  height: calc(100vh - 104px);
+  position: relative;
+
+  h1 {
+    font-size: 50px;
+    margin-bottom: 40px;
+
+    @include mobile {
+      font-size: 35px;
+    }
+  }
+
+  .content {
+    @include flex-column(center, center);
+    max-width: 1200px;
+    width: 80%;
+
+    p {
+      font-size: 30px;
+      text-align: center;
+      line-height: 60px;
+      @include mobile {
+        font-size: 22px;
+        line-height: 40px;
+      }
+    }
+  }
+}

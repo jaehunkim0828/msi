@@ -21,6 +21,6 @@ export type ReturnTypeOfGetDictionary = ResolvedReturnType<
   ReturnType<typeof getDictionary>
 >;
 
-export const getDictionary = async (locale: Lang) => {
+export const getDictionary = (locale: Lang) => {
   return dictionaries[locale]();
 };

@@ -4,7 +4,7 @@
 .homeContainer {
   width: 100%;
   height: auto;
-  min-height: 800px;
+  min-height: 600px;
 
   .wrapper {
     @include flex-row(space-between, center);
@@ -50,6 +50,10 @@
       height: 100vh;
       max-height: 800px;
       width: 100%;
+
+      @include mobile {
+        max-height: 650px;
+      }
     }
     .background {
       height: 100%;
@@ -87,6 +91,9 @@
         margin-bottom: 20px;
         font-weight: 400;
         font-family: Arial;
+        @include mobile {
+          font-size: 50px;
+        }
       }
 
       .sub {
@@ -101,10 +108,7 @@
     }
 
     .sliderItem2 {
-      display: flex;
-      justify-content: flex;
-      align-items: center;
-      flex-direction: column;
+      @include flex-column(center, center);
 
       @include mobile {
         margin-top: 150px;
@@ -115,12 +119,16 @@
         margin-bottom: 20px;
         font-weight: 500;
         color: white;
+        @include mobile {
+          font-size: 50px;
+        }
       }
 
       .sub {
         font-size: 40px;
         margin-bottom: 20px;
         color: white;
+        text-align: center;
       }
 
       p {
@@ -145,7 +153,7 @@
       z-index: 100;
 
       @include mobile {
-        flex-wrap: wrap;
+        display: none;
       }
 
       .title {

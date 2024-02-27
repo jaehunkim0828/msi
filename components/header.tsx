@@ -16,9 +16,16 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
 
   const onRoute = (path: string) => {
     router.push(`${lang}/${path}`);
+    setIsOpen(false);
   };
 
-  const navitems = ["/company", "/product", "/contact", "/location"];
+  const navitems = [
+    "/company",
+    "/product",
+    "/service",
+    "/contact",
+    "/location",
+  ];
   const navList = dict.header.nav.map((n: any, i: number) => {
     return { item: n, route: navitems[i] };
   });

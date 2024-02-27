@@ -30,7 +30,6 @@
     width: 80%;
     padding: 40px;
     margin-top: 10px;
-    gap: 50px;
     border: 1px solid #ccc;
     .br {
       width: 100%;
@@ -39,6 +38,7 @@
     }
     span {
       font-size: 24px;
+      margin: 15px 0;
     }
   }
 }

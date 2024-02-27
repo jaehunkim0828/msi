@@ -13,7 +13,8 @@
   background-size: 100%;
 
   .cover {
-    @include flex-column(space-between, center);
+    @include flex-column(center, center);
+    gap: 50px;
     padding: 30px;
     background: rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -24,6 +25,10 @@
       gap: 30px;
       color: white;
       max-width: 800px;
+      h1 {
+        font-size: 38px;
+      }
+
       p {
         font-size: 20px;
         text-align: center;
