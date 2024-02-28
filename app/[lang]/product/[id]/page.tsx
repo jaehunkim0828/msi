@@ -1,9 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
+"use client";
+
 import json from "@/product.json";
 import style from "@/styles/page/productItem.module.scss";
+import { useRouter } from "next/navigation";
 
 export default function ProductItem({ params }: { params: { id: string } }) {
+  const router = useRouter();
   const replaceId = params.id;
   const info = json.products.find(pd => pd.id.toString() === replaceId);
   return (
@@ -26,7 +30,12 @@ export default function ProductItem({ params }: { params: { id: string } }) {
               className={style.desc}
               dangerouslySetInnerHTML={{ __html: info?.desc ?? "" }}
             />
-            <button className={style.contact}>Contact US</button>
+            <button
+              onClick={() => router.push("/question")}
+              className={style.contact}
+            >
+              Contact US
+            </button>
           </div>
         </div>
       </div>

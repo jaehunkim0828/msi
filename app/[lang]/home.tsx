@@ -29,8 +29,8 @@ export default function Page({ dict }: Props) {
   SwiperCore.use([Autoplay]);
   const routings = [
     { name: "Product", image: P_Icon, path: "/product" },
-    { name: "Product request", image: R_Icon, path: "/contact" },
-    { name: "Service Request", image: S_Icon, path: "/contact" },
+    { name: "Product request", image: R_Icon, path: "/question" },
+    { name: "Service Request", image: S_Icon, path: "/question" },
     { name: "Location", image: L_Icon, path: "/location" },
   ];
 
@@ -137,7 +137,7 @@ export default function Page({ dict }: Props) {
                   Providing the best services
                 </strong>
                 <div
-                  onClick={() => router.push("/contact")}
+                  onClick={() => router.push("/question")}
                   className={style.viewMore}
                 >
                   View More

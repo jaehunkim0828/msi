@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
   await transporter.sendMail({
     from: "kkaa81@naver.com",
-    to: "kkaa81@naver.com",
+    to: "spamforwilliamyskim@gmail.com",
     subject: "[MSI]메일 문의",
     html: `
       <p style="width: 100%; white-space: pre-wrap;">
