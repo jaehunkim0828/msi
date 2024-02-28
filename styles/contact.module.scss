@@ -1,0 +1,176 @@
+@import "./viewSize";
+@import "./layout";
+
+.contactContainer {
+  @include flex-column(center, center);
+  width: 100%;
+  margin-top: 154px;
+}
+.contactForm {
+  @include flex-column(center, center);
+  max-width: 1000px;
+  width: 90%;
+  padding: 100px 0;
+  height: calc(100vh - 200px);
+
+  h1 {
+    font-size: 38px;
+    margin-bottom: 100px;
+  }
+
+  .section {
+    @include flex-row(center, center);
+    width: 100%;
+    margin: 10px;
+    gap: 10px;
+
+    @include mobile {
+      @include flex-column(center, center);
+      margin: 0;
+      gap: 0px;
+    }
+
+    .inputContainer {
+      @include flex-column(flex-start, flex-start);
+      gap: 10px;
+      width: 100%;
+      height: 100px;
+      outline: none;
+
+      @include mobile {
+        gap: 10px;
+        height: 120px;
+      }
+
+      .msg {
+        color: #d7506b;
+      }
+    }
+    .selectContainer {
+      @include flex-column(flex-start, flex-start);
+      width: 100%;
+      height: 100px;
+      gap: 10px;
+
+      @include mobile {
+        height: 120px;
+      }
+
+      .select {
+        @include flex-row(center, center);
+        width: 100%;
+        position: relative;
+
+        .selectArrow {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+          pointer-events: none;
+        }
+      }
+
+      .msg {
+        color: #d7506b;
+      }
+    }
+  }
+
+  .checkContainer {
+    @include flex-column(center, flex-start);
+    width: 100%;
+
+    .check {
+      @include flex-column(center, flex-start);
+
+      .inner {
+        @include flex-row(flex-start, center);
+        gap: 10px;
+        margin-bottom: 3px;
+        input[type="checkbox"] {
+          background-color: #eee;
+        }
+
+        span {
+          color: #9a9ea5;
+        }
+      }
+
+      .errorLine {
+        width: 100%;
+        border: 1px solid #d7506b;
+      }
+    }
+
+    .desc {
+      @include flex-column(center, flex-start);
+      width: 100%;
+      border: 1px solid #ebebeb;
+      background-color: rgb(237, 237, 225);
+      margin: 20px 0 10px 0;
+      padding: 20px 15px;
+      border-radius: 8px;
+      gap: 10px;
+      font-size: 14px;
+
+      .article {
+        .key {
+          color: #b1b1b1;
+          font-weight: 700;
+          margin-right: 10px;
+        }
+
+        .value {
+          color: #44484c;
+        }
+      }
+    }
+  }
+
+  .btn {
+    @include flex-row(flex-start, center);
+    width: 100%;
+    margin-top: 20px;
+
+    button {
+      @include flex-row(center, center);
+      background-color: #384450;
+      padding: 15px 20px;
+      border-radius: 8px;
+      color: white;
+      width: 240px;
+      height: 56px;
+      cursor: pointer;
+      border: none;
+
+      &:hover {
+        background-color: #1e242b;
+      }
+
+      &:disabled {
+        color: #616466;
+        background-color: #adadad;
+      }
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+  }
+
+  .fillBox {
+    padding: 15px 20px;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #9a9ea5;
+    border-radius: 8px;
+    color: black;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+}

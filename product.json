@@ -326,5 +326,41 @@
       "subImg": "/images/ALF_karilogo.png",
       "desc": "<p>Resupplying parts without splicing<br><br> Operators on SMT lines perform a wide variety of tasks. Of these, supplying parts to the placement machines is the most demanding, accounting for more than 30% of the total workload. The timing for performing this work often overlaps with that for other tasks and such concentrated workloads can cause supply delays and human errors, resulting in production stops.<br><br> Auto Loading Feeders have a next generation method for parts replenishment that solves the problems associated with part resupply and helps improve OEE.</p>"
     }
+  ],
+  "kind": [
+    "AIMEX",
+    "NXTR(S MODEL)",
+    "NXTR(A Model)",
+    "NXT III",
+    "NXT IIIC",
+    "AIMEX III",
+    "AIMEX IIIC",
+    "NXT-H",
+    "NXTRPM",
+    "GPX-CII/GPX-CSII/GPX-CL",
+    "SmartWing BA",
+    "sFAB-D",
+    "sFab-SH",
+    "Nexim",
+    "Auto Feeder Maintenance Unit",
+    "Smart Nozzle Cleaner",
+    "Auto Head Cleaner-R",
+    "Auto Head Cleaner",
+    "Auto Splicing Unit",
+    "Auto Loading Feeder"
+  ],
+  "privatee": [
+    {
+      "key": "수집 항목  :",
+      "value": "회사이름, 부서이름, 이름, 이메일"
+    },
+    {
+      "key": "수집/이용 동의 목적 :",
+      "value": "MSI상품 관련 문의 상담 요청 응답"
+    },
+    {
+      "key": "보유 및 이용 기간 :",
+      "value": "3달 이내"
+    }
   ]
 }
