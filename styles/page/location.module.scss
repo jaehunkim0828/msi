@@ -7,7 +7,7 @@
   margin-top: 154px;
   margin-bottom: 50px;
   min-height: 600px;
-  height: calc(100vh - 104px);
+  min-height: calc(100vh - 104px);
 
   .desc {
     @include flex-column(center, center);
