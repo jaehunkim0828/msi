@@ -41,6 +41,10 @@
     padding: 40px;
     margin-top: 10px;
     border: 1px solid #ccc;
+
+    @include mobile {
+      padding: 20px;
+    }
     .br {
       width: 100%;
 
