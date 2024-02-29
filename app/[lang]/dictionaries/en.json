@@ -1,6 +1,6 @@
 {
   "header": {
-    "nav": ["Company", "Products", "Service", "Contact US", "SITE MAP"]
+    "nav": ["Company", "Product", "Service", "Contact US", "Location"]
   },
   "home": {
     "route": {

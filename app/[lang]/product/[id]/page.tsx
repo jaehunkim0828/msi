@@ -10,8 +10,17 @@ export default function ProductItem({ params }: { params: { id: string } }) {
   const router = useRouter();
   const replaceId = params.id;
   const info = json.products.find(pd => pd.id.toString() === replaceId);
+
   return (
     <div className={style.productItem}>
+      <div>
+        <span>Home</span>
+        <span>{">"}</span>
+        <span>Products</span>
+        <span>{">"}</span>
+        <span>Home</span>
+        <span>{">"}</span>
+      </div>
       <div className={style.name}>{info?.name.toUpperCase()}</div>
       <div className={style.product}>
         <img src={info?.mainImg} className={style.mainImg} alt="item" />

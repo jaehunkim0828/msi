@@ -14,8 +14,11 @@
   min-height: calc(100vh - 200px);
 
   h1 {
-    font-size: 38px;
+    font-size: 70px;
     margin-bottom: 100px;
+    @include mobile {
+      font-size: 40px;
+    }
   }
 
   .section {

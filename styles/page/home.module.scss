@@ -61,10 +61,7 @@
       align-items: center;
       justify-content: center;
       background-size: cover;
-
-      @include mobile {
-        align-items: flex-start;
-      }
+      background-position: center;
     }
 
     .slide_right {
@@ -110,10 +107,6 @@
     .sliderItem2 {
       @include flex-column(center, center);
 
-      @include mobile {
-        margin-top: 150px;
-      }
-
       h2 {
         font-size: 70px;
         margin-bottom: 20px;
@@ -145,7 +138,7 @@
       left: 50%;
       transform: translateX(-50%);
       max-width: 1000px;
-      width: 80%;
+      width: 90%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -243,7 +236,7 @@
       .title {
         @include flex-row(flex-start, center);
         font-size: 80px;
-        width: 80%;
+        width: 90%;
         max-width: 500px;
         height: 60px;
         margin-top: 20px;
@@ -296,11 +289,12 @@
             font-size: 24px;
             border-bottom: 1px solid black;
             padding: 5px 5px;
+            height: 80px;
           }
 
           @include mobile {
             width: 100%;
-            height: 190px;
+            height: 140px;
             margin: 5px 0;
             background-size: 100%;
           }
@@ -401,7 +395,7 @@
         }
 
         .title {
-          width: 80%;
+          width: 90%;
           font-size: 40px;
           padding: 20px 0;
           border-bottom: 2px solid white;

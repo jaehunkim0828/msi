@@ -34,15 +34,6 @@ export default function Page({ dict }: Props) {
     { name: "Location", image: L_Icon, path: "/location" },
   ];
 
-  const company = [
-    { title: "Introduction", desc: ["Who we are in", "the market"] },
-    { title: "Management", desc: ["Sustainable", "Business Strategy"] },
-    {
-      title: "Products",
-      desc: ["Providing the best", "Performance Products"],
-    },
-  ];
-
   const { width } = useResize(500);
 
   return (
@@ -50,7 +41,7 @@ export default function Page({ dict }: Props) {
       <div className={style.landingContainer}>
         <Swiper
           className={style.slider}
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
+          // autoplay={{ delay: 2000, disableOnInteraction: false }}
           loop={true}
         >
           <SwiperSlide>

@@ -29,7 +29,7 @@ export default function Product() {
   const inserts = [
     { path: "/images/startWing.png", name: "SmartWing BA", id: -1 },
     { path: "/images/sFAB-D.png", name: "sFAB-D", id: 11 },
-    { path: "/images/sFab-SH.png", name: "sFab-SH", id: 12 },
+    { path: "/images/sfab_sh.png", name: "sFab-SH", id: 12 },
   ];
   const software = [{ path: "/images/Nexim01.jpg", name: "Nexim", id: 13 }];
   const automatic = [
