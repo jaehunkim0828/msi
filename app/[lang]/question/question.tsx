@@ -9,5 +9,5 @@ interface Props extends Dict {
 
 export default function Question({ dict }: Props) {
   //   const {  } = dict;
-  return <Contact />;
+  return <Contact dict={dict} />;
 }

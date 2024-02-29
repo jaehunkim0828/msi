@@ -4,8 +4,11 @@ import { useState } from "react";
 import json from "../product.json";
 import { useContactForm } from "../contact.form";
 
-export default function Contact() {
-  const { kind, privatee } = json;
+export default function Contact({ dict }: any) {
+  const { kind } = json;
+  const {
+    question: { privatee, des },
+  } = dict;
   const [isShowToastBar, setIsShowToastBar] = useState(false);
 
   const {
@@ -33,31 +36,31 @@ export default function Contact() {
         }}
         className={style.contactForm}
       >
-        <h1>문의하기</h1>
+        <h1>{des.title}</h1>
         <div className={style.section}>
           <Input
-            title={"회사이름"}
-            placeholder={"회사이름을 입력해주세요"}
+            title={des.company}
+            placeholder={des.company}
             register={register.company}
             error={errors.company?.message}
           />
           <Input
-            title={"부서이름"}
-            placeholder={"부서이름을 작성해주세요"}
+            title={des.department}
+            placeholder={des.department}
             register={register.department}
             error={errors.department?.message}
           />
         </div>
         <div className={style.section}>
           <Input
-            title={"이름"}
-            placeholder={"이름을 작성해주세요"}
+            title={des.manager}
+            placeholder={des.manager}
             register={register.manager}
             error={errors.manager?.message}
           />
           <Input
-            title={"이메일"}
-            placeholder={"이메일을 입력해주세요"}
+            title={des.email}
+            placeholder={des.email}
             register={register.email}
             error={errors.email?.message}
           />
@@ -65,7 +68,7 @@ export default function Contact() {
         <div className={style.section}>
           <div className={style.selectContainer}>
             <label>
-              머신 선택
+              {des.select}
               <span style={{ color: "#D7506B" }}>*</span>
             </label>
             <div className={style.select}>
@@ -82,7 +85,7 @@ export default function Contact() {
                   disabled
                   // selected
                 >
-                  머신 선택
+                  {des.select}
                 </option>
                 {kind.map((mecanic, i) => (
                   <option key={`mecanic-key: ${mecanic}`} value={mecanic}>
@@ -108,7 +111,7 @@ export default function Contact() {
                 type="checkbox"
               />
               <label htmlFor={"check_contact"}>
-                {"개인 정보 수집/이용취급 동의(필수)"}
+                {des.required}
                 <span style={{ color: "#D7506B" }}>*</span>
               </label>
             </div>
@@ -117,7 +120,7 @@ export default function Contact() {
             )}
           </div>
           <div className={style.desc}>
-            {privatee.map((item, i) => (
+            {privatee.map((item: any, i: number) => (
               <div key={`reason: ${i}`} className={style.article}>
                 <span className={style.key}>{item.key}</span>
                 <span className={style.value}>{item.value}</span>
@@ -127,7 +130,7 @@ export default function Contact() {
         </div>
         <div className={style.btn}>
           <button disabled={!isValid} type="submit">
-            작성완료
+            {des.confirm}
           </button>
         </div>
       </form>
