@@ -41,7 +41,7 @@ export default function Page({ dict }: Props) {
       <div className={style.landingContainer}>
         <Swiper
           className={style.slider}
-          // autoplay={{ delay: 2000, disableOnInteraction: false }}
+          autoplay={{ delay: 2000, disableOnInteraction: false }}
           loop={true}
         >
           <SwiperSlide>
