@@ -13,13 +13,21 @@ export default function ProductItem({ params }: { params: { id: string } }) {
 
   return (
     <div className={style.productItem}>
-      <div>
-        <span>Home</span>
+      <div className={style.route}>
+        <span className={style.btn} onClick={() => router.push("/")}>
+          Home
+        </span>
         <span>{">"}</span>
-        <span>Products</span>
+        <span className={style.btn} onClick={() => router.push("/product")}>
+          Products
+        </span>
         <span>{">"}</span>
-        <span>Home</span>
-        <span>{">"}</span>
+        <span
+          className={style.btn}
+          onClick={() => router.push(`/product/${params.id}`)}
+        >
+          {info?.name}
+        </span>
       </div>
       <div className={style.name}>{info?.name.toUpperCase()}</div>
       <div className={style.product}>

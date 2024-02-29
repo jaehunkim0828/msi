@@ -7,6 +7,21 @@
   min-height: 100vh;
   overflow: hidden;
 
+  .route {
+    padding: 10px 0;
+    @include flex-row(flex-start, center);
+    width: 100%;
+    gap: 10px;
+
+    .btn {
+      cursor: pointer;
+    }
+
+    @include mobile {
+      width: 90%;
+    }
+  }
+
   .product {
     @include flex-row(center, flex-start);
     max-width: 1400px;
