@@ -319,6 +319,7 @@
 
       p {
         font-size: 25px;
+        text-align: center;
       }
 
       .products {
@@ -381,6 +382,9 @@
         font-weight: bold;
         border-bottom: 2px white solid;
         padding: 10px;
+        @include mobile {
+          font-size: 30px;
+        }
       }
 
       .desc {
@@ -390,6 +394,10 @@
         @include flex-column(space-between, flex-start);
         .item {
           font-size: 35px;
+
+          @include mobile {
+            font-size: 25px;
+          }
         }
       }
     }
