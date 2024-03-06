@@ -1,6 +1,6 @@
 {
   "header": {
-    "nav": ["Company", "Product", "Service", "Contact US", "Location"]
+    "nav": ["Company", "Product", "Contact US", "Location"]
   },
   "home": {
     "route": {
@@ -17,6 +17,9 @@
           "desc": ["Providing the best", "Performance Products"]
         }
       ]
+    },
+    "product": {
+      "title": "MSI는 SMT 산업에서 독보적인 기술력으로 우수한 제품을 제공하고 있습니다."
     }
   },
   "company": {
@@ -78,7 +81,9 @@
       "email": "Mail",
       "required": "Consent for Collection and Use of Personal Information (Required)",
       "select": "Select Product",
-      "confirm": "Confirm"
+      "confirm": "Confirm",
+      "category": "Contact Category",
+      "categoryItem": ["Product", "Service"]
     },
     "privatee": [
       {
@@ -86,11 +91,11 @@
         "value": "Company, Department, Manager, Email"
       },
       {
-        "key": "Purpose of Collection",
+        "key": "Purpose of Collection :",
         "value": "To respond to inquiries"
       },
       {
-        "key": "Retention and Use Period",
+        "key": "Retention and Use Period :",
         "value": "3 Month"
       }
     ]

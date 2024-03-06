@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import style from "@/styles/page/home.module.scss";
@@ -41,7 +42,7 @@ export default function Page({ dict }: Props) {
       <div className={style.landingContainer}>
         <Swiper
           className={style.slider}
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
+          autoplay={{ delay: 8000, disableOnInteraction: false }}
           loop={true}
         >
           <SwiperSlide>
@@ -163,7 +164,7 @@ export default function Page({ dict }: Props) {
         <div className={style.block} />
         <div className={style.wrapper}>
           <div className={style.info}>
-            <div className={style.title}>Company</div>
+            <div className={style.title}>MSI Corporation</div>
             <div className={style.desc}>{home.corporation.content}</div>
             <div className={style.companyContent}>
               {home.corporation.items.map((cp, i) => (
@@ -196,6 +197,66 @@ export default function Page({ dict }: Props) {
             </div>
           )}
         />
+      </div>
+      <div className={style.product}>
+        <div className={style.wrapper}>
+          <div className={style.proContent}>
+            <h2>Product</h2>
+            <p>{home.product.title}</p>
+            <div className={style.products}>
+              <div
+                onClick={() => router.push("/product/3")}
+                className={style.items}
+              >
+                <div className={style.img}>
+                  <img src={"/images/NXTR_A.png"} alt="products" />
+                </div>
+                <div className={style.desc}>NXTR-A</div>
+              </div>
+              <div
+                onClick={() => router.push("/product/2")}
+                className={style.items}
+              >
+                <div className={style.img}>
+                  <img src={"/images/NXTR-S.png"} alt="products" />
+                </div>
+                <div className={style.desc}>NXTR-S</div>
+              </div>
+              <div
+                onClick={() => router.push("/product/1")}
+                className={style.items}
+              >
+                <div className={style.img}>
+                  <img src={"/images/AIMEXR_product.png"} alt="products" />
+                </div>
+                <div className={style.desc}>AIMEXR</div>
+              </div>
+              <div
+                onClick={() => router.push("/product/4")}
+                className={style.items}
+              >
+                <div className={style.img}>
+                  <img src={"/images/nxt3.png"} alt="products" />
+                </div>
+                <div className={style.desc}>NXT III</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={style.global}>
+        <div className={style.semi}>
+          <div className={style.region}>
+            <div className={style.title}>Global Network - Region</div>
+            <div className={style.desc}>
+              <div className={style.item}>Europe - 32</div>
+              <div className={style.item}>Middle east, Africa - 11</div>
+              <div className={style.item}>Asia - 7</div>
+              <div className={style.item}>North / South America - 2</div>
+            </div>
+          </div>
+          <img className={style.map} src={"/images/map.png"} alt={"지도"} />
+        </div>
       </div>
     </div>
   );

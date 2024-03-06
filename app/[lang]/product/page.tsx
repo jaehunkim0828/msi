@@ -51,7 +51,7 @@ export default function Product() {
   return (
     <div className={style.productContainer}>
       <div className={style.wrapper}>
-        <h1>Products</h1>
+        <h1>PRODUCTS</h1>
         <ul className={style.list}>
           <li onClick={() => onPushProduct(mecaRef)}>
             <span>SMT pick and place machines</span>

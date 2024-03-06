@@ -48,10 +48,10 @@
     .br {
       width: 100%;
 
-      border-top: 2px #ccc dotted;
+      border-top: 1px #ccc solid;
     }
     span {
-      font-size: 24px;
+      font-size: 30px;
       margin: 15px 0;
 
       @include mobile {

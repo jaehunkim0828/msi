@@ -13,6 +13,10 @@
   background-repeat: no-repeat;
   background-position-y: 100%;
 
+  @include mobile {
+    height: calc(100vh - 74px);
+    margin-top: 74px;
+  }
   .cover {
     @include flex-column(center, center);
     gap: 100px;

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { Lang } from "@/app/dictionaries";
 import Burger from "@/burger";
 import Cancel from "@/cancel";
@@ -7,12 +8,17 @@ import useResize from "@/useResize";
 import Link from "next/link";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
+import Burg from "../public/images/square.png";
+import Inter from "../public/images/internet.png";
+import Logo from "../public/images/msi.png";
 
 export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
   const router = useRouter();
   const segment = useSelectedLayoutSegment();
   const { width } = useResize(200);
   const [isOpen, setIsOpen] = useState(false);
+  const [isIOpen, setIsIOpen] = useState(false);
+  const [index, setIndex] = useState(0);
 
   const onRoute = (path: string) => {
     router.push(`${lang}/${path}`);
@@ -22,17 +28,36 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
   const navitems = [
     "/company",
     "/product",
-    "/service",
-    "/contact",
+    // "/service",
+    "/question",
     "/location",
   ];
   const navList = dict.header.nav.map((n: any, i: number) => {
     return { item: n, route: navitems[i] };
   });
 
+  const navList2 = ["COMPANY", "PRODUCT", "CONTACT", "LOCATION"];
+
+  const routers = [
+    [{ name: "Intro", route: "/company" }],
+    [
+      { name: "SMT Pick and place", route: "/product" },
+      { name: "Printers", route: "/product" },
+      { name: "Inserts", route: "/product" },
+      { name: "Software", route: "/product" },
+      { name: "Automatic maintenance", route: "/product" },
+      { name: "Automatic Units", route: "/product" },
+    ],
+    [{ name: "Product Sales", route: "/question" }],
+    [{ name: "Map", route: "/location" }],
+  ];
+
   return (
     <header className={style.headerContainer}>
-      <div className={style.translation}>
+      <div
+        style={{ display: width > 1032 ? "flex" : "none" }}
+        className={style.translation}
+      >
         <div className={style.transForm}>
           <Link
             href={`/en/${segment ?? ""}`}
@@ -53,10 +78,9 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
       </div>
       <div className={style.container}>
         <div onClick={() => onRoute("/")} className={style.logo}>
-          <strong>MSI</strong>
-          Corporation
+          <Image src={Logo} width={110} height={58} alt="internet" />
         </div>
-        {width > 1200 ? (
+        {width > 1032 ? (
           <div className={style.nav}>
             <nav className={style.navItems}>
               {navList.map((item: any, i: number) => (
@@ -71,29 +95,69 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
             </nav>
           </div>
         ) : (
-          <div>
-            {!isOpen ? (
-              <div onClick={() => setIsOpen(true)}>
-                <Burger />
+          <div className={style.row}>
+            <div className={style.inter}>
+              <div onClick={() => setIsIOpen(!isIOpen)}>
+                <Image src={Inter} width={50} height={50} alt="internet" />
               </div>
-            ) : (
-              <div onClick={() => setIsOpen(false)}>
-                <Cancel />
+              <div
+                style={{ display: isIOpen ? "flex" : "none" }}
+                className={style.list}
+              >
+                <div className={style.title}>LANGUAGE</div>
+                <Link
+                  href={`/en/${segment ?? ""}`}
+                  className={style.item}
+                  replace={true}
+                  onClick={() => setIsIOpen(false)}
+                >
+                  ENGLISH
+                </Link>
+                <Link
+                  href={`/ko/${segment ?? ""}`}
+                  className={style.item}
+                  replace={true}
+                  onClick={() => setIsIOpen(false)}
+                >
+                  KOREAN
+                </Link>
               </div>
-            )}
+            </div>
+            <div
+              onClick={() => {
+                setIsOpen(!isOpen);
+                setIsIOpen(false);
+              }}
+            >
+              <Image src={Burg} width={50} height={50} alt="burger" />
+            </div>
           </div>
         )}
       </div>
-      {isOpen ? (
+      {width < 1032 && isOpen ? (
         <div className={style.back}>
           <div className={style.navList}>
-            {navList.map((item: any, i: number) => (
+            {navList2.map((item: any, i: number) => (
               <div
                 key={`navL: ${i}`}
                 className={style.item}
-                onClick={() => onRoute(item.route)}
+                onClick={() => setIndex(i)}
               >
-                {item.item}
+                {item}
+              </div>
+            ))}
+          </div>
+          <div className={style.routers}>
+            {routers[index].map((rt2, j) => (
+              <div
+                onClick={() => {
+                  router.push(rt2.route);
+                  setIsOpen(false);
+                }}
+                className={style.router}
+                key={`rt: ${j}`}
+              >
+                {rt2.name}
               </div>
             ))}
           </div>

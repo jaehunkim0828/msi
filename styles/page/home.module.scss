@@ -237,7 +237,7 @@
         @include flex-row(flex-start, center);
         font-size: 80px;
         width: 90%;
-        max-width: 500px;
+        max-width: 700px;
         height: 60px;
         margin-top: 20px;
         font-weight: 900;
@@ -303,6 +303,116 @@
     }
   }
 
+  .product {
+    width: 100%;
+    @include flex-column(center, center);
+    padding: 50px 0 20px 0;
+
+    .proContent {
+      width: 100%;
+      @include flex-column(center, center);
+      h2 {
+        font-size: 80px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 25px;
+      }
+
+      .products {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-column-gap: 10px;
+        margin-top: 40px;
+
+        @include mobile {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .items {
+          cursor: pointer;
+          .img {
+            width: 100%;
+
+            img {
+              width: 100%;
+            }
+          }
+          .desc {
+            @include flex-row(center, center);
+            width: 100%;
+            height: 70px;
+            background-color: rgb(177, 177, 177);
+            font-size: 35px;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  .global {
+    width: 100%;
+    @include flex-row(center, flex-start);
+    height: auto;
+
+    .semi {
+      @include flex-row(center, flex-start);
+      width: 100%;
+      max-width: 1400px;
+      background-color: rgb(77, 73, 73);
+
+      @include mobile {
+        @include flex-column(center, center);
+      }
+    }
+
+    .region {
+      @include flex-column(flex-start, flex-start);
+      width: 45%;
+      background-color: rgb(77, 73, 73);
+      color: white;
+
+      .title {
+        width: 100%;
+        font-size: 40px;
+        font-weight: bold;
+        border-bottom: 2px white solid;
+        padding: 10px;
+      }
+
+      .desc {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        @include flex-column(space-between, flex-start);
+        .item {
+          font-size: 35px;
+        }
+      }
+    }
+
+    .map {
+      width: 55%;
+      height: auto;
+    }
+
+    @include mobile {
+      @include flex-column(center, center);
+
+      .region {
+        width: 100%;
+        // min-height: 250px;
+      }
+
+      .map {
+        width: 100%;
+      }
+    }
+  }
+
   .infiniteContainer {
     width: 100%;
     height: 200px;
@@ -335,6 +445,7 @@
 
       @include mobile {
         padding: 60px 0;
+        height: calc(100vh - 74px);
       }
 
       .title {

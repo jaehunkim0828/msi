@@ -35,7 +35,7 @@ export default function Location() {
   return (
     <div className={style.location}>
       <div className={style.desc}>
-        <h1>How to find Us</h1>
+        <h1>HOW TO FIND US</h1>
       </div>
 
       {isLoaded && (
@@ -48,11 +48,10 @@ export default function Location() {
         </GoogleMap>
       )}
       <div className={style.adress}>
-        <span>주소: 경기도 오산시 가장산업서로 56-20</span>
+        <span>경기도 오산시 가장산업서로 56-20</span>
         <span className={style.br} />
         <span>
-          Adress: 56-20, Gajangsaneopseo-ro, Osan-si, Gyeonggi-do, Republic of
-          Korea
+          56-20, Gajangsaneopseo-ro, Osan-si, Gyeonggi-do, Republic of Korea
         </span>
       </div>
     </div>

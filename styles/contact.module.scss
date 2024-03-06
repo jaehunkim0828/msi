@@ -22,7 +22,7 @@
   }
 
   .section {
-    @include flex-row(center, center);
+    @include flex-row(flex-start, center);
     width: 100%;
     margin: 10px;
     gap: 10px;
@@ -56,6 +56,34 @@
       gap: 10px;
 
       @include mobile {
+        height: 120px;
+      }
+
+      .select {
+        @include flex-row(center, center);
+        width: 100%;
+        position: relative;
+
+        .selectArrow {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+          pointer-events: none;
+        }
+      }
+
+      .msg {
+        color: #d7506b;
+      }
+    }
+    .selectContainer2 {
+      @include flex-column(flex-start, flex-start);
+      width: calc(50% - 10px);
+      height: 100px;
+      gap: 10px;
+
+      @include mobile {
+        width: 100%;
         height: 120px;
       }
 

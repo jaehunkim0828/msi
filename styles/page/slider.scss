@@ -6,6 +6,10 @@
   height: calc(100vh - 104px);
   max-height: 800px;
   width: 100%;
+
+  @media (max-width: 1032px) {
+    height: calc(100vh - 74px);
+  }
 }
 
 .each-slide-effect span {

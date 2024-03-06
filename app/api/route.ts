@@ -14,9 +14,13 @@ const transporter = createTransport({
 export async function POST(req: NextRequest) {
   const data: any = await req.json();
 
+  const to_mail =
+    data.type === "Service" || data.type === "서비스"
+      ? "service@msinter.co.kr"
+      : "sale@msinter.co.kr";
   await transporter.sendMail({
     from: "kkaa81@naver.com",
-    to: "sale@msinter.co.kr",
+    to: to_mail,
     subject: "[MSI]메일 문의",
     html: `
       <p style="width: 100%; white-space: pre-wrap;">

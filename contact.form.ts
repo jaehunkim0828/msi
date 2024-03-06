@@ -2,6 +2,7 @@ import { SubmitErrorHandler, useForm } from "react-hook-form";
 import U from "./U";
 
 export interface ContactType {
+  type: string;
   mecanic: string;
   company: string;
   department: string;
@@ -14,6 +15,7 @@ export const useContactForm = () => {
   const form = useForm<ContactType>({
     mode: "onChange",
     defaultValues: {
+      type: undefined,
       mecanic: undefined,
       company: "",
       department: "",
@@ -25,6 +27,18 @@ export const useContactForm = () => {
 
   const register = {
     mecanic: form.register("mecanic", {
+      required: "필수 입력 항목입니다",
+      validate: {
+        isMatch: value => {
+          if (value !== "default") {
+            return true;
+          } else {
+            return "필수 입력 항목입니다";
+          }
+        },
+      },
+    }),
+    type: form.register("type", {
       required: "필수 입력 항목입니다",
       validate: {
         isMatch: value => {
@@ -67,6 +81,11 @@ export const useContactForm = () => {
         message: "필수 입력 항목입니다",
       });
       throw new Error("mecanic");
+    } else if (data.type === "default") {
+      form.setError("type", {
+        message: "필수 입력 항목입니다",
+      });
+      throw new Error("type");
     } else {
       //메일 전송
       await fetch("/api", {

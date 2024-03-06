@@ -38,6 +38,43 @@ export default function Contact({ dict }: any) {
       >
         <h1>{des.title}</h1>
         <div className={style.section}>
+          <div className={style.selectContainer2}>
+            <label>
+              {des.category}
+              <span style={{ color: "#D7506B" }}>*</span>
+            </label>
+            <div className={style.select}>
+              <select
+                style={{
+                  borderColor: errors.type?.message ? "#D7506B" : "#9a9ea5",
+                }}
+                className={style.fillBox}
+                {...register.type}
+                defaultValue="default"
+              >
+                <option
+                  value="default"
+                  disabled
+                  // selected
+                >
+                  {des.category}
+                </option>
+                {(des.categoryItem as string[]).map((item, i) => (
+                  <option key={`mecanic-key: ${item}`} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+              <div className={style.selectArrow}>
+                <Arrowdown size={20} color="black" />
+              </div>
+            </div>
+            {errors.mecanic?.message && (
+              <p className={style.msg}>{errors.mecanic?.message}</p>
+            )}
+          </div>
+        </div>
+        <div className={style.section}>
           <Input
             title={des.company}
             placeholder={des.company}

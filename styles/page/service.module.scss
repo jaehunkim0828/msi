@@ -8,6 +8,11 @@
   height: calc(100vh - 104px);
   position: relative;
 
+  @include mobile {
+    margin-top: 74px;
+    height: calc(100vh - 74px);
+  }
+
   h1 {
     font-size: 50px;
     margin-bottom: 40px;

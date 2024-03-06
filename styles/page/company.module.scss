@@ -7,6 +7,9 @@
   min-height: 800px;
   margin-top: 104px;
 
+  @include mobile {
+    margin-top: 74px;
+  }
   .wrapper {
     @include flex-row(space-between, center);
     width: 90%;
@@ -146,11 +149,11 @@
       }
 
       .title {
-        font-size: 60px;
-        height: 80px;
-        max-width: 450px;
+        font-size: 70px;
+        max-width: 500px;
         border-bottom: 2px solid white;
         margin-bottom: 30px;
+        padding-bottom: 30px;
         width: 100%;
 
         @include mobile {
@@ -184,11 +187,10 @@
       @include flex-row(center, center);
       width: 100%;
       padding: 80px 0;
-      height: 800px;
+      height: 500px;
 
       @include mobile {
         padding: 30px 0;
-        height: 500px;
       }
 
       @include mobile {
@@ -371,9 +373,13 @@
 
     .content {
       text-align: center;
-      font-size: 20px;
+      font-size: 25px;
       width: 100%;
       padding: 50px 30px;
+
+      @include mobile {
+        font-size: 20px;
+      }
     }
 
     .sustainImg {
