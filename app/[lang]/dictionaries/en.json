@@ -19,13 +19,14 @@
       ]
     },
     "product": {
-      "title": "MSI는 SMT 산업에서 독보적인 기술력으로 우수한 제품을 제공하고 있습니다."
+      "title": "MSI provides excellent products with its dominant technological prowess in the SMT industry."
     }
   },
   "company": {
     "desc": [
       "Creating and Providing the Future.",
-      "MSI is the trusted name in SMT. Since our founding in 1979,we have put evolvement first."
+      "MSI is the trusted name in SMT. Since our founding in 1979,",
+      "we have put evolvement first."
     ],
     "vision": {
       "desc": [

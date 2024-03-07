@@ -161,7 +161,6 @@ export default function Page({ dict }: Props) {
         </div>
       </div>
       <div className={style.company}>
-        <div className={style.block} />
         <div className={style.wrapper}>
           <div className={style.info}>
             <div className={style.title}>MSI Corporation</div>

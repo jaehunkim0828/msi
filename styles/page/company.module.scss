@@ -149,8 +149,9 @@
       }
 
       .title {
+        display: inline;
         font-size: 70px;
-        max-width: 500px;
+        max-width: 600px;
         border-bottom: 2px solid white;
         margin-bottom: 30px;
         padding-bottom: 30px;
@@ -255,7 +256,7 @@
     height: auto;
 
     .content {
-      @include flex-row(center, flex-start);
+      @include flex-row(space-between, flex-start);
       width: 100%;
       // min-height: calc(100vh - 104px);
       height: auto;
@@ -268,7 +269,7 @@
       }
 
       .left {
-        width: 50%;
+        width: 45%;
         @include flex-column(flex-start, flex-start);
         gap: 60px;
         @include mobile {
@@ -276,7 +277,15 @@
         }
 
         .title {
+          @include flex-row(flex-start, flex-end);
           font-size: 55px;
+          width: 100%;
+
+          .line {
+            border-bottom: 3px solid black;
+            max-width: 100px;
+            width: 100%;
+          }
 
           @include mobile {
             font-size: 35px;
@@ -373,7 +382,7 @@
 
     .content {
       text-align: center;
-      font-size: 25px;
+      font-size: 30px;
       width: 100%;
       padding: 50px 30px;
 
