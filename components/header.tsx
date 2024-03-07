@@ -26,11 +26,11 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
   };
 
   const navitems = [
-    "/company",
-    "/product",
+    `/company`,
+    `/product`,
     // "/service",
-    "/question",
-    "/location",
+    `/question`,
+    `/location`,
   ];
   const navList = dict.header.nav.map((n: any, i: number) => {
     return { item: n, route: navitems[i] };
@@ -39,17 +39,17 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
   const navList2 = ["COMPANY", "PRODUCT", "CONTACT", "LOCATION"];
 
   const routers = [
-    [{ name: "Intro", route: "/company" }],
+    [{ name: "Intro", route: `${lang}/company` }],
     [
-      { name: "SMT Pick and place", route: "/product" },
-      { name: "Printers", route: "/product" },
-      { name: "Inserts", route: "/product" },
-      { name: "Software", route: "/product" },
-      { name: "Automatic maintenance", route: "/product" },
-      { name: "Automatic Units", route: "/product" },
+      { name: "SMT Pick and place", route: `${lang}/product` },
+      { name: "Printers", route: `${lang}/product` },
+      { name: "Inserts", route: `${lang}/product` },
+      { name: "Software", route: `${lang}/product` },
+      { name: "Automatic maintenance", route: `${lang}/product` },
+      { name: "Automatic Units", route: `${lang}/product` },
     ],
-    [{ name: "Product Sales", route: "/question" }],
-    [{ name: "Map", route: "/location" }],
+    [{ name: "Product Sales", route: `${lang}/question` }],
+    [{ name: "Map", route: `${lang}/location` }],
   ];
 
   return (
