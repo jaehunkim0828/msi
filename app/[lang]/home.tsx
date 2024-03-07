@@ -163,7 +163,7 @@ export default function Page({ dict }: Props) {
       <div className={style.company}>
         <div className={style.wrapper}>
           <div className={style.info}>
-            <div className={style.title}>MSI Corporation</div>
+            <div className={style.title}>Corporation</div>
             <div className={style.desc}>{home.corporation.content}</div>
             <div className={style.companyContent}>
               {home.corporation.items.map((cp, i) => (

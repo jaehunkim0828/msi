@@ -162,18 +162,18 @@
         }
       }
       .desc {
-        font-size: 56px;
+        font-size: 45px;
         margin-bottom: 70px;
 
         @include mobile {
-          font-size: 36px;
+          font-size: 28px;
         }
       }
 
       p {
         font-size: 45px;
         @include mobile {
-          font-size: 30px;
+          font-size: 28px;
         }
       }
     }
@@ -274,14 +274,16 @@
         gap: 60px;
         @include mobile {
           width: 100%;
+          @include flex-column(center, center);
         }
 
         .title {
-          @include flex-row(flex-start, flex-end);
+          @include flex-column(flex-start, flex-start);
           font-size: 55px;
           width: 100%;
 
           .line {
+            @include flex-column(flex-start, flex-end);
             border-bottom: 3px solid black;
             max-width: 100px;
             width: 100%;
@@ -289,6 +291,7 @@
 
           @include mobile {
             font-size: 35px;
+            @include flex-column(center, center);
           }
         }
 
@@ -296,6 +299,7 @@
           font-size: 30px;
           @include mobile {
             font-size: 25px;
+            text-align: center;
           }
         }
       }

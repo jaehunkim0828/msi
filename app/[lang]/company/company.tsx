@@ -28,9 +28,7 @@ export default function Company({ dict }: Props) {
         <div className={style.wrapper}>
           <div className={style.content}>
             <div className={style.left}>
-              <div className={style.title}>
-                Vision & Mission <span className={style.line} />
-              </div>
+              <div className={style.title}>Vision & Mission</div>
               <div className={style.desc}>{company.vision.desc[0]}</div>
               <div className={style.desc}>
                 <p>{company.vision.desc[1]}</p>
