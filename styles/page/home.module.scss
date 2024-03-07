@@ -243,7 +243,7 @@
         font-weight: 900;
 
         @include mobile {
-          font-size: 40px;
+          font-size: 50px;
         }
       }
 
@@ -259,6 +259,7 @@
         z-index: 5;
 
         @include mobile {
+          margin: 20px 0 20px 0;
           font-size: 18px;
         }
       }
@@ -317,6 +318,10 @@
         font-size: 80px;
         font-weight: bold;
         margin-bottom: 20px;
+
+        @include mobile {
+          font-size: 50px;
+        }
       }
 
       p {
