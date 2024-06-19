@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   const to_mail =
     data.type === "Service" || data.type === "서비스"
       ? "service@msinter.co.kr"
-      : "sale@msinter.co.kr";
+      : "sales@msinter.co.kr";
   await transporter.sendMail({
     from: "kkaa81@naver.com",
     to: to_mail,
