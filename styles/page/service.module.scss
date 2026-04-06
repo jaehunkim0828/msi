@@ -1,24 +1,29 @@
 @import "../layout";
 @import "../viewSize";
+@import "../variables";
 
 .service {
   @include flex-column(center, center);
   width: 100%;
-  margin-top: 104px;
-  height: calc(100vh - 104px);
+  margin-top: 80px;
+  min-height: calc(100dvh - 80px);
   position: relative;
+  color: var(--color-text);
 
   @include mobile {
-    margin-top: 74px;
-    height: calc(100vh - 74px);
+    margin-top: 64px;
+    min-height: calc(100dvh - 64px);
   }
 
   h1 {
-    font-size: 50px;
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 800;
     margin-bottom: 40px;
+    letter-spacing: -0.03em;
 
     @include mobile {
-      font-size: 35px;
+      font-size: 32px;
     }
   }
 
@@ -28,12 +33,14 @@
     width: 90%;
 
     p {
-      font-size: 30px;
+      font-size: 20px;
       text-align: center;
-      line-height: 60px;
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+
       @include mobile {
-        font-size: 22px;
-        line-height: 40px;
+        font-size: 16px;
+        line-height: 1.7;
       }
     }
   }

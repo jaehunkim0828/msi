@@ -50,8 +50,16 @@ export default function Product() {
 
   return (
     <div className={style.productContainer}>
+      <div className={style.pageHeader}>
+        <div className={style.pageHeaderInner}>
+          <div className={style.sectionLabel}>Product Lineup</div>
+          <h1>PRODUCTS</h1>
+          <p className={style.pageDesc}>
+            SMT 장비의 글로벌 리더, FUJI의 전 제품 라인업을 만나보세요.
+          </p>
+        </div>
+      </div>
       <div className={style.wrapper}>
-        <h1>PRODUCTS</h1>
         <ul className={style.list}>
           <li onClick={() => onPushProduct(mecaRef)}>
             <span>SMT pick and place machines</span>

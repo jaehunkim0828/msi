@@ -1,402 +1,463 @@
 @import "../layout";
 @import "../viewSize";
+@import "../variables";
 
 .companyContainer {
   width: 100%;
   height: auto;
-  min-height: 800px;
-  margin-top: 104px;
+  margin-top: $header-height;
+  color: $color-text;
 
   @include mobile {
-    margin-top: 74px;
+    margin-top: $header-height-mobile;
   }
-  .wrapper {
-    @include flex-row(space-between, center);
-    width: 90%;
-    max-width: 1400px;
+}
+
+// ---- Shared Inner Wrapper ----
+.inner {
+  max-width: $content-max-width;
+  margin: 0 auto;
+  padding: 0 $content-padding;
+
+  @include mobile {
+    padding: 0 $content-padding-mobile;
+  }
+}
+
+// ---- Section Label (matches home page pattern) ----
+.sectionLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: $font-caption;
+  font-weight: $font-weight-semibold;
+  color: $color-accent;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+
+  &::before {
+    content: "";
+    width: 20px;
+    height: 1px;
+    background: $color-accent;
+  }
+}
+
+.sectionLabelWhite {
+  color: rgba(255, 255, 255, 0.9);
+
+  &::before {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+// ========== Section 1: Hero — Split Layout ==========
+.hero {
+  width: 100%;
+  padding: $space-section 0;
+  background: $color-bg;
+
+  @include mobile {
+    padding: $space-section-mobile 0;
+  }
+}
+
+.heroSplit {
+  display: flex;
+  align-items: center;
+  gap: $space-3xl;
+  margin-top: $space-lg;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $space-xl;
+  }
+}
+
+.heroText {
+  flex: 0 0 45%;
+  max-width: 45%;
+
+  @include mobile {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
+.heroTitle {
+  font-family: $font-display;
+  font-size: $font-display-md;
+  font-weight: $font-weight-extrabold;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: $color-text;
+  margin-bottom: $space-xl;
+  padding-bottom: $space-xl;
+  border-bottom: 2px solid $color-border;
+}
+
+.heroTagline {
+  font-size: clamp(24px, 4vw, 40px);
+  color: $color-text;
+  line-height: 1.3;
+  margin-bottom: $space-xl;
+}
+
+.heroDesc {
+  font-size: $font-body-lg;
+  color: $color-text-secondary;
+  line-height: 1.7;
+  margin-bottom: $space-md;
+}
+
+.heroImage {
+  flex: 1;
+  border-radius: $radius-2xl;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s $ease-out-expo;
 
     @include mobile {
-      @include flex-column(flex-start, center);
+      height: 280px;
     }
   }
-  .company {
+
+  &:hover img {
+    transform: scale(1.02);
+  }
+}
+
+// ========== Section 2: Stats ==========
+.statsSection {
+  width: 100%;
+  padding: $space-3xl 0;
+  background: $color-bg-elevated;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-lg;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $space-md;
+  }
+}
+
+.statItem {
+  padding: $space-lg;
+  border-radius: $radius-xl;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  text-align: center;
+  transition: all 0.3s $ease-out-expo;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: $color-border-hover;
+    box-shadow: $shadow-md;
+  }
+}
+
+.statNumber {
+  font-family: $font-display;
+  font-size: $font-display-sm;
+  font-weight: $font-weight-extrabold;
+  color: $color-accent;
+  letter-spacing: -0.02em;
+  margin-bottom: $space-sm;
+}
+
+.statLabel {
+  font-size: $font-body-sm;
+  color: $color-text-muted;
+  line-height: 1.4;
+}
+
+// ========== Section 3: Vision & Mission ==========
+.vision {
+  width: 100%;
+  padding: $space-section 0;
+
+  @include mobile {
+    padding: $space-section-mobile 0;
+  }
+}
+
+.visionContent {
+  display: flex;
+  gap: $space-3xl;
+  margin-top: $space-lg;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $space-xl;
+  }
+}
+
+.visionLeft {
+  flex: 0 0 45%;
+  max-width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-xl;
+
+  @include mobile {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
+.visionTitle {
+  font-family: $font-display;
+  font-size: $font-display-sm;
+  font-weight: $font-weight-extrabold;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: $color-text;
+}
+
+.visionDesc {
+  font-size: $font-body-lg;
+  color: $color-text-secondary;
+  line-height: 1.7;
+}
+
+.visionRight {
+  flex: 1;
+  display: flex;
+  gap: $space-xl;
+  min-height: 450px;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    min-height: auto;
+  }
+}
+
+.visionCards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  gap: $space-md;
+
+  @include mobile {
+    gap: $space-lg;
+  }
+}
+
+// Card reveal: fade in from left (instead of global reveal translateY)
+.cardReveal {
+  padding: $space-lg;
+  border-radius: $radius-lg;
+  background: $color-bg-elevated;
+  border: 1px solid $color-border;
+  transition: transform 0.5s $ease-out-expo, box-shadow 0.3s $ease-out-expo,
+    opacity 0.6s $ease-out-expo;
+  opacity: 0;
+  transform: translateX(-24px);
+
+  &:global(.visible) {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-sm;
+  }
+
+  h3 {
+    font-size: $font-h5;
+    font-weight: $font-weight-bold;
+    margin: 0 0 $space-md;
+    color: $color-text;
+
+    @include mobile {
+      font-size: $font-body-md;
+    }
+  }
+
+  p {
+    font-size: $font-body-sm;
+    color: $color-text-secondary;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.visionImage {
+  flex: 1;
+  border-radius: $radius-xl;
+  overflow: hidden;
+
+  img {
     width: 100%;
-    @include flex-column(center, center);
-    position: relative;
-    padding: 50px 0 20px 0;
-
-    .block {
-      position: absolute;
-      top: 175px;
-      left: 0;
-      width: 55%;
-      min-width: 750px;
-      height: 120px;
-      background-color: rgb(230, 224, 203);
-
-      @include mobile {
-        width: 100%;
-        min-width: 0;
-        height: 100px;
-        top: 140px;
-      }
-    }
-    .info {
-      @include flex-column(center, flex-start);
-      width: 100%;
-
-      .title {
-        @include flex-row(flex-start, center);
-        font-size: 80px;
-        width: 90%;
-        max-width: 500px;
-        height: 60px;
-        margin-top: 20px;
-        font-weight: 900;
-
-        @include mobile {
-          font-size: 40px;
-        }
-      }
-
-      .desc {
-        font-size: 30px;
-        text-align: start;
-        margin: 45px 0 20px 0;
-        max-width: 700px;
-        width: 100%;
-        height: 120px;
-        z-index: 5;
-
-        @include mobile {
-          font-size: 18px;
-        }
-      }
-      .companyContent {
-        width: 100%;
-        @include flex-row(space-between, center);
-        margin: 30px 0;
-
-        @include mobile {
-          @include flex-column(space-between, center);
-        }
-
-        .companyItem {
-          width: calc(33.33333% - 50px);
-          height: 120px;
-          gap: 20px;
-          .itemWrapper {
-            @include flex-column(space-between, flex-start);
-            width: 100%;
-            height: 100%;
-          }
-
-          .en {
-            font-size: 24px;
-            font-weight: 900;
-          }
-
-          .ko {
-            width: 100%;
-            font-size: 24px;
-            border-bottom: 1px solid black;
-            padding: 5px 5px;
-          }
-
-          @include mobile {
-            width: 100%;
-            height: 190px;
-            margin: 5px 0;
-            background-size: 100%;
-          }
-        }
-      }
-    }
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
-  .infiniteContainer {
-    width: 100%;
-    height: 200px;
-    background-color: black;
-    @include flex-row(center, center);
-    font-family: "Times New Roman", Times, serif;
-
-    .act {
-      @include flex-row(center, center);
-      font-size: 100px;
-      text-align: center;
-      color: white;
-      vertical-align: center;
-    }
+  @media (max-width: 700px) {
+    height: 300px;
   }
-  .corporation {
-    @include flex-row(center, center);
-    background-image: url("/images/corporation.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
+}
 
-    .content {
-      @include flex-column(flex-start, flex-start);
-      width: 100%;
-      height: 800px;
-      padding: 80px 0;
-      color: white;
+// ========== Section 4: Team / People ==========
+.people {
+  width: 100%;
+  background: $color-accent;
+  color: white;
+  padding: $space-section 0;
 
-      @include mobile {
-        padding: 60px 0;
-      }
-
-      .title {
-        display: inline;
-        font-size: 70px;
-        max-width: 600px;
-        border-bottom: 2px solid white;
-        margin-bottom: 30px;
-        padding-bottom: 30px;
-        width: 100%;
-
-        @include mobile {
-          font-size: 50px;
-        }
-      }
-      .desc {
-        font-size: 45px;
-        margin-bottom: 70px;
-
-        @include mobile {
-          font-size: 28px;
-        }
-      }
-
-      p {
-        font-size: 45px;
-        @include mobile {
-          font-size: 28px;
-        }
-      }
-    }
+  @include mobile {
+    padding: $space-section-mobile 0;
   }
+}
 
-  .people {
-    width: 100%;
-    @include flex-row(center, center);
-    background-color: rgb(196, 2, 18);
-    color: white;
-    .content {
-      @include flex-row(center, center);
-      width: 100%;
-      padding: 80px 0;
-      height: 500px;
+.peopleContent {
+  display: flex;
+  gap: $space-3xl;
 
-      @include mobile {
-        padding: 30px 0;
-      }
+  @include mobile {
+    flex-direction: column;
+    gap: $space-xl;
+  }
+}
 
-      @include mobile {
-        @include flex-column(center, center);
-      }
+.peopleLeft {
+  flex: 0 0 50%;
 
-      .left {
-        width: 50%;
-        height: 100%;
-        @include mobile {
-          width: 100%;
-        }
+  @include mobile {
+    flex: 1;
+  }
+}
 
-        .title {
-          width: 90%;
-          font-size: 40px;
-          padding: 20px 0;
-          border-bottom: 2px solid white;
-          @include mobile {
-            width: 100%;
-            font-size: 30px;
-          }
-        }
-        .desc {
-          @include flex-column(flex-start, flex-start);
-          height: 100%;
-          padding: 50px 0;
-          div {
-            font-size: 75px;
-            @include mobile {
-              font-size: 50px;
-            }
-          }
-        }
-      }
-      .right {
-        @include flex-column(flex-start, flex-end);
-        padding-top: 80px;
-        width: 50%;
-        height: 100%;
-        @include mobile {
-          width: 100%;
-          padding-top: 0px;
-        }
+.peopleTitle {
+  font-family: $font-display;
+  font-size: $font-h1;
+  font-weight: $font-weight-bold;
+  padding-bottom: $space-md;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+  margin-bottom: $space-2xl;
 
-        .desc2 {
-          @include flex-column(flex-start, flex-start);
-          font-size: 35px;
+  @include mobile {
+    font-size: 30px;
+  }
+}
 
-          @include mobile {
-            font-size: 20px;
-          }
-        }
-      }
-    }
+.peopleSubtitle {
+  font-family: $font-display;
+  font-size: $font-display-sm;
+  font-weight: $font-weight-extrabold;
+  letter-spacing: -0.02em;
+}
+
+.peopleRight {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding-top: $space-4xl;
+
+  @include mobile {
+    padding-top: 0;
+  }
+}
+
+.peopleDesc {
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+// ========== Section 5: Sustain + CTA ==========
+.sustain {
+  @include flex-column(center, center);
+  border-top: 1px solid $color-border;
+}
+
+.sustainContent {
+  text-align: center;
+  font-size: clamp(16px, 2vw, 22px);
+  padding: $space-3xl 0 $space-xl;
+  color: $color-text-secondary;
+  line-height: 1.7;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: $space-md;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: $space-3xl;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: $font-weight-semibold;
+  color: $color-text-inverse;
+  background: $color-accent;
+  border: none;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-fast;
+  min-height: 48px;
+
+  &:hover {
+    background: $color-accent-hover;
+    transform: scale(1.02);
+    box-shadow: $shadow-accent;
   }
 
-  .vision {
-    width: 100%;
-    @include flex-row(center, flex-start);
-    // min-height: calc(100vh - 104px);
-    height: auto;
+  &:active {
+    transform: scale(0.98);
+  }
+}
 
-    .content {
-      @include flex-row(space-between, flex-start);
-      width: 100%;
-      // min-height: calc(100vh - 104px);
-      height: auto;
-      padding: 15% 0;
-      box-sizing: border-box;
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: $font-weight-semibold;
+  color: $color-text;
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-fast;
+  min-height: 48px;
 
-      @include mobile {
-        @include flex-column(space-between, center);
-        padding: 10% 0;
-      }
-
-      .left {
-        width: 45%;
-        @include flex-column(flex-start, flex-start);
-        gap: 60px;
-        @include mobile {
-          width: 100%;
-          @include flex-column(center, center);
-        }
-
-        .title {
-          @include flex-column(flex-start, flex-start);
-          font-size: 55px;
-          width: 100%;
-
-          .line {
-            @include flex-column(flex-start, flex-end);
-            border-bottom: 3px solid black;
-            max-width: 100px;
-            width: 100%;
-          }
-
-          @include mobile {
-            font-size: 35px;
-            @include flex-column(center, center);
-          }
-        }
-
-        .desc {
-          font-size: 30px;
-          @include mobile {
-            font-size: 25px;
-            text-align: center;
-          }
-        }
-      }
-
-      .right {
-        width: 50%;
-        @include flex-row(flex-start, flex-start);
-        margin-top: 100px;
-        height: 100%;
-
-        @include mobile {
-          width: 100%;
-          margin-top: 0;
-        }
-        .rightWrapper {
-          @include flex-row(flex-start, center);
-          gap: 30px;
-          height: 450px;
-          width: 100%;
-
-          @media (max-width: 700px) {
-            @include flex-column(center, center);
-            height: auto;
-          }
-        }
-
-        .img {
-          width: 50%;
-          height: 100%;
-          background-image: url("/images/misssion.webp");
-          background-size: 100% 100%;
-          object-fit: cover;
-          background-repeat: no-repeat;
-          background-position: center center;
-
-          @include mobile {
-            width: 100%;
-          }
-
-          @media (max-width: 700px) {
-            margin-top: 30px;
-            height: 300px;
-            background-position: center center;
-          }
-        }
-
-        .desc2 {
-          @include flex-column(space-between, center);
-          width: 50%;
-          height: 100%;
-
-          @include mobile {
-            width: 100%;
-            gap: 20px;
-          }
-
-          .detail {
-            @include flex-column(flex-start, flex-start);
-            width: 100%;
-            h3 {
-              font-size: 22px;
-              margin: 0;
-              margin-bottom: 20px;
-
-              @include mobile {
-                font-size: 20px;
-              }
-            }
-
-            p {
-              font-size: 20px;
-              @include mobile {
-                font-size: 18px;
-              }
-            }
-          }
-        }
-      }
-    }
+  &:hover {
+    border-color: $color-border-hover;
+    background: $color-bg-elevated;
+    transform: scale(1.02);
   }
 
-  .sustain {
-    @include flex-column(center, center);
-
-    .content {
-      text-align: center;
-      font-size: 30px;
-      width: 100%;
-      padding: 50px 30px;
-
-      @include mobile {
-        font-size: 20px;
-      }
-    }
-
-    .sustainImg {
-      width: 100%;
-    }
+  &:active {
+    transform: scale(0.98);
   }
+}
+
+.sustainImg {
+  width: 100%;
+  opacity: 0.8;
 }

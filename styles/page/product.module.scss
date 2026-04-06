@@ -1,114 +1,205 @@
 @import "../layout";
 @import "../viewSize";
+@import "../variables";
 
 .productContainer {
   @include flex-column(center, center);
-  color: black;
-  margin-top: 104px;
+  color: $color-text;
+  margin-top: $header-height;
 
   @include mobile {
-    margin-top: 74px;
+    margin-top: $header-height-mobile;
+  }
+}
+
+/* ========== Page Header ========== */
+.pageHeader {
+  width: 100%;
+  background-color: $color-bg-elevated;
+  padding: $space-section 0 $space-3xl;
+  border-bottom: 1px solid $color-border;
+
+  @include mobile {
+    padding: $space-section-mobile 0 $space-2xl;
+  }
+}
+
+.pageHeaderInner {
+  width: 90%;
+  max-width: $content-max-width;
+  margin: 0 auto;
+
+  .sectionLabel {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: $font-caption;
+    font-weight: $font-weight-semibold;
+    color: $color-accent;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: $space-lg;
+
+    &::before {
+      content: "";
+      width: 20px;
+      height: 1px;
+      background: $color-accent;
+    }
   }
 
-  .wrapper {
-    @include flex-column(center, center);
-    width: 90%;
-    max-width: 1400px;
-    margin-bottom: 50px;
+  h1 {
+    font-family: $font-display;
+    font-size: $font-display-md;
+    font-weight: $font-weight-extrabold;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: $color-text;
+    margin-bottom: $space-md;
+  }
 
-    h1 {
-      font-size: 38px;
-      font-weight: 900;
-      margin: 30px 0;
-    }
+  .pageDesc {
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.6;
+    color: $color-text-secondary;
+    max-width: 560px;
+  }
+}
 
-    .list {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-column-gap: 22px;
-      list-style: none;
+/* ========== Wrapper ========== */
+.wrapper {
+  @include flex-column(center, center);
+  width: 90%;
+  max-width: $content-max-width;
+  margin-bottom: $space-3xl;
+}
 
-      @include mobile {
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 30px;
-      }
+/* ========== Category Navigation ========== */
+.list {
+  width: 100%;
+  margin: $space-2xl 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-sm;
+  list-style: none;
 
-      li {
-        @include flex-row(center, center);
-        border: black solid 1px;
-        margin-bottom: 0.5em;
-        padding: 20px;
-        text-align: center;
-        font-size: 22px;
-        cursor: pointer;
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-sm;
+  }
 
-        vertical-align: middle;
-        @include mobile {
-          height: 100px;
-        }
-
-        &:hover {
-          background-color: black;
-          color: white;
-        }
-      }
-    }
-
-    .products {
-      @include flex-column(center, center);
-      width: 100%;
-      margin-top: 50px;
-
-      .sub {
-        font-size: 24px;
-        font-weight: 900;
-        margin-top: 30px;
-        max-width: 400px;
-        width: 90%;
-        text-align: center;
-        padding-bottom: 10px;
-        margin-bottom: 60px;
-        border-bottom: black 2px solid;
-      }
-
-      .productList {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 30% 30% 30%;
-        grid-column-gap: 5%;
-
-        @include mobile {
-          grid-template-columns: 1fr 1fr;
-          grid-column-gap: 10px;
-          grid-row-gap: 10px;
-        }
-
-        .item {
-          @include flex-column(center, center);
-          cursor: pointer;
-          img {
-            max-width: 100%;
-            max-height: 226px;
-            margin-bottom: 10px;
-          }
-          .productName {
-            color: black;
-            font-size: 24px;
-            text-align: center;
-
-            @include mobile {
-              font-size: 18px;
-            }
-          }
-        }
-      }
-    }
+  li {
+    @include flex-row(center, center);
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    padding: $space-md $space-lg;
+    text-align: center;
+    font-size: $font-body-sm;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all $transition-fast;
+    color: $color-text-secondary;
 
     @include mobile {
-      @include flex-column(center, center);
+      padding: $space-md;
+      font-size: $font-body-xs;
+      min-height: 72px;
     }
+
+    &:hover {
+      background-color: $color-accent;
+      border-color: $color-accent;
+      color: $color-text-inverse;
+      transform: translateY(-2px);
+      box-shadow: $shadow-sm;
+    }
+  }
+}
+
+/* ========== Category Sections ========== */
+.products {
+  @include flex-column(center, center);
+  width: 100%;
+  margin-top: $space-3xl;
+}
+
+.sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: $font-display;
+  font-size: $font-h4;
+  font-weight: $font-weight-bold;
+  color: $color-text;
+  text-align: center;
+  padding-bottom: $space-md;
+  margin-bottom: $space-2xl;
+  border-bottom: 2px solid $color-border;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 20px;
+    height: 2px;
+    background: $color-accent;
+  }
+}
+
+/* ========== Product Grid ========== */
+.productList {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-md;
+
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-sm;
+  }
+}
+
+/* ========== Product Card ========== */
+.item {
+  @include flex-column(center, center);
+  cursor: pointer;
+  padding: $space-lg;
+  border-radius: $radius-2xl;
+  background: $color-bg-elevated;
+  border: 1px solid $color-border;
+  transition: all 0.4s $ease-out-expo;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-lg;
+    border-color: $color-accent;
+
+    img {
+      transform: scale(1.04);
+    }
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 226px;
+    margin-bottom: $space-md;
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.1));
+    transition: transform 0.5s $ease-out-expo;
+
+    @include mobile {
+      max-height: 160px;
+    }
+  }
+}
+
+.productName {
+  color: $color-text;
+  font-size: $font-body-md;
+  font-weight: $font-weight-semibold;
+  text-align: center;
+  letter-spacing: -0.01em;
+
+  @include mobile {
+    font-size: $font-body-sm;
   }
 }

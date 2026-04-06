@@ -1,126 +1,309 @@
 @import "../layout";
 @import "../viewSize";
+@import "../variables";
 
 .productItem {
   @include flex-column(flex-start, center);
-  padding-top: 124px;
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
+  color: $color-text;
+  background: $color-bg;
+}
 
-  .route {
-    padding: 10px 0;
-    @include flex-row(flex-start, center);
+// ---- Shared Inner Wrapper ----
+.inner {
+  width: 100%;
+  max-width: $content-max-width;
+  margin: 0 auto;
+  padding: 0 $content-padding;
+
+  @include mobile {
+    padding: 0 $content-padding-mobile;
+  }
+}
+
+// ---- Breadcrumb Bar ----
+.breadcrumbBar {
+  width: 100%;
+  padding-top: calc($header-height + $space-lg);
+  padding-bottom: $space-lg;
+  background: $color-bg;
+  border-bottom: 1px solid $color-border;
+
+  @include mobile {
+    padding-top: calc($header-height-mobile + $space-md);
+    padding-bottom: $space-md;
+  }
+}
+
+.route {
+  @include flex-row(flex-start, center);
+  gap: 8px;
+  font-size: $font-body-sm;
+  color: $color-text-muted;
+
+  .separator {
+    color: $color-border-strong;
+    font-size: $font-body-xs;
+  }
+
+  .btn {
+    cursor: pointer;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  .current {
+    color: $color-text;
+    font-weight: $font-weight-medium;
+  }
+}
+
+// ---- Hero Section ----
+.hero {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: $color-bg-elevated;
+  border-bottom: 1px solid $color-border;
+}
+
+.heroGlow {
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  transform: translate(50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, $color-accent-light 0%, transparent 70%);
+  pointer-events: none;
+
+  @include mobile {
+    right: 50%;
+    transform: translate(50%, -40%);
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.heroContent {
+  display: flex;
+  align-items: center;
+  gap: $space-3xl;
+  padding: $space-3xl 0;
+  position: relative;
+  z-index: 1;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: $space-2xl 0;
+    gap: $space-xl;
+  }
+}
+
+.heroInfo {
+  flex: 1;
+  min-width: 0;
+
+  .subImg {
+    height: 32px;
+    max-width: 200px;
+    object-fit: contain;
+    object-position: left center;
+    margin-bottom: $space-lg;
+    opacity: 0.7;
+
+    @include mobile {
+      height: 28px;
+      max-width: 160px;
+      margin-bottom: $space-md;
+    }
+  }
+}
+
+.heroTitle {
+  font-family: $font-display;
+  font-size: $font-display-md;
+  font-weight: $font-weight-extrabold;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: $color-text;
+  margin-bottom: $space-xl;
+
+  @include mobile {
+    font-size: $font-display-sm;
+    margin-bottom: $space-lg;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+  list-style: none;
+}
+
+.tag {
+  padding: 6px $space-md;
+  border-radius: $radius-full;
+  border: 1px solid $color-border;
+  background: $color-bg;
+  font-size: $font-body-xs;
+  color: $color-text-secondary;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-accent;
+    color: $color-accent;
+    background: $color-accent-light;
+  }
+}
+
+.heroImage {
+  flex: 0 0 45%;
+  max-width: 45%;
+  @include flex-row(center, center);
+  padding: $space-xl;
+  aspect-ratio: 4 / 3;
+
+  img {
     width: 100%;
-    gap: 10px;
-
-    .btn {
-      cursor: pointer;
-    }
-
-    @include mobile {
-      width: 90%;
-    }
+    height: 100%;
+    max-height: 360px;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.08));
+    transition: transform 0.6s $ease-out-expo;
   }
 
-  .product {
-    @include flex-row(center, flex-start);
-    max-width: 1400px;
-    margin: 50px 0;
-    gap: 30px;
-
-    @include mobile {
-      width: 90%;
-    }
+  &:hover img {
+    transform: scale(1.03) translateY(-4px);
   }
 
-  .name {
-    width: 100%;
-    @include flex-row(flex-start, center);
-    max-width: 1400px;
-    height: 40px;
-    background-color: #004099;
-    color: white;
-    font-size: 20px;
-    padding: 0 20px;
-    font-weight: 600;
-  }
-
-  .mainImg {
-    max-width: 35%;
-
-    @include mobile {
-      display: none;
-    }
-  }
-
-  .mainImg2 {
+  @include mobile {
     display: none;
+  }
+}
 
-    @include mobile {
-      display: flex;
+// ---- Mobile Image ----
+.mobileImage {
+  display: none;
+
+  @include mobile {
+    display: block;
+    width: 100%;
+    padding: $space-xl 0;
+    background: $color-bg-elevated;
+    border-bottom: 1px solid $color-border;
+
+    img {
       width: 100%;
+      height: 240px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.06));
     }
   }
+}
 
-  .content {
-    @include flex-column(flex-start, flex-start);
-    gap: 50px;
+// ---- Description Section ----
+.descSection {
+  width: 100%;
+  padding: $space-section 0;
+  position: relative;
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      width: 60%;
-      gap: 10px;
+  @include mobile {
+    padding: $space-section-mobile 0;
+  }
+}
 
-      @include mobile {
-        width: 100%;
-      }
+.descCard {
+  max-width: 800px;
+}
 
-      .tag {
-        padding: 2.5px 15px;
-        border-radius: 5px;
-        border: #f0f0f0 1px solid;
-        font-size: 12px;
-        margin-right: 0.5em;
-        display: inline-block;
-      }
-    }
+.sectionLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: $font-caption;
+  font-weight: $font-weight-semibold;
+  color: $color-accent;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: $space-xl;
 
-    .descContainer {
-      @include flex-column(flex-start, flex-start);
-      width: 100%;
-      position: relative;
+  &::before {
+    content: "";
+    width: 20px;
+    height: 1px;
+    background: $color-accent;
+  }
+}
 
-      &::before {
-        position: absolute;
-        z-index: -1;
-        top: -2em;
-        transform: translateX(-50%);
-        left: 50%;
-        display: block;
-        width: 200vw;
-        height: 150%;
-        background-color: #efefef;
-        content: "";
-      }
+.desc {
+  color: $color-text-secondary;
+  line-height: 1.85;
+  font-size: clamp(16px, 1.5vw, 18px);
+  margin-bottom: $space-2xl;
+}
 
-      .desc {
-        margin-bottom: 50px;
-      }
-    }
+// ---- CTA Buttons ----
+.ctaRow {
+  display: flex;
+  gap: $space-md;
+  flex-wrap: wrap;
+}
 
-    .contact {
-      background-position: 95px;
-      background-color: #004098;
-      display: inline-block;
-      padding: 25px 20px;
-      font-size: 14px;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    .subImg {
-      height: 30px;
-    }
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: $font-weight-semibold;
+  color: $color-text-inverse;
+  background: $color-accent;
+  border: none;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-fast;
+  min-height: 48px;
+
+  &:hover {
+    background: $color-accent-hover;
+    transform: scale(1.02);
+    box-shadow: $shadow-accent;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: $font-weight-semibold;
+  color: $color-text;
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-fast;
+  min-height: 48px;
+
+  &:hover {
+    border-color: $color-border-hover;
+    background: $color-bg-elevated;
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 }
