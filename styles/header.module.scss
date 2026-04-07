@@ -252,8 +252,7 @@
     left: 0;
     width: 100%;
     height: calc(100dvh - #{$header-height-mobile});
-    background-color: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(24px);
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     padding: $space-xl $space-lg;
@@ -270,6 +269,10 @@
       transition: color $transition-fast;
       letter-spacing: -0.02em;
 
+      &:last-child {
+        border-bottom: none;
+      }
+
       &:hover {
         color: $color-accent;
       }
@@ -277,10 +280,8 @@
 
     .mobileLang {
       display: flex;
-      gap: $space-md;
-      margin-top: $space-xl;
-      padding-top: $space-lg;
-      border-top: 1px solid $color-border;
+      gap: $space-md;      
+      padding-top: $space-lg;      
 
       a {
         font-size: $font-body-sm;
