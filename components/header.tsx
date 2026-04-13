@@ -1,169 +1,127 @@
 "use client";
 import Image from "next/image";
 import { Lang } from "@/app/dictionaries";
-import Burger from "@/burger";
-import Cancel from "@/cancel";
 import style from "@/styles/header.module.scss";
-import useResize from "@/useResize";
 import Link from "next/link";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
-import { useState } from "react";
-import Burg from "../public/images/square.png";
-import Inter from "../public/images/internet.png";
+import { useEffect, useState } from "react";
 import Logo from "../public/images/msi.png";
 
 export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
   const router = useRouter();
   const segment = useSelectedLayoutSegment();
-  const { width } = useResize(200);
   const [isOpen, setIsOpen] = useState(false);
-  const [isIOpen, setIsIOpen] = useState(false);
-  const [index, setIndex] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const onRoute = (path: string) => {
-    router.push(`${lang}/${path}`);
+    router.push(`/${lang}/${path}`);
     setIsOpen(false);
   };
 
-  const navitems = [
-    `/company`,
-    `/product`,
-    // "/service",
-    `/question`,
-    `/location`,
+  const navItems = [
+    { label: dict.header.nav[0], route: "company" },
+    { label: dict.header.nav[1], route: "product" },
+    { label: dict.header.nav[2], route: "question" },
+    { label: dict.header.nav[3], route: "location" },
   ];
-  const navList = dict.header.nav.map((n: any, i: number) => {
-    return { item: n, route: navitems[i] };
-  });
 
-  const navList2 = ["COMPANY", "PRODUCT", "CONTACT", "LOCATION"];
-
-  const routers = [
-    [{ name: "Intro", route: `${lang}/company` }],
-    [
-      { name: "SMT Pick and place", route: `${lang}/product` },
-      { name: "Printers", route: `${lang}/product` },
-      { name: "Inserts", route: `${lang}/product` },
-      { name: "Software", route: `${lang}/product` },
-      { name: "Automatic maintenance", route: `${lang}/product` },
-      { name: "Automatic Units", route: `${lang}/product` },
-    ],
-    [{ name: "Product Sales", route: `${lang}/question` }],
-    [{ name: "Map", route: `${lang}/location` }],
-  ];
+  const isHome = segment === null;
 
   return (
-    <header className={style.headerContainer}>
-      <div
-        style={{ display: width > 1032 ? "flex" : "none" }}
-        className={style.translation}
-      >
-        <div className={style.transForm}>
-          <Link
-            href={`/en/${segment ?? ""}`}
-            className={style.lang}
-            replace={true}
-          >
-            ENGLISH
-          </Link>
-          <div className={style.seperator}></div>
-          <Link
-            href={`/ko/${segment ?? ""}`}
-            className={style.lang}
-            replace={true}
-          >
-            KOREAN
-          </Link>
-        </div>
-      </div>
+    <header
+      className={`${style.headerContainer} ${scrolled ? style.scrolled : ""} ${isHome && !scrolled ? style.heroMode : ""}`}
+    >
       <div className={style.container}>
-        <div onClick={() => onRoute("/")} className={style.logo}>
-          <Image src={Logo} width={110} height={58} alt="internet" />
+        <div onClick={() => onRoute("")} className={style.logo}>
+          <Image src={Logo} width={110} height={58} alt="MSI Corporation" />
         </div>
-        {width > 1032 ? (
-          <div className={style.nav}>
-            <nav className={style.navItems}>
-              {navList.map((item: any, i: number) => (
-                <div
-                  key={`nav: ${i}`}
-                  className={style.navBtn}
-                  onClick={() => onRoute(item.route)}
-                >
-                  {item.item}
-                </div>
-              ))}
-            </nav>
-          </div>
-        ) : (
-          <div className={style.row}>
-            <div className={style.inter}>
-              <div onClick={() => setIsIOpen(!isIOpen)}>
-                <Image src={Inter} width={50} height={50} alt="internet" />
-              </div>
+
+        {/* Desktop nav — hidden on mobile via CSS */}
+        <div className={style.nav}>
+          <nav className={style.navItems}>
+            {navItems.map((item, i) => (
               <div
-                style={{ display: isIOpen ? "flex" : "none" }}
-                className={style.list}
+                key={`nav-${i}`}
+                className={`${style.navBtn} ${
+                  segment === item.route ? style.active : ""
+                }`}
+                onClick={() => onRoute(item.route)}
               >
-                <div className={style.title}>LANGUAGE</div>
-                <Link
-                  href={`/en/${segment ?? ""}`}
-                  className={style.item}
-                  replace={true}
-                  onClick={() => setIsIOpen(false)}
-                >
-                  ENGLISH
-                </Link>
-                <Link
-                  href={`/ko/${segment ?? ""}`}
-                  className={style.item}
-                  replace={true}
-                  onClick={() => setIsIOpen(false)}
-                >
-                  KOREAN
-                </Link>
+                {item.label}
               </div>
-            </div>
-            <div
-              onClick={() => {
-                setIsOpen(!isOpen);
-                setIsIOpen(false);
-              }}
+            ))}
+          </nav>
+          <div className={style.langSwitch}>
+            <Link
+              href={`/en/${segment ?? ""}`}
+              className={`${style.langBtn} ${
+                lang === "en" ? style.activeLang : ""
+              }`}
+              replace
             >
-              <Image src={Burg} width={50} height={50} alt="burger" />
-            </div>
-          </div>
-        )}
-      </div>
-      {width < 1032 && isOpen ? (
-        <div className={style.back}>
-          <div className={style.navList}>
-            {navList2.map((item: any, i: number) => (
-              <div
-                key={`navL: ${i}`}
-                className={style.item}
-                onClick={() => setIndex(i)}
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-          <div className={style.routers}>
-            {routers[index].map((rt2, j) => (
-              <div
-                onClick={() => {
-                  router.push(rt2.route);
-                  setIsOpen(false);
-                }}
-                className={style.router}
-                key={`rt: ${j}`}
-              >
-                {rt2.name}
-              </div>
-            ))}
+              EN
+            </Link>
+            <Link
+              href={`/ko/${segment ?? ""}`}
+              className={`${style.langBtn} ${
+                lang === "ko" ? style.activeLang : ""
+              }`}
+              replace
+            >
+              KO
+            </Link>
           </div>
         </div>
-      ) : (
-        <></>
+
+        {/* Mobile menu button — hidden on desktop via CSS */}
+        <div className={style.mobileRight}>
+          <div
+            className={`${style.menuBtn} ${isOpen ? style.open : ""}`}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <div className={style.menuIcon}>
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {isOpen && (
+        <div className={style.mobileMenu}>
+          {navItems.map((item, i) => (
+            <div
+              key={`mobile-nav-${i}`}
+              className={style.mobileNavItem}
+              onClick={() => onRoute(item.route)}
+            >
+              {item.label}
+            </div>
+          ))}
+          <div className={style.mobileLang}>
+            <Link
+              href={`/en/${segment ?? ""}`}
+              replace
+              onClick={() => setIsOpen(false)}
+            >
+              English
+            </Link>
+            <Link
+              href={`/ko/${segment ?? ""}`}
+              replace
+              onClick={() => setIsOpen(false)}
+            >
+              한국어
+            </Link>
+          </div>
+        </div>
       )}
     </header>
   );

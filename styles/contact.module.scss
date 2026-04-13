@@ -1,23 +1,29 @@
 @import "./viewSize";
 @import "./layout";
+@import "./variables";
 
 .contactContainer {
   @include flex-column(center, center);
   width: 100%;
-  margin-top: 154px;
+  margin-top: 120px;
+  color: var(--color-text);
 }
 .contactForm {
   @include flex-column(center, center);
   max-width: 1000px;
   width: 90%;
-  padding: 100px 0;
-  min-height: calc(100vh - 200px);
+  padding: 80px 0;
+  min-height: calc(100dvh - 200px);
 
   h1 {
-    font-size: 70px;
-    margin-bottom: 100px;
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 80px;
+    letter-spacing: -0.03em;
     @include mobile {
-      font-size: 40px;
+      font-size: 32px;
+      margin-bottom: 48px;
     }
   }
 
@@ -46,7 +52,8 @@
       }
 
       .msg {
-        color: #d7506b;
+        color: $danger-color;
+        font-size: 13px;
       }
     }
     .selectContainer {
@@ -69,11 +76,13 @@
           right: 10px;
           bottom: 10px;
           pointer-events: none;
+          color: var(--color-text-muted);
         }
       }
 
       .msg {
-        color: #d7506b;
+        color: $danger-color;
+        font-size: 13px;
       }
     }
     .selectContainer2 {
@@ -97,11 +106,13 @@
           right: 10px;
           bottom: 10px;
           pointer-events: none;
+          color: var(--color-text-muted);
         }
       }
 
       .msg {
-        color: #d7506b;
+        color: $danger-color;
+        font-size: 13px;
       }
     }
   }
@@ -117,41 +128,43 @@
         @include flex-row(flex-start, center);
         gap: 10px;
         margin-bottom: 3px;
+
         input[type="checkbox"] {
-          background-color: #eee;
+          accent-color: var(--color-accent);
         }
 
         span {
-          color: #9a9ea5;
+          color: var(--color-text-muted);
+          font-size: 14px;
         }
       }
 
       .errorLine {
         width: 100%;
-        border: 1px solid #d7506b;
+        border: 1px solid $danger-color;
       }
     }
 
     .desc {
       @include flex-column(center, flex-start);
       width: 100%;
-      border: 1px solid #ebebeb;
-      background-color: rgb(237, 237, 225);
+      border: 1px solid var(--color-border);
+      background-color: var(--color-bg-elevated);
       margin: 20px 0 10px 0;
       padding: 20px 15px;
-      border-radius: 8px;
+      border-radius: 12px;
       gap: 10px;
       font-size: 14px;
 
       .article {
         .key {
-          color: #b1b1b1;
+          color: var(--color-text-muted);
           font-weight: 700;
           margin-right: 10px;
         }
 
         .value {
-          color: #44484c;
+          color: var(--color-text-secondary);
         }
       }
     }
@@ -164,22 +177,31 @@
 
     button {
       @include flex-row(center, center);
-      background-color: #384450;
+      background-color: var(--color-accent);
       padding: 15px 20px;
-      border-radius: 8px;
+      border-radius: 12px;
       color: white;
       width: 240px;
       height: 56px;
       cursor: pointer;
       border: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all var(--transition-fast);
 
       &:hover {
-        background-color: #1e242b;
+        background-color: var(--color-accent-hover);
+        transform: scale(1.02);
+      }
+
+      &:active {
+        transform: scale(0.98);
       }
 
       &:disabled {
-        color: #616466;
-        background-color: #adadad;
+        color: var(--color-text-muted);
+        background-color: var(--color-bg-elevated);
+        transform: none;
       }
 
       @include mobile {
@@ -192,13 +214,23 @@
     padding: 15px 20px;
     width: 100%;
     background-color: transparent;
-    border: 1px solid #9a9ea5;
-    border-radius: 8px;
-    color: black;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    color: var(--color-text);
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     outline: none;
+    font-size: 15px;
+    transition: border-color var(--transition-fast);
+
+    &:focus {
+      border-color: var(--color-accent);
+    }
+
+    &::placeholder {
+      color: var(--color-text-muted);
+    }
 
     @include mobile {
       font-size: 16px;
