@@ -10,6 +10,8 @@ export default function Contact({ dict }: any) {
     question: { privatee, des },
   } = dict;
   const [isShowToastBar, setIsShowToastBar] = useState(false);
+  const [contentLength, setContentLength] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     form: {
@@ -22,16 +24,31 @@ export default function Contact({ dict }: any) {
 
   return (
     <div className={style.contactContainer}>
+      {/* 로딩 모달 */}
+      {isSubmitting && (
+        <div className={style.loadingModal}>
+          <div className={style.loadingContent}>
+            <div className={style.spinner}></div>
+            <p>문의를 전송하고 있습니다...</p>
+            <span>잠시만 기다려주세요</span>
+          </div>
+        </div>
+      )}
+
       <form
         onSubmit={async data => {
           try {
+            setIsSubmitting(true);
             await onSumbit(data);
             if (isValid) {
               setIsShowToastBar(true);
               reset();
+              setContentLength(0);
             }
           } catch (err) {
             console.log(err);
+          } finally {
+            setIsSubmitting(false);
           }
         }}
         className={style.contactForm}
@@ -139,6 +156,35 @@ export default function Contact({ dict }: any) {
             )}
           </div>
         </div>
+        <div className={style.section}>
+          <div className={style.textareaContainer}>
+            <label>
+              {des.content}
+              <span style={{ color: "#D7506B" }}>*</span>
+            </label>
+            <textarea
+              className={style.fillBox}
+              style={{
+                borderColor: errors.content?.message ? "#D7506B" : "#9a9ea5",
+                minHeight: "150px",
+                resize: "vertical",
+              }}
+              {...register.content}
+              placeholder={des.content}
+              maxLength={1000}
+              onChange={(e) => {
+                register.content.onChange(e);
+                setContentLength(e.target.value.length);
+              }}
+            />
+            <div className={style.charCount}>
+              {contentLength} / 1000
+            </div>
+            {errors.content?.message && (
+              <p className={style.msg}>{errors.content?.message}</p>
+            )}
+          </div>
+        </div>
         <div className={style.checkContainer}>
           <div className={style.check}>
             <div className={style.inner}>
@@ -166,8 +212,8 @@ export default function Contact({ dict }: any) {
           </div>
         </div>
         <div className={style.btn}>
-          <button disabled={!isValid} type="submit">
-            {des.confirm}
+          <button disabled={!isValid || isSubmitting} type="submit">
+            {isSubmitting ? "전송 중..." : des.confirm}
           </button>
         </div>
       </form>

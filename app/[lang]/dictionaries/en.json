@@ -82,8 +82,9 @@
       "email": "Mail",
       "required": "Consent for Collection and Use of Personal Information (Required)",
       "select": "Select Product",
+      "content": "Content",
       "confirm": "Confirm",
-      "category": "Contact Category",
+      "category": "Product & Service Inquiry",
       "categoryItem": ["Product", "Service"]
     },
     "privatee": [

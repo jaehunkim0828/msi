@@ -1,0 +1,94 @@
+@import "../../../styles/variables";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: 20px;
+}
+
+.loginBox {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    text-align: center;
+    color: var(--color-text);
+  }
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 15px;
+    background: var(--color-bg);
+    color: var(--color-text);
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    &::placeholder {
+      color: var(--color-text-muted);
+    }
+  }
+}
+
+.error {
+  color: $danger-color;
+  font-size: 14px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 14px;
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background: var(--color-accent-hover);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

@@ -16,8 +16,14 @@ function getLocale(request: NextRequest) {
 }
 
 export function middleware(request: NextRequest) {
-  let locales = ["en", "en-US", "ko", "ko-KR"];
   const pathname = request.nextUrl.pathname;
+
+  // /admin 경로는 언어 리다이렉트 제외
+  if (pathname.startsWith('/admin')) {
+    return NextResponse.next();
+  }
+
+  let locales = ["en", "en-US", "ko", "ko-KR"];
   const pathnameIsMissingLocale = locales.every(
     locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
@@ -35,11 +41,12 @@ export const config = {
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)
+     * - admin (Admin routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - 파일 확장자를 포함하는 문자열
      * - favicon.ico (favicon file)
      */
-    "/((?!api|_next/static|_next/image|.*\\..*|favicon.ico).*)",
+    "/((?!api|admin|_next/static|_next/image|.*\\..*|favicon.ico).*)",
   ],
 };
