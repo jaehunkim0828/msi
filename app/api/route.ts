@@ -2,6 +2,8 @@ import { NextResponse, NextRequest } from "next/server";
 import { createTransport } from "nodemailer";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = 'force-dynamic';
+
 const transporter = createTransport({
   service: "Gmail",
   host: "smtp.gmail.com",
