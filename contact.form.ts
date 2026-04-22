@@ -8,6 +8,7 @@ export interface ContactType {
   department: string;
   manager: string;
   email: string;
+  content: string;
   check_agree_privacy: boolean;
 }
 
@@ -21,6 +22,7 @@ export const useContactForm = () => {
       department: "",
       manager: "",
       email: "",
+      content: "",
       check_agree_privacy: false,
     },
   });
@@ -64,6 +66,13 @@ export const useContactForm = () => {
       pattern: {
         value: U.validEmailPattern,
         message: "유효하지않은 이메일입니다",
+      },
+    }),
+    content: form.register("content", {
+      required: "필수 입력 항목입니다",
+      maxLength: {
+        value: 1000,
+        message: "내용은 최대 1000자까지 입력 가능합니다",
       },
     }),
     check_agree_privacy: form.register("check_agree_privacy", {

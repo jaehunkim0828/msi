@@ -87,8 +87,9 @@
       "email": "메일 주소",
       "required": "개인 정보 수집/이용취급 동의(필수)",
       "select": "제품 선택",
+      "content": "내용",
       "confirm": "작성완료",
-      "category": "제품 문의",
+      "category": "제품 & 서비스 문의",
       "categoryItem": ["제품", "서비스"]
     },
     "privatee": [
