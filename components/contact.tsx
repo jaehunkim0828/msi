@@ -2,12 +2,6 @@ import style from "../styles/contact.module.scss";
 import Arrowdown from "../public/images/Arrowdown";
 import { useState, useRef, DragEvent, ChangeEvent } from "react";
 import { useContactForm } from "../contact.form";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 export default function Contact({ dict }: any) {
   const {
@@ -96,34 +90,24 @@ export default function Contact({ dict }: any) {
     try {
       setIsSubmitting(true);
 
-      // 서비스 문의 + 파일 있으면 Supabase에 직접 업로드
+      // 서비스 문의 + 파일 있으면 서버 API를 통해 업로드
       if (isService && files.length > 0) {
-        const now = new Date();
-        const month = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
-        const folderId = crypto.randomUUID();
-        const urls: string[] = [];
+        const formData = new FormData();
+        files.forEach((file) => formData.append("files", file));
 
-        for (const file of files) {
-          const ext = file.name.includes(".") ? file.name.slice(file.name.lastIndexOf(".")) : "";
-          const safeName = `${crypto.randomUUID()}${ext}`;
-          const path = `inquiries/${month}/${folderId}/${safeName}`;
+        const res = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
 
-          const { error } = await supabase.storage
-            .from("msi")
-            .upload(path, file, { contentType: file.type, upsert: false });
-
-          if (error) {
-            console.error("Supabase upload error:", error);
-            alert("파일 업로드에 실패했습니다. 다시 시도해주세요.");
-            return;
-          }
-
-          const { data: urlData } = supabase.storage
-            .from("msi")
-            .getPublicUrl(path);
-          urls.push(urlData.publicUrl);
+        if (!res.ok) {
+          const err = await res.json();
+          console.error("Upload error:", err);
+          alert("파일 업로드에 실패했습니다. 다시 시도해주세요.");
+          return;
         }
 
+        const { urls } = await res.json();
         setValue("attachments", JSON.stringify(urls));
       }
 
