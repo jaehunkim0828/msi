@@ -2,6 +2,12 @@ import style from "../styles/contact.module.scss";
 import Arrowdown from "../public/images/Arrowdown";
 import { useState, useRef, DragEvent, ChangeEvent } from "react";
 import { useContactForm } from "../contact.form";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export default function Contact({ dict }: any) {
   const {
@@ -90,21 +96,35 @@ export default function Contact({ dict }: any) {
     try {
       setIsSubmitting(true);
 
-      // 서비스 문의 + 파일 있으면 먼저 업로드
+      // 서비스 문의 + 파일 있으면 Supabase에 직접 업로드
       if (isService && files.length > 0) {
-        const formData = new FormData();
-        files.forEach((f) => formData.append("files", f));
-        const uploadRes = await fetch("/api/upload", {
-          method: "POST",
-          body: formData,
-        });
-        const uploadData = await uploadRes.json();
-        if (!uploadRes.ok) {
-          alert(uploadData.error || "파일 업로드 실패");
-          return;
+        const now = new Date();
+        const month = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+        const folderId = crypto.randomUUID();
+        const urls: string[] = [];
+
+        for (const file of files) {
+          const ext = file.name.includes(".") ? file.name.slice(file.name.lastIndexOf(".")) : "";
+          const safeName = `${crypto.randomUUID()}${ext}`;
+          const path = `inquiries/${month}/${folderId}/${safeName}`;
+
+          const { error } = await supabase.storage
+            .from("msi")
+            .upload(path, file, { contentType: file.type, upsert: false });
+
+          if (error) {
+            console.error("Supabase upload error:", error);
+            alert("파일 업로드에 실패했습니다. 다시 시도해주세요.");
+            return;
+          }
+
+          const { data: urlData } = supabase.storage
+            .from("msi")
+            .getPublicUrl(path);
+          urls.push(urlData.publicUrl);
         }
-        // attachments URL을 form data에 추가
-        setValue("attachments", JSON.stringify(uploadData.urls));
+
+        setValue("attachments", JSON.stringify(urls));
       }
 
       await onSubmit(e);
