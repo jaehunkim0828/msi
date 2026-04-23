@@ -8,13 +8,30 @@ import styles from "./dashboard.module.scss";
 interface Inquiry {
   id: string;
   type: string;
-  product: string;
   company: string;
-  department: string;
   manager: string;
   email: string;
+  phone: string;
+  position?: string;
   content: string;
   createdAt: string;
+  // 제품 전용
+  product?: string;
+  inquiryType?: string;
+  expectedTimeline?: string;
+  currentEquipment?: string;
+  productionVolume?: string;
+  budgetRange?: string;
+  // 서비스 전용
+  department?: string;
+  equipmentModel?: string;
+  serialNumber?: string;
+  installLocation?: string;
+  issueType?: string;
+  lineStatus?: string;
+  issueDate?: string;
+  attachments?: string;
+  priority?: string;
 }
 
 export default function DashboardPage() {
@@ -24,14 +41,23 @@ export default function DashboardPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [selectedInquiry, setSelectedInquiry] = useState<Inquiry | null>(null);
+  const [filterType, setFilterType] = useState<string>("");
+  const [filterPriority, setFilterPriority] = useState<string>("");
 
   useEffect(() => {
     fetchInquiries();
-  }, [page]);
+  }, [page, filterType, filterPriority]);
 
   const fetchInquiries = async () => {
     try {
-      const res = await fetch(`/api/admin/inquiries?page=${page}&limit=20`);
+      const params = new URLSearchParams({
+        page: String(page),
+        limit: "20",
+      });
+      if (filterType) params.set("type", filterType);
+      if (filterPriority) params.set("priority", filterPriority);
+
+      const res = await fetch(`/api/admin/inquiries?${params}`);
 
       if (res.status === 401) {
         router.replace("/admin/login");
@@ -60,7 +86,6 @@ export default function DashboardPage() {
     try {
       setLoading(true);
 
-      // 전체 데이터 조회
       const res = await fetch("/api/admin/inquiries?page=1&limit=10000");
       if (!res.ok) {
         alert("데이터를 불러오는데 실패했습니다.");
@@ -68,45 +93,71 @@ export default function DashboardPage() {
       }
 
       const data = await res.json();
-      const allInquiries = data.data;
+      const allInquiries: Inquiry[] = data.data;
 
-      // 엑셀 데이터 포맷
-      const excelData = allInquiries.map((inquiry: Inquiry, index: number) => ({
+      const productInquiries = allInquiries.filter((i) => i.type === "제품");
+      const serviceInquiries = allInquiries.filter((i) => i.type === "서비스");
+
+      // 제품 문의 시트
+      const productData = productInquiries.map((inquiry, index) => ({
         번호: index + 1,
         날짜: formatDate(inquiry.createdAt),
-        문의유형: inquiry.type,
         회사명: inquiry.company,
-        부서: inquiry.department,
         담당자: inquiry.manager,
+        직책: inquiry.position || "",
         이메일: inquiry.email,
-        제품: inquiry.product,
+        전화번호: inquiry.phone,
+        관심제품: inquiry.product || "",
+        문의유형: inquiry.inquiryType || "",
+        도입시기: inquiry.expectedTimeline || "",
+        현재장비: inquiry.currentEquipment || "",
+        월생산량: inquiry.productionVolume || "",
+        예산범위: inquiry.budgetRange || "",
         내용: inquiry.content,
       }));
 
-      // 워크시트 생성
-      const worksheet = XLSX.utils.json_to_sheet(excelData);
+      // 서비스 문의 시트
+      const serviceData = serviceInquiries.map((inquiry, index) => ({
+        번호: index + 1,
+        날짜: formatDate(inquiry.createdAt),
+        우선순위: inquiry.priority || "",
+        회사명: inquiry.company,
+        담당자: inquiry.manager,
+        부서: inquiry.department || "",
+        이메일: inquiry.email,
+        전화번호: inquiry.phone,
+        장비모델: inquiry.equipmentModel || "",
+        시리얼번호: inquiry.serialNumber || "",
+        설치위치: inquiry.installLocation || "",
+        문제유형: inquiry.issueType || "",
+        라인상태: inquiry.lineStatus || "",
+        발생시점: inquiry.issueDate || "",
+        증상내용: inquiry.content,
+      }));
+
       const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "문의내역");
 
-      // 컬럼 너비 자동 조정
-      const colWidths = [
-        { wch: 8 },  // 번호
-        { wch: 20 }, // 날짜
-        { wch: 12 }, // 문의유형
-        { wch: 20 }, // 회사명
-        { wch: 15 }, // 부서
-        { wch: 12 }, // 담당자
-        { wch: 25 }, // 이메일
-        { wch: 20 }, // 제품
-        { wch: 50 }, // 내용
+      const productSheet = XLSX.utils.json_to_sheet(productData);
+      productSheet["!cols"] = [
+        { wch: 6 }, { wch: 20 }, { wch: 18 }, { wch: 10 }, { wch: 10 },
+        { wch: 25 }, { wch: 15 }, { wch: 12 }, { wch: 15 }, { wch: 10 },
+        { wch: 15 }, { wch: 12 }, { wch: 12 }, { wch: 50 },
       ];
-      worksheet["!cols"] = colWidths;
+      XLSX.utils.book_append_sheet(workbook, productSheet, "제품 문의");
 
-      // 파일명 생성 (현재 날짜 포함)
+      const serviceSheet = XLSX.utils.json_to_sheet(serviceData);
+      serviceSheet["!cols"] = [
+        { wch: 6 }, { wch: 20 }, { wch: 8 }, { wch: 18 }, { wch: 10 },
+        { wch: 12 }, { wch: 25 }, { wch: 15 }, { wch: 12 }, { wch: 15 },
+        { wch: 15 }, { wch: 12 }, { wch: 12 }, { wch: 20 }, { wch: 50 },
+      ];
+      XLSX.utils.book_append_sheet(workbook, serviceSheet, "서비스 문의");
+
       const today = new Date();
-      const fileName = `MSI_문의내역_${today.getFullYear()}${String(today.getMonth() + 1).padStart(2, "0")}${String(today.getDate()).padStart(2, "0")}.xlsx`;
+      const fileName = `MSI_문의내역_${today.getFullYear()}${String(
+        today.getMonth() + 1
+      ).padStart(2, "0")}${String(today.getDate()).padStart(2, "0")}.xlsx`;
 
-      // 파일 다운로드
       XLSX.writeFile(workbook, fileName);
     } catch (error) {
       console.error("Excel export error:", error);
@@ -141,7 +192,7 @@ export default function DashboardPage() {
         <h1>MSI 관리자 대시보드</h1>
         <div className={styles.headerActions}>
           <button onClick={handleExportExcel} className={styles.excelBtn}>
-            📊 엑셀 다운로드
+            엑셀 다운로드
           </button>
           <button onClick={handleLogout} className={styles.logoutBtn}>
             로그아웃
@@ -156,16 +207,46 @@ export default function DashboardPage() {
         </div>
       </div>
 
+      {/* 필터 */}
+      <div className={styles.filters}>
+        <select
+          value={filterType}
+          onChange={(e) => {
+            setFilterType(e.target.value);
+            setPage(1);
+          }}
+          className={styles.filterSelect}
+        >
+          <option value="">전체 유형</option>
+          <option value="제품">제품 문의</option>
+          <option value="서비스">서비스 문의</option>
+        </select>
+        <select
+          value={filterPriority}
+          onChange={(e) => {
+            setFilterPriority(e.target.value);
+            setPage(1);
+          }}
+          className={styles.filterSelect}
+        >
+          <option value="">전체 우선순위</option>
+          <option value="P1">P1 긴급</option>
+          <option value="P2">P2 높음</option>
+          <option value="P3">P3 보통</option>
+          <option value="P4">P4 낮음</option>
+        </select>
+      </div>
+
       <div className={styles.tableContainer}>
         <table className={styles.table}>
           <thead>
             <tr>
               <th>날짜</th>
               <th>유형</th>
+              <th>우선순위</th>
               <th>회사명</th>
               <th>담당자</th>
-              <th>이메일</th>
-              <th>제품</th>
+              <th>전화번호</th>
               <th>상세</th>
             </tr>
           </thead>
@@ -174,10 +255,20 @@ export default function DashboardPage() {
               <tr key={inquiry.id}>
                 <td>{formatDate(inquiry.createdAt)}</td>
                 <td>{inquiry.type}</td>
+                <td>
+                  {inquiry.priority && (
+                    <span
+                      className={`${styles.priorityBadge} ${
+                        styles[`priority${inquiry.priority}`]
+                      }`}
+                    >
+                      {inquiry.priority}
+                    </span>
+                  )}
+                </td>
                 <td>{inquiry.company}</td>
                 <td>{inquiry.manager}</td>
-                <td>{inquiry.email}</td>
-                <td>{inquiry.product}</td>
+                <td>{inquiry.phone}</td>
                 <td>
                   <button
                     onClick={() => setSelectedInquiry(inquiry)}
@@ -212,50 +303,132 @@ export default function DashboardPage() {
         </button>
       </div>
 
+      {/* 상세 모달 */}
       {selectedInquiry && (
-        <div className={styles.modal} onClick={() => setSelectedInquiry(null)}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <h2>문의 상세</h2>
+        <div
+          className={styles.modal}
+          onClick={() => setSelectedInquiry(null)}
+        >
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2>
+              문의 상세
+              {selectedInquiry.priority && (
+                <span
+                  className={`${styles.priorityBadge} ${
+                    styles[`priority${selectedInquiry.priority}`]
+                  }`}
+                  style={{ marginLeft: 12, fontSize: 14 }}
+                >
+                  {selectedInquiry.priority}
+                </span>
+              )}
+            </h2>
             <div className={styles.modalBody}>
-              <div className={styles.field}>
-                <label>날짜:</label>
-                <span>{formatDate(selectedInquiry.createdAt)}</span>
-              </div>
-              <div className={styles.field}>
-                <label>유형:</label>
-                <span>{selectedInquiry.type}</span>
-              </div>
-              <div className={styles.field}>
-                <label>회사명:</label>
-                <span>{selectedInquiry.company}</span>
-              </div>
-              <div className={styles.field}>
-                <label>부서:</label>
-                <span>{selectedInquiry.department}</span>
-              </div>
-              <div className={styles.field}>
-                <label>담당자:</label>
-                <span>{selectedInquiry.manager}</span>
-              </div>
-              <div className={styles.field}>
-                <label>이메일:</label>
-                <span>{selectedInquiry.email}</span>
-              </div>
-              <div className={styles.field}>
-                <label>제품:</label>
-                <span>{selectedInquiry.product}</span>
-              </div>
+              {/* 공통 필드 */}
+              <ModalField label="날짜" value={formatDate(selectedInquiry.createdAt)} />
+              <ModalField label="유형" value={selectedInquiry.type} />
+              <ModalField label="회사명" value={selectedInquiry.company} />
+              <ModalField label="담당자" value={selectedInquiry.manager} />
+              {selectedInquiry.position && (
+                <ModalField label="직책" value={selectedInquiry.position} />
+              )}
+              <ModalField label="이메일" value={selectedInquiry.email} />
+              <ModalField label="전화번호" value={selectedInquiry.phone} />
+
+              {/* 제품 문의 필드 */}
+              {selectedInquiry.type === "제품" && (
+                <>
+                  <ModalField label="관심 제품" value={selectedInquiry.product} />
+                  <ModalField label="문의 유형" value={selectedInquiry.inquiryType} />
+                  {selectedInquiry.expectedTimeline && (
+                    <ModalField label="도입 시기" value={selectedInquiry.expectedTimeline} />
+                  )}
+                  {selectedInquiry.currentEquipment && (
+                    <ModalField label="현재 장비" value={selectedInquiry.currentEquipment} />
+                  )}
+                  {selectedInquiry.productionVolume && (
+                    <ModalField label="월 생산량" value={selectedInquiry.productionVolume} />
+                  )}
+                  {selectedInquiry.budgetRange && (
+                    <ModalField label="예산 범위" value={selectedInquiry.budgetRange} />
+                  )}
+                </>
+              )}
+
+              {/* 서비스 문의 필드 */}
+              {selectedInquiry.type === "서비스" && (
+                <>
+                  <ModalField label="부서" value={selectedInquiry.department} />
+                  <ModalField label="장비 모델" value={selectedInquiry.equipmentModel} />
+                  <ModalField label="시리얼 번호" value={selectedInquiry.serialNumber} />
+                  <ModalField label="설치 위치" value={selectedInquiry.installLocation} />
+                  <ModalField label="문제 유형" value={selectedInquiry.issueType} />
+                  <ModalField
+                    label="라인 상태"
+                    value={selectedInquiry.lineStatus}
+                    highlight={selectedInquiry.lineStatus === "라인 정지"}
+                  />
+                  <ModalField label="발생 시점" value={selectedInquiry.issueDate} />
+                  {selectedInquiry.attachments && (
+                    <div className={styles.field}>
+                      <label>첨부파일:</label>
+                      <div>
+                        {JSON.parse(selectedInquiry.attachments).map(
+                          (url: string, i: number) => (
+                            <a
+                              key={i}
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={styles.attachmentLink}
+                            >
+                              파일 {i + 1}
+                            </a>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+
               <div className={styles.field}>
                 <label>내용:</label>
                 <p className={styles.content}>{selectedInquiry.content}</p>
               </div>
             </div>
-            <button onClick={() => setSelectedInquiry(null)} className={styles.closeBtn}>
+            <button
+              onClick={() => setSelectedInquiry(null)}
+              className={styles.closeBtn}
+            >
               닫기
             </button>
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function ModalField({
+  label,
+  value,
+  highlight,
+}: {
+  label: string;
+  value?: string | null;
+  highlight?: boolean;
+}) {
+  if (!value) return null;
+  return (
+    <div className={styles.field}>
+      <label>{label}:</label>
+      <span style={highlight ? { color: "#dc2626", fontWeight: 700 } : undefined}>
+        {value}
+      </span>
     </div>
   );
 }
