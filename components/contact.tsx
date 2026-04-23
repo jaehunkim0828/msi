@@ -90,24 +90,50 @@ export default function Contact({ dict }: any) {
     try {
       setIsSubmitting(true);
 
-      // 서비스 문의 + 파일 있으면 서버 API를 통해 업로드
+      // 서비스 문의 + 파일 있으면 signed URL로 직접 업로드
       if (isService && files.length > 0) {
-        const formData = new FormData();
-        files.forEach((file) => formData.append("files", file));
-
+        // 1. 서버에서 signed upload URL 발급
         const res = await fetch("/api/upload", {
           method: "POST",
-          body: formData,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            files: files.map((f) => ({ name: f.name, type: f.type })),
+          }),
         });
 
         if (!res.ok) {
           const err = await res.json();
-          console.error("Upload error:", err);
+          console.error("Signed URL error:", err);
           alert("파일 업로드에 실패했습니다. 다시 시도해주세요.");
           return;
         }
 
-        const { urls } = await res.json();
+        const { signed } = await res.json();
+        const urls: string[] = [];
+
+        // 2. 각 파일을 signed URL로 직접 Supabase에 업로드
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const { signedUrl, token, publicUrl } = signed[i];
+
+          const uploadRes = await fetch(signedUrl, {
+            method: "PUT",
+            headers: {
+              "Content-Type": file.type,
+              "x-upsert": "false",
+            },
+            body: file,
+          });
+
+          if (!uploadRes.ok) {
+            console.error("Direct upload failed:", await uploadRes.text());
+            alert("파일 업로드에 실패했습니다. 다시 시도해주세요.");
+            return;
+          }
+
+          urls.push(publicUrl);
+        }
+
         setValue("attachments", JSON.stringify(urls));
       }
 
