@@ -6,27 +6,32 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
-    // 인증 확인
     const session = await getSession();
 
     if (!session) {
       return NextResponse.json({ error: '인증이 필요합니다.' }, { status: 401 });
     }
 
-    // 페이지네이션
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '20');
     const skip = (page - 1) * limit;
+    const type = searchParams.get('type');
+    const priority = searchParams.get('priority');
 
-    // 문의 내역 조회
+    // 필터 조건 구성
+    const where: any = {};
+    if (type) where.type = type;
+    if (priority) where.priority = priority;
+
     const [inquiries, total] = await Promise.all([
       prisma.contactInquiry.findMany({
+        where,
         orderBy: { createdAt: 'desc' },
         skip,
         take: limit,
       }),
-      prisma.contactInquiry.count(),
+      prisma.contactInquiry.count({ where }),
     ]);
 
     return NextResponse.json({

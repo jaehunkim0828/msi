@@ -38,6 +38,9 @@
     "typescript": "5.3.3",
     "xlsx": "^0.18.5"
   },
+  "prisma": {
+    "seed": "npx tsx prisma/seed.ts"
+  },
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",
     "@types/negotiator": "^0.6.3",

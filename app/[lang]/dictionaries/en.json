@@ -75,22 +75,55 @@
   "question": {
     "des": {
       "title": "Contact Us",
-      "product": "Product",
-      "company": "Company",
-      "department": "Department",
-      "manager": "Manger",
-      "email": "Mail",
+      "confirm": "Submit",
       "required": "Consent for Collection and Use of Personal Information (Required)",
-      "select": "Select Product",
-      "content": "Content",
-      "confirm": "Confirm",
-      "category": "Product & Service Inquiry",
-      "categoryItem": ["Product", "Service"]
+      "category": "Inquiry Type",
+      "categoryItem": ["Product Inquiry", "Service Inquiry"],
+      "common": {
+        "company": "Company",
+        "manager": "Manager",
+        "position": "Position",
+        "email": "Email",
+        "phone": "Phone"
+      },
+      "product": {
+        "sectionTitle": "Product Inquiry Details",
+        "product": "Product of Interest",
+        "productOptions": ["AIMEX", "NXTR(S MODEL)", "NXTR(A Model)", "NXT III", "NXT IIIC", "AIMEX III", "AIMEX IIIC", "NXT-H", "NXTRPM", "GPX-CII/GPX-CSII/GPX-CL", "SmartWing BA", "sFAB-D", "sFab-SH", "Nexim", "Auto Feeder Maintenance Unit", "Smart Nozzle Cleaner", "Auto Head Cleaner-R", "Auto Head Cleaner", "Auto Splicing Unit", "Auto Loading Feeder"],
+        "inquiryType": "Inquiry Type",
+        "inquiryTypeOptions": ["New Equipment Quote", "Line Expansion", "Demo Request", "Catalog Request", "Other"],
+        "content": "Inquiry Details",
+        "optionalTitle": "Optional",
+        "expectedTimeline": "Expected Timeline",
+        "expectedTimelineOptions": ["Within 3 months", "Within 6 months", "Within 1 year", "Undecided"],
+        "currentEquipment": "Current Equipment",
+        "productionVolume": "Monthly Production Volume",
+        "budgetRange": "Budget Range"
+      },
+      "service": {
+        "sectionTitle": "Service Inquiry Details",
+        "department": "Department",
+        "equipmentModel": "Equipment Model",
+        "equipmentModelOptions": ["AIMEX", "NXTR(S MODEL)", "NXTR(A Model)", "NXT III", "NXT IIIC", "AIMEX III", "AIMEX IIIC", "NXT-H", "NXTRPM", "GPX-CII/GPX-CSII/GPX-CL", "SmartWing BA", "sFAB-D", "sFab-SH", "Nexim", "Auto Feeder Maintenance Unit", "Smart Nozzle Cleaner", "Auto Head Cleaner-R", "Auto Head Cleaner", "Auto Splicing Unit", "Auto Loading Feeder"],
+        "serialNumber": "Serial Number",
+        "installLocation": "Installation Location",
+        "issueType": "Issue Type",
+        "issueTypeOptions": ["Parts Order", "Software", "Mechanical Failure", "Scheduled Maintenance", "Training Request"],
+        "lineStatus": "Line Status",
+        "lineStatusOptions": ["Line Stopped", "Partial Operation", "Normal Operation"],
+        "issueDate": "Issue Date",
+        "content": "Symptoms / Error Code",
+        "attachments": "Attachments",
+        "attachmentsDesc": "Attach photos or videos (max 5 files, 10MB each)",
+        "attachmentsExpiry": "Attached files will be automatically deleted after 3 months.",
+        "dragDrop": "Drag & drop or click to select files",
+        "allowedFormats": "JPG, PNG, WEBP, MP4, MOV"
+      }
     },
     "privatee": [
       {
-        "key": "InformantionCollected  :",
-        "value": "Company, Department, Manager, Email"
+        "key": "Information Collected  :",
+        "value": "Company, Department, Manager, Email, Phone"
       },
       {
         "key": "Purpose of Collection :",
@@ -98,7 +131,7 @@
       },
       {
         "key": "Retention and Use Period :",
-        "value": "3 Month"
+        "value": "3 Months"
       }
     ]
   }

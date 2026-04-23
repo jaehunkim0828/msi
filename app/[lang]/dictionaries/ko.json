@@ -80,22 +80,55 @@
   "question": {
     "des": {
       "title": "문의하기",
-      "product": "제품",
-      "company": "회사명",
-      "department": "부서명",
-      "manager": "담당자명",
-      "email": "메일 주소",
-      "required": "개인 정보 수집/이용취급 동의(필수)",
-      "select": "제품 선택",
-      "content": "내용",
       "confirm": "작성완료",
-      "category": "제품 & 서비스 문의",
-      "categoryItem": ["제품", "서비스"]
+      "required": "개인 정보 수집/이용취급 동의(필수)",
+      "category": "문의 유형 선택",
+      "categoryItem": ["제품 문의", "서비스 문의"],
+      "common": {
+        "company": "회사명",
+        "manager": "담당자명",
+        "position": "직책",
+        "email": "메일 주소",
+        "phone": "전화번호"
+      },
+      "product": {
+        "sectionTitle": "제품 문의 정보",
+        "product": "관심 제품",
+        "productOptions": ["AIMEX", "NXTR(S MODEL)", "NXTR(A Model)", "NXT III", "NXT IIIC", "AIMEX III", "AIMEX IIIC", "NXT-H", "NXTRPM", "GPX-CII/GPX-CSII/GPX-CL", "SmartWing BA", "sFAB-D", "sFab-SH", "Nexim", "Auto Feeder Maintenance Unit", "Smart Nozzle Cleaner", "Auto Head Cleaner-R", "Auto Head Cleaner", "Auto Splicing Unit", "Auto Loading Feeder"],
+        "inquiryType": "문의 유형",
+        "inquiryTypeOptions": ["신규 도입 견적", "라인 증설", "데모 요청", "카탈로그 요청", "기타"],
+        "content": "문의 내용",
+        "optionalTitle": "선택사항",
+        "expectedTimeline": "도입 예상 시기",
+        "expectedTimelineOptions": ["3개월 내", "6개월 내", "1년 내", "미정"],
+        "currentEquipment": "현재 보유 장비",
+        "productionVolume": "월 생산량",
+        "budgetRange": "예산 범위"
+      },
+      "service": {
+        "sectionTitle": "서비스 문의 정보",
+        "department": "부서명",
+        "equipmentModel": "장비 모델",
+        "equipmentModelOptions": ["AIMEX", "NXTR(S MODEL)", "NXTR(A Model)", "NXT III", "NXT IIIC", "AIMEX III", "AIMEX IIIC", "NXT-H", "NXTRPM", "GPX-CII/GPX-CSII/GPX-CL", "SmartWing BA", "sFAB-D", "sFab-SH", "Nexim", "Auto Feeder Maintenance Unit", "Smart Nozzle Cleaner", "Auto Head Cleaner-R", "Auto Head Cleaner", "Auto Splicing Unit", "Auto Loading Feeder"],
+        "serialNumber": "시리얼 번호",
+        "installLocation": "설치 위치",
+        "issueType": "문제 유형",
+        "issueTypeOptions": ["부품 주문", "소프트웨어", "기계 고장", "정기 점검", "교육 요청"],
+        "lineStatus": "라인 상태",
+        "lineStatusOptions": ["라인 정지", "부분 가동", "정상 가동 중"],
+        "issueDate": "발생 시점",
+        "content": "증상 / 에러코드",
+        "attachments": "파일 첨부",
+        "attachmentsDesc": "사진 또는 동영상을 첨부해주세요 (최대 5개, 파일당 10MB)",
+        "attachmentsExpiry": "첨부 파일은 업로드 후 3개월 뒤 자동 삭제됩니다.",
+        "dragDrop": "파일을 드래그하거나 클릭하여 선택",
+        "allowedFormats": "JPG, PNG, WEBP, MP4, MOV"
+      }
     },
     "privatee": [
       {
         "key": "수집 항목  :",
-        "value": "회사이름, 부서이름, 이름, 이메일"
+        "value": "회사이름, 부서이름, 이름, 이메일, 전화번호"
       },
       {
         "key": "수집/이용 동의 목적 :",

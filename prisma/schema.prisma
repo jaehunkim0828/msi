@@ -13,17 +13,39 @@ datasource db {
 model ContactInquiry {
   id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   type       String
-  product    String
   company    String
-  department String
   manager    String
   email      String
   content    String
   createdAt  DateTime @default(now()) @map("created_at")
 
+  // 공통 추가 필드
+  phone      String
+  position   String?
+
+  // 제품 문의 필드
+  product          String?
+  inquiryType      String?  @map("inquiry_type")
+  expectedTimeline String?  @map("expected_timeline")
+  currentEquipment String?  @map("current_equipment")
+  productionVolume String?  @map("production_volume")
+  budgetRange      String?  @map("budget_range")
+
+  // 서비스 문의 필드
+  department       String?
+  equipmentModel   String?  @map("equipment_model")
+  serialNumber     String?  @map("serial_number")
+  installLocation  String?  @map("install_location")
+  issueType        String?  @map("issue_type")
+  lineStatus       String?  @map("line_status")
+  issueDate        String?  @map("issue_date")
+  attachments      String?
+  priority         String?
+
   @@index([createdAt(sort: Desc)])
   @@index([email])
   @@index([type])
+  @@index([priority])
   @@map("contact_inquiries")
 }
 

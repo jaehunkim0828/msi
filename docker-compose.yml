@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: msi-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: msi
+      POSTGRES_USER: msi_user
+      POSTGRES_PASSWORD: msi_local_dev_2026
+    ports:
+      - '5432:5432'
+    volumes:
+      - msi_pgdata:/var/lib/postgresql/data
+
+volumes:
+  msi_pgdata:
