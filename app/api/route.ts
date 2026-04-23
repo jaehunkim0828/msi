@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
       priority = result.priority;
     }
 
-    const recipients = ["Ys.kim@msinter.co.kr", "shcho@msinter.co.kr"];
+    const recipients = ["Ys.kim@msinter.co.kr", "sh.cho@msinter.co.kr"];
     // const recipients = ["kkaa81@naver.com"];
 
     // 유형별 이메일 제목 + 본문
