@@ -133,6 +133,16 @@ export default function DashboardPage() {
         라인상태: inquiry.lineStatus || "",
         발생시점: inquiry.issueDate || "",
         증상내용: inquiry.content,
+        ...(() => {
+          const urls: string[] = inquiry.attachments
+            ? JSON.parse(inquiry.attachments)
+            : [];
+          const result: Record<string, string> = {};
+          for (let i = 0; i < 5; i++) {
+            result[`첨부${i + 1}`] = urls[i] || "";
+          }
+          return result;
+        })(),
       }));
 
       const workbook = XLSX.utils.book_new();
@@ -146,10 +156,23 @@ export default function DashboardPage() {
       XLSX.utils.book_append_sheet(workbook, productSheet, "제품 문의");
 
       const serviceSheet = XLSX.utils.json_to_sheet(serviceData);
+      // 첨부파일 셀에 하이퍼링크 추가
+      const attachCols = ["P", "Q", "R", "S", "T"]; // 첨부1~5 컬럼
+      serviceData.forEach((row, i) => {
+        const rowNum = i + 2; // 헤더가 1행
+        attachCols.forEach((col, j) => {
+          const cellRef = `${col}${rowNum}`;
+          const cell = serviceSheet[cellRef];
+          if (cell && cell.v) {
+            cell.l = { Target: cell.v, Tooltip: "첨부파일 열기" };
+          }
+        });
+      });
       serviceSheet["!cols"] = [
         { wch: 6 }, { wch: 20 }, { wch: 8 }, { wch: 18 }, { wch: 10 },
         { wch: 12 }, { wch: 25 }, { wch: 15 }, { wch: 12 }, { wch: 15 },
         { wch: 15 }, { wch: 12 }, { wch: 12 }, { wch: 20 }, { wch: 50 },
+        { wch: 40 }, { wch: 40 }, { wch: 40 }, { wch: 40 }, { wch: 40 },
       ];
       XLSX.utils.book_append_sheet(workbook, serviceSheet, "서비스 문의");
 
