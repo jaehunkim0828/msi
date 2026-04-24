@@ -101,7 +101,8 @@ export default function DashboardPage() {
       // 제품 문의 시트
       const productData = productInquiries.map((inquiry, index) => ({
         번호: index + 1,
-        날짜: formatDate(inquiry.createdAt),
+        날짜: formatDateOnly(inquiry.createdAt),
+        시간: formatTimeOnly(inquiry.createdAt),
         회사명: inquiry.company,
         담당자: inquiry.manager,
         직책: inquiry.position || "",
@@ -119,7 +120,8 @@ export default function DashboardPage() {
       // 서비스 문의 시트
       const serviceData = serviceInquiries.map((inquiry, index) => ({
         번호: index + 1,
-        날짜: formatDate(inquiry.createdAt),
+        날짜: formatDateOnly(inquiry.createdAt),
+        시간: formatTimeOnly(inquiry.createdAt),
         우선순위: inquiry.priority || "",
         회사명: inquiry.company,
         담당자: inquiry.manager,
@@ -131,7 +133,8 @@ export default function DashboardPage() {
         설치위치: inquiry.installLocation || "",
         문제유형: inquiry.issueType || "",
         라인상태: inquiry.lineStatus || "",
-        발생시점: inquiry.issueDate || "",
+        발생날짜: inquiry.issueDate ? formatDateOnly(inquiry.issueDate) : "",
+        발생시간: inquiry.issueDate ? formatTimeOnly(inquiry.issueDate) : "",
         증상내용: inquiry.content,
         ...(() => {
           const urls: string[] = inquiry.attachments
@@ -149,15 +152,15 @@ export default function DashboardPage() {
 
       const productSheet = XLSX.utils.json_to_sheet(productData);
       productSheet["!cols"] = [
-        { wch: 6 }, { wch: 20 }, { wch: 18 }, { wch: 10 }, { wch: 10 },
-        { wch: 25 }, { wch: 15 }, { wch: 12 }, { wch: 15 }, { wch: 10 },
-        { wch: 15 }, { wch: 12 }, { wch: 12 }, { wch: 50 },
+        { wch: 6 }, { wch: 12 }, { wch: 8 }, { wch: 18 }, { wch: 10 },
+        { wch: 10 }, { wch: 25 }, { wch: 15 }, { wch: 12 }, { wch: 15 },
+        { wch: 10 }, { wch: 15 }, { wch: 12 }, { wch: 12 }, { wch: 50 },
       ];
       XLSX.utils.book_append_sheet(workbook, productSheet, "제품 문의");
 
       const serviceSheet = XLSX.utils.json_to_sheet(serviceData);
       // 첨부파일 셀에 하이퍼링크 추가
-      const attachCols = ["P", "Q", "R", "S", "T"]; // 첨부1~5 컬럼
+      const attachCols = ["R", "S", "T", "U", "V"]; // 첨부1~5 컬럼
       serviceData.forEach((row, i) => {
         const rowNum = i + 2; // 헤더가 1행
         attachCols.forEach((col, j) => {
@@ -169,10 +172,11 @@ export default function DashboardPage() {
         });
       });
       serviceSheet["!cols"] = [
-        { wch: 6 }, { wch: 20 }, { wch: 8 }, { wch: 18 }, { wch: 10 },
-        { wch: 12 }, { wch: 25 }, { wch: 15 }, { wch: 12 }, { wch: 15 },
-        { wch: 15 }, { wch: 12 }, { wch: 12 }, { wch: 20 }, { wch: 50 },
-        { wch: 40 }, { wch: 40 }, { wch: 40 }, { wch: 40 }, { wch: 40 },
+        { wch: 6 }, { wch: 12 }, { wch: 8 }, { wch: 8 }, { wch: 18 },
+        { wch: 10 }, { wch: 12 }, { wch: 25 }, { wch: 15 }, { wch: 12 },
+        { wch: 15 }, { wch: 15 }, { wch: 12 }, { wch: 12 }, { wch: 12 },
+        { wch: 8 }, { wch: 50 }, { wch: 40 }, { wch: 40 }, { wch: 40 },
+        { wch: 40 }, { wch: 40 },
       ];
       XLSX.utils.book_append_sheet(workbook, serviceSheet, "서비스 문의");
 
@@ -199,6 +203,19 @@ export default function DashboardPage() {
       hour: "2-digit",
       minute: "2-digit",
     }).format(date);
+  };
+
+  const formatDateOnly = (dateString: string) => {
+    const date = new Date(dateString);
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}년 ${m}월 ${d}일`;
+  };
+
+  const formatTimeOnly = (dateString: string) => {
+    const date = new Date(dateString);
+    return `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
   };
 
   if (loading) {
