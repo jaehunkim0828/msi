@@ -61,6 +61,22 @@ export async function POST(req: NextRequest) {
         console.error("메일 전송 실패:", err);
       });
 
+    const telegramPromise = (async () => {
+      await sendTelegramMessage(
+        isService ? buildServiceTelegram(data, priority) : buildProductTelegram(data)
+      );
+      if (isService && data.attachments) {
+        try {
+          const urls: string[] = JSON.parse(data.attachments);
+          if (urls.length > 0) await sendTelegramAttachments(urls);
+        } catch (e) {
+          console.error("첨부파일 파싱 실패:", e);
+        }
+      }
+    })().catch((err: any) => {
+      console.error("텔레그램 전송 실패:", err);
+    });
+
     const dbPromise = prisma.contactInquiry
       .create({
         data: {
@@ -99,7 +115,7 @@ export async function POST(req: NextRequest) {
         console.error("DB 저장 실패:", err);
       });
 
-    await Promise.all([mailPromise, dbPromise]);
+    await Promise.all([mailPromise, dbPromise, telegramPromise]);
 
     if (!mailSent && !dbSaved) {
       return NextResponse.json(
@@ -204,4 +220,136 @@ function buildServiceEmail(data: any, priority: string | null): string {
       }
     </div>
   `;
+}
+
+async function sendTelegramMessage(text: string): Promise<void> {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!token || !chatId) {
+    console.warn("텔레그램 환경변수 미설정 — 전송 스킵");
+    return;
+  }
+
+  const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text,
+      parse_mode: "HTML",
+      disable_web_page_preview: true,
+    }),
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Telegram API ${res.status}: ${body}`);
+  }
+  console.log("텔레그램 전송 성공");
+}
+
+async function sendTelegramAttachments(urls: string[]): Promise<void> {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId || urls.length === 0) return;
+
+  const isImage = (url: string) => /\.(jpe?g|png|gif|webp|heic|heif)(\?|#|$)/i.test(url);
+  const images = urls.filter(isImage);
+  const documents = urls.filter((u) => !isImage(u));
+  const base = `https://api.telegram.org/bot${token}`;
+
+  const post = async (endpoint: string, payload: any) => {
+    const res = await fetch(`${base}/${endpoint}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, ...payload }),
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      console.error(`Telegram ${endpoint} 실패 ${res.status}: ${body}`);
+    }
+  };
+
+  if (images.length === 1) {
+    await post("sendPhoto", { photo: images[0] });
+  } else if (images.length >= 2) {
+    for (let i = 0; i < images.length; i += 10) {
+      const batch = images.slice(i, i + 10);
+      await post("sendMediaGroup", {
+        media: batch.map((url) => ({ type: "photo", media: url })),
+      });
+    }
+  }
+
+  for (const doc of documents) {
+    await post("sendDocument", { document: doc });
+  }
+}
+
+function escapeHtml(s: string | null | undefined): string {
+  if (s === null || s === undefined) return "";
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function buildProductTelegram(data: any): string {
+  const lines = [
+    `🔵 <b>[MSI] 영업 장비 문의</b>`,
+    ``,
+    `🏢 <b>회사명</b>: ${escapeHtml(data.company)}`,
+    `👤 <b>담당자</b>: ${escapeHtml(data.manager)}${data.position ? ` (${escapeHtml(data.position)})` : ""}`,
+    `📧 <b>이메일</b>: ${escapeHtml(data.email)}`,
+    `📞 <b>전화번호</b>: ${escapeHtml(data.phone)}`,
+    `📦 <b>관심 제품</b>: ${escapeHtml(data.product)}`,
+    `📝 <b>문의 유형</b>: ${escapeHtml(data.inquiryType)}`,
+  ];
+  if (data.expectedTimeline) lines.push(`📅 <b>도입 시기</b>: ${escapeHtml(data.expectedTimeline)}`);
+  if (data.currentEquipment) lines.push(`⚙️ <b>현재 장비</b>: ${escapeHtml(data.currentEquipment)}`);
+  if (data.productionVolume) lines.push(`📊 <b>월 생산량</b>: ${escapeHtml(data.productionVolume)}`);
+  if (data.budgetRange) lines.push(`💰 <b>예산 범위</b>: ${escapeHtml(data.budgetRange)}`);
+  lines.push(``, `💬 <b>문의 내용</b>`, `<pre>${escapeHtml(data.content)}</pre>`);
+  return lines.join("\n");
+}
+
+function buildServiceTelegram(data: any, priority: string | null): string {
+  const priorityEmojis: Record<string, string> = {
+    P1: "🚨",
+    P2: "⚠️",
+    P3: "📋",
+    P4: "📝",
+  };
+  const pTag = priority ? `${priorityEmojis[priority] || ""} <b>[${priority}]</b> ` : "";
+
+  const lines = [
+    `🛠 <b>[MSI] 서비스 문의</b> ${pTag}`,
+    ``,
+    `🏢 <b>회사명</b>: ${escapeHtml(data.company)}`,
+    `👤 <b>담당자</b>: ${escapeHtml(data.manager)}${data.position ? ` (${escapeHtml(data.position)})` : ""}`,
+    `🏬 <b>부서</b>: ${escapeHtml(data.department)}`,
+    `📧 <b>이메일</b>: ${escapeHtml(data.email)}`,
+    `📞 <b>전화번호</b>: ${escapeHtml(data.phone)}`,
+    `🔧 <b>장비 모델</b>: ${escapeHtml(data.equipmentModel)}`,
+    `🔢 <b>시리얼</b>: ${escapeHtml(data.serialNumber)}`,
+    `📍 <b>설치 위치</b>: ${escapeHtml(data.installLocation)}`,
+    `❗ <b>문제 유형</b>: ${escapeHtml(data.issueType)}`,
+    `${data.lineStatus === "라인 정지" ? "🛑" : "🟢"} <b>라인 상태</b>: ${escapeHtml(data.lineStatus)}`,
+    `📅 <b>발생 시점</b>: ${escapeHtml(data.issueDate)}`,
+    ``,
+    `💬 <b>증상 / 에러코드</b>`,
+    `<pre>${escapeHtml(data.content)}</pre>`,
+  ];
+
+  if (data.attachments) {
+    try {
+      const urls: string[] = JSON.parse(data.attachments);
+      if (urls.length > 0) {
+        lines.push(``, `📎 <b>첨부파일 ${urls.length}개</b> (아래 메시지 참고)`);
+      }
+    } catch {}
+  }
+
+  return lines.join("\n");
 }
