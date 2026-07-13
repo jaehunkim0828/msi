@@ -46,9 +46,6 @@
       gap: 10px;
       width: 100%;
 
-      @include mobile {
-        flex-direction: column;
-      }
     }
 
     .typeBtn {
