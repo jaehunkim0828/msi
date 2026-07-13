@@ -7,41 +7,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model contact_inquiries {
-  id                String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  type              String
-  product           String?
-  company           String
-  department        String?
-  manager           String
-  email             String
-  content           String
-  created_at        DateTime @default(now())
-  attachments       String?
-  budget_range      String?
-  current_equipment String?
-  equipment_model   String?
-  expected_timeline String?
-  inquiry_type      String?
-  install_location  String?
-  issue_date        String?
-  issue_type        String?
-  line_status       String?
-  phone             String
-  position          String?
-  priority          String?
-  production_volume String?
-  serial_number     String?
+model ContactInquiry {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  type             String
+  product          String?
+  company          String
+  department       String?
+  manager          String
+  email            String
+  content          String
+  createdAt        DateTime @default(now()) @map("created_at")
+  attachments      String?
+  budgetRange      String?  @map("budget_range")
+  currentEquipment String?  @map("current_equipment")
+  equipmentModel   String?  @map("equipment_model")
+  expectedTimeline String?  @map("expected_timeline")
+  inquiryType      String?  @map("inquiry_type")
+  installLocation  String?  @map("install_location")
+  issueDate        String?  @map("issue_date")
+  issueType        String?  @map("issue_type")
+  lineStatus       String?  @map("line_status")
+  phone            String
+  position         String?
+  priority         String?
+  productionVolume String?  @map("production_volume")
+  serialNumber     String?  @map("serial_number")
 
-  @@index([created_at(sort: Desc)])
+  @@index([createdAt(sort: Desc)])
   @@index([email])
   @@index([priority])
   @@index([type])
+  @@map("contact_inquiries")
 }
 
-model users {
-  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  username   String   @unique
-  password   String
-  created_at DateTime @default(now())
+model User {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("users")
 }
