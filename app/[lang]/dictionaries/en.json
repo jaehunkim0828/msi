@@ -1,6 +1,6 @@
 {
   "header": {
-    "nav": ["Company", "Product", "Contact US", "Location"]
+    "nav": ["Company", "Product", "Contact Us", "Location"]
   },
   "home": {
     "route": {
@@ -52,7 +52,42 @@
       "title": "A talented and dedicated crew",
       "desc": "The MSI crew—the people who serve our clients and steward their assets with dedication, integrity, and passion—are critical to our success."
     },
-    "last": "MSI, a specialist in SMT technology, is committed to sustainable management practices based on a foundation of trust with our customers and various stakeholders. By systematically responding to rapidly changing global trends, we aim to achieve sustainable growth, thereby fulfilling our corporate social responsibility."
+    "last": "MSI, a specialist in SMT technology, is committed to sustainable management practices based on a foundation of trust with our customers and various stakeholders. By systematically responding to rapidly changing global trends, we aim to achieve sustainable growth, thereby fulfilling our corporate social responsibility.",
+    "sustain": {
+      "title": "Sustainability",
+      "items": [
+        {
+          "title": "Employees",
+          "tag": "Innovation",
+          "desc": "Driving innovation through a culture of autonomy and creativity."
+        },
+        {
+          "title": "Customers",
+          "tag": "Satisfaction",
+          "desc": "Rewarding customers with the best products and services."
+        },
+        {
+          "title": "Local Community",
+          "tag": "Growing Together",
+          "desc": "Growing hand in hand with our local communities."
+        },
+        {
+          "title": "Global Partners",
+          "tag": "Competitiveness",
+          "desc": "Enhancing global competitiveness together with our partners."
+        },
+        {
+          "title": "Government",
+          "tag": "Compliance",
+          "desc": "Practicing transparent management and full compliance."
+        },
+        {
+          "title": "Society",
+          "tag": "Responsibility",
+          "desc": "Faithfully fulfilling our corporate social responsibility."
+        }
+      ]
+    }
   },
   "product": {
     "title": "제품"
@@ -69,8 +104,31 @@
     }
   },
   "service": {
-    "title": "서비스",
-    "desc": "MSI는 고객을 우리 가족의 소중한 일원으로 여기며, 최고의 서비스로 고객만족을 최우선으로 합니다. 고객사의 기쁨이 우리에게 가장 큰 보상이며, 여러분의 삶에 가치를 더하는 것이 MSI의 목표입니다. MSI와 함께 진정성이 담긴 진심 어린 서비스를 경험하실 수 있으며, 편안함과 행복을 보장합니다. 우리는 여러분의 일상을 더 특별하게 만드는 데 전념하고자 합니다."
+    "title": "Service",
+    "desc": "From installation to everyday operation, MSI stays close to your production floor. Our principle is simple: respond fast, so your line never has to wait.",
+    "items": [
+      {
+        "title": "Technical Support",
+        "desc": "Fast response to equipment errors and breakdowns by phone, remote access, or on-site visit. Line-down situations get top-priority engineer dispatch."
+      },
+      {
+        "title": "Preventive Maintenance",
+        "desc": "Scheduled inspections and calibration keep your machines in top condition and reduce unexpected downtime."
+      },
+      {
+        "title": "Parts Supply",
+        "desc": "Stable supply of genuine parts and consumables. In-stock items ship fast to minimize waiting time."
+      },
+      {
+        "title": "Installation & Training",
+        "desc": "We handle everything from delivery and installation to test runs, and provide operator and manager training."
+      }
+    ],
+    "cta": {
+      "title": "Having trouble with your equipment?",
+      "desc": "Leave a service inquiry and our engineers will get back to you shortly.",
+      "button": "Contact Service Team"
+    }
   },
   "question": {
     "des": {

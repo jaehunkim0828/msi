@@ -39,7 +39,7 @@ export default function Header({ lang, dict }: { lang: Lang; dict: any }) {
     >
       <div className={style.container}>
         <div onClick={() => onRoute("")} className={style.logo}>
-          <Image src={Logo} width={110} height={58} alt="MSI Corporation" />
+          <Image src={Logo} width={89} height={40} alt="MSI Corporation" />
         </div>
 
         {/* Desktop nav — hidden on mobile via CSS */}

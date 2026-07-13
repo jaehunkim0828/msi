@@ -3,68 +3,143 @@
 @import "../variables";
 
 .location {
-  @include flex-column(flex-start, center);
   width: 100%;
-  margin-top: 120px;
-  margin-bottom: 50px;
-  min-height: calc(100dvh - 80px);
-  color: var(--color-text);
+  min-height: 100dvh;
+  color: $color-text;
+  background: $color-bg;
+}
 
-  .desc {
-    @include flex-column(center, center);
-    max-width: 1200px;
-    width: 90%;
-    height: 160px;
+.inner {
+  width: 100%;
+  max-width: $content-max-width;
+  margin: 0 auto;
+  padding: 0 $content-padding;
 
-    h1 {
-      font-family: var(--font-display);
-      font-size: 48px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
+  @include mobile {
+    padding: 0 $content-padding-mobile;
+  }
+}
 
-      @include mobile {
-        font-size: 32px;
-      }
-    }
+.sectionLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: $font-caption;
+  font-weight: $font-weight-semibold;
+  color: $color-accent;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+
+  &::before {
+    content: "";
+    width: 20px;
+    height: 1px;
+    background: $color-accent;
+  }
+}
+
+/* ---- Page Header ---- */
+.pageHeader {
+  width: 100%;
+  padding: calc($header-height + 80px) 0 64px;
+  background: $color-bg-elevated;
+  border-bottom: 1px solid $color-border;
+
+  @include mobile {
+    padding: calc($header-height-mobile + 56px) 0 48px;
   }
 
-  .googleMap {
-    max-width: 1200px;
-    width: 90%;
-    height: 500px;
-    background-color: var(--color-bg-elevated);
-    border-radius: 16px;
-    overflow: hidden;
-
-    @include mobile {
-      height: 350px;
-    }
+  h1 {
+    font-family: $font-display;
+    font-size: $font-display-md;
+    font-weight: $font-weight-extrabold;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 24px;
   }
-  .adress {
-    @include flex-column(center, flex-start);
-    max-width: 1200px;
-    width: 90%;
-    padding: 40px;
-    margin-top: 16px;
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    background: var(--color-glass);
 
-    @include mobile {
-      padding: 20px;
-    }
-    .br {
-      width: 100%;
-      border-top: 1px solid var(--color-border);
-    }
-    span {
-      font-size: 20px;
-      margin: 15px 0;
-      color: var(--color-text-secondary);
-
-      @include mobile {
-        font-size: 16px;
-      }
-    }
+  .headerDesc {
+    max-width: 640px;
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.8;
+    color: $color-text-secondary;
+    word-break: keep-all;
   }
+}
+
+/* ---- Map & Info ---- */
+.mapSection {
+  width: 100%;
+  padding: $space-3xl 0 $space-section;
+
+  @include mobile {
+    padding: $space-2xl 0 $space-section-mobile;
+  }
+}
+
+.mapFrame {
+  border-radius: $radius-2xl;
+  overflow: hidden;
+  border: 1px solid $color-border;
+  box-shadow: $shadow-md;
+}
+
+.googleMap {
+  width: 100%;
+  height: 520px;
+  background-color: $color-bg-elevated;
+
+  @include mobile {
+    height: 360px;
+  }
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.infoCard {
+  padding: $space-xl;
+  border-radius: $radius-xl;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  transition: all 0.3s $ease-out-expo;
+
+  &:hover {
+    border-color: $color-accent-border;
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+}
+
+.infoLabel {
+  font-size: $font-caption;
+  font-weight: $font-weight-semibold;
+  color: $color-accent;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.infoMain {
+  font-size: 18px;
+  font-weight: $font-weight-semibold;
+  color: $color-text;
+  margin-bottom: 8px;
+  word-break: keep-all;
+}
+
+.infoSub {
+  font-size: 14px;
+  line-height: 1.6;
+  color: $color-text-secondary;
 }
