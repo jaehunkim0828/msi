@@ -16,7 +16,7 @@ export default function Footer({ lang }: { lang: Lang; dict: any }) {
         <div className={style.footerTop}>
           <div className={style.footerBrand}>
             <div className={style.footerLogo}>
-              <Image src={Logo} width={90} height={48} alt="MSI Corporation" />
+              <Image src={Logo} width={107} height={48} alt="MSI Corporation" />
             </div>
             <p className={style.footerTagline}>
               {lang === "ko"

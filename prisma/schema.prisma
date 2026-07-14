@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,41 +8,35 @@ datasource db {
 }
 
 model ContactInquiry {
-  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  type       String
-  company    String
-  manager    String
-  email      String
-  content    String
-  createdAt  DateTime @default(now()) @map("created_at")
-
-  // 공통 추가 필드
-  phone      String
-  position   String?
-
-  // 제품 문의 필드
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  type             String
   product          String?
-  inquiryType      String?  @map("inquiry_type")
-  expectedTimeline String?  @map("expected_timeline")
-  currentEquipment String?  @map("current_equipment")
-  productionVolume String?  @map("production_volume")
-  budgetRange      String?  @map("budget_range")
-
-  // 서비스 문의 필드
+  company          String
   department       String?
+  manager          String
+  email            String
+  content          String
+  createdAt        DateTime @default(now()) @map("created_at")
+  attachments      String?
+  budgetRange      String?  @map("budget_range")
+  currentEquipment String?  @map("current_equipment")
   equipmentModel   String?  @map("equipment_model")
-  serialNumber     String?  @map("serial_number")
+  expectedTimeline String?  @map("expected_timeline")
+  inquiryType      String?  @map("inquiry_type")
   installLocation  String?  @map("install_location")
+  issueDate        String?  @map("issue_date")
   issueType        String?  @map("issue_type")
   lineStatus       String?  @map("line_status")
-  issueDate        String?  @map("issue_date")
-  attachments      String?
+  phone            String
+  position         String?
   priority         String?
+  productionVolume String?  @map("production_volume")
+  serialNumber     String?  @map("serial_number")
 
   @@index([createdAt(sort: Desc)])
   @@index([email])
-  @@index([type])
   @@index([priority])
+  @@index([type])
   @@map("contact_inquiries")
 }
 

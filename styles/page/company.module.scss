@@ -5,16 +5,14 @@
 .companyContainer {
   width: 100%;
   height: auto;
-  margin-top: $header-height;
   color: $color-text;
-
-  @include mobile {
-    margin-top: $header-height-mobile;
-  }
+  background: $color-bg;
 }
 
 // ---- Shared Inner Wrapper ----
 .inner {
+  position: relative;
+  z-index: 2;
   max-width: $content-max-width;
   margin: 0 auto;
   padding: 0 $content-padding;
@@ -24,7 +22,7 @@
   }
 }
 
-// ---- Section Label (matches home page pattern) ----
+// ---- Section Label (left-aligned, home legacy pattern) ----
 .sectionLabel {
   display: inline-flex;
   align-items: center;
@@ -52,85 +50,129 @@
   }
 }
 
-// ========== Section 1: Hero — Split Layout ==========
-.hero {
-  width: 100%;
-  padding: $space-section 0;
-  background: $color-bg;
+// ---- Centered Section Head (reference pattern) ----
+.sectionHead {
+  text-align: center;
+  margin-bottom: 64px;
 
   @include mobile {
-    padding: $space-section-mobile 0;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-family: $font-display;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: $font-weight-extrabold;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    word-break: keep-all;
+  }
+
+  p {
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.75;
+    color: $color-text-secondary;
+    max-width: 720px;
+    margin: 16px auto 0;
+    word-break: keep-all;
   }
 }
 
-.heroSplit {
+.sectionHeadDark {
+  h2 {
+    color: #ffffff;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+.eyebrow {
+  font-size: 14px;
+  font-weight: $font-weight-bold;
+  color: $color-accent;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.eyebrowLight {
+  font-size: 14px;
+  font-weight: $font-weight-bold;
+  color: #66c2ff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+// ========== Section 1: Hero — full-bleed image ==========
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  height: 64dvh;
   display: flex;
   align-items: center;
-  gap: $space-3xl;
-  margin-top: $space-lg;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
 
   @include mobile {
-    flex-direction: column;
-    gap: $space-xl;
+    height: 60dvh;
+    min-height: 420px;
   }
 }
 
-.heroText {
-  flex: 0 0 45%;
-  max-width: 45%;
-
-  @include mobile {
-    flex: 1;
-    max-width: 100%;
-  }
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(5, 10, 18, 0.6),
+      rgba(5, 10, 18, 0.72)
+    ),
+    url("/images/company-hero.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
-.heroTitle {
-  font-family: $font-display;
-  font-size: $font-display-md;
-  font-weight: $font-weight-extrabold;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  color: $color-text;
-  margin-bottom: $space-xl;
-  padding-bottom: $space-xl;
-  border-bottom: 2px solid $color-border;
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc($header-height + 40px) $content-padding 40px;
+
+  @include mobile {
+    padding: calc($header-height-mobile + 32px) $content-padding-mobile 32px;
+  }
+
+  h1 {
+    font-family: $font-display;
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: $font-weight-extrabold;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
 }
 
 .heroTagline {
-  font-size: clamp(24px, 4vw, 40px);
-  color: $color-text;
-  line-height: 1.3;
-  margin-bottom: $space-xl;
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: $font-weight-semibold;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 16px;
+  word-break: keep-all;
 }
 
 .heroDesc {
-  font-size: $font-body-lg;
-  color: $color-text-secondary;
-  line-height: 1.7;
-  margin-bottom: $space-md;
-}
-
-.heroImage {
-  flex: 1;
-  border-radius: $radius-2xl;
-  overflow: hidden;
-
-  img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.6s $ease-out-expo;
-
-    @include mobile {
-      height: 280px;
-    }
-  }
-
-  &:hover img {
-    transform: scale(1.02);
-  }
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 640px;
+  margin: 0 auto;
+  word-break: keep-all;
 }
 
 // ========== Section 2: Stats ==========
@@ -138,7 +180,6 @@
   width: 100%;
   padding: $space-3xl 0;
   background: $color-bg-elevated;
-  border-top: 1px solid $color-border;
   border-bottom: 1px solid $color-border;
 }
 
@@ -193,77 +234,26 @@
   }
 }
 
-.visionContent {
-  display: flex;
-  gap: $space-3xl;
-  margin-top: $space-lg;
-
-  @include mobile {
-    flex-direction: column;
-    gap: $space-xl;
-  }
-}
-
-.visionLeft {
-  flex: 0 0 45%;
-  max-width: 45%;
-  display: flex;
-  flex-direction: column;
-  gap: $space-xl;
-
-  @include mobile {
-    flex: 1;
-    max-width: 100%;
-  }
-}
-
-.visionTitle {
-  font-family: $font-display;
-  font-size: $font-display-sm;
-  font-weight: $font-weight-extrabold;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  color: $color-text;
-}
-
-.visionDesc {
-  font-size: $font-body-lg;
-  color: $color-text-secondary;
-  line-height: 1.7;
-}
-
-.visionRight {
-  flex: 1;
-  display: flex;
-  gap: $space-xl;
-  min-height: 450px;
-
-  @media (max-width: 700px) {
-    flex-direction: column;
-    min-height: auto;
-  }
-}
-
 .visionCards {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
-  gap: $space-md;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
 
   @include mobile {
-    gap: $space-lg;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
 // Card reveal: fade in from left (instead of global reveal translateY)
 .cardReveal {
-  padding: $space-lg;
-  border-radius: $radius-lg;
+  padding: $space-xl $space-lg;
+  border-radius: $radius-xl;
   background: $color-bg-elevated;
   border: 1px solid $color-border;
   transition: transform 0.5s $ease-out-expo, box-shadow 0.3s $ease-out-expo,
-    opacity 0.6s $ease-out-expo;
+    border-color 0.3s $ease-out-expo, opacity 0.6s $ease-out-expo;
   opacity: 0;
   transform: translateX(-24px);
 
@@ -273,8 +263,23 @@
   }
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: $shadow-sm;
+    transform: translateY(-4px);
+    border-color: $color-accent-border;
+    box-shadow: $shadow-lg;
+
+    .cardIndex {
+      color: $color-accent;
+    }
+  }
+
+  .cardIndex {
+    font-family: $font-display;
+    font-size: 40px;
+    font-weight: $font-weight-extrabold;
+    color: $color-border-hover;
+    line-height: 1;
+    margin-bottom: $space-md;
+    transition: color 0.3s $ease-out-expo;
   }
 
   h3 {
@@ -282,6 +287,7 @@
     font-weight: $font-weight-bold;
     margin: 0 0 $space-md;
     color: $color-text;
+    word-break: keep-all;
 
     @include mobile {
       font-size: $font-body-md;
@@ -291,25 +297,31 @@
   p {
     font-size: $font-body-sm;
     color: $color-text-secondary;
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
+    word-break: keep-all;
   }
 }
 
 .visionImage {
-  flex: 1;
-  border-radius: $radius-xl;
+  border-radius: $radius-2xl;
   overflow: hidden;
+  border: 1px solid $color-border;
 
   img {
     width: 100%;
-    height: 100%;
+    height: 400px;
     object-fit: cover;
     display: block;
+    transition: transform 0.6s $ease-out-expo;
+
+    @include mobile {
+      height: 260px;
+    }
   }
 
-  @media (max-width: 700px) {
-    height: 300px;
+  &:hover img {
+    transform: scale(1.02);
   }
 }
 
@@ -361,6 +373,7 @@
   font-size: $font-display-sm;
   font-weight: $font-weight-extrabold;
   letter-spacing: -0.02em;
+  word-break: keep-all;
 }
 
 .peopleRight {
@@ -379,22 +392,93 @@
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
+  word-break: keep-all;
 }
 
-// ========== Section 5: Sustain + CTA ==========
+// ========== Section 5: Sustainability ==========
 .sustain {
-  @include flex-column(center, center);
-  border-top: 1px solid $color-border;
+  position: relative;
+  width: 100%;
+  padding: $space-section 0;
+  overflow: hidden;
+
+  @include mobile {
+    padding: $space-section-mobile 0;
+  }
 }
 
-.sustainContent {
-  text-align: center;
-  font-size: clamp(16px, 2vw, 22px);
-  padding: $space-3xl 0 $space-xl;
-  color: $color-text-secondary;
-  line-height: 1.7;
-  max-width: 900px;
-  margin: 0 auto;
+.sustainBg {
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/sustainability.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.sustainOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(4, 9, 16, 0.78),
+    rgba(4, 9, 16, 0.86)
+  );
+}
+
+.sustainGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: $space-2xl;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.sustainCard {
+  padding: $space-xl $space-lg;
+  border-radius: $radius-xl;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.4s $ease-out-expo;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(102, 194, 255, 0.45);
+    transform: translateY(-4px);
+  }
+
+  .sustainTag {
+    display: inline-flex;
+    padding: 4px 12px;
+    border-radius: $radius-full;
+    background: rgba(0, 150, 255, 0.18);
+    border: 1px solid rgba(102, 194, 255, 0.35);
+    color: #8fd3ff;
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: $space-md;
+  }
+
+  h3 {
+    font-size: $font-h5;
+    font-weight: $font-weight-bold;
+    color: #ffffff;
+    margin: 0 0 $space-sm;
+    word-break: keep-all;
+  }
+
+  p {
+    font-size: $font-body-sm;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.65;
+    margin: 0;
+    word-break: keep-all;
+  }
 }
 
 .ctaButtons {
@@ -402,7 +486,6 @@
   gap: $space-md;
   justify-content: center;
   flex-wrap: wrap;
-  padding-bottom: $space-3xl;
 }
 
 .btnPrimary {
@@ -415,7 +498,7 @@
   color: $color-text-inverse;
   background: $color-accent;
   border: none;
-  border-radius: $radius-lg;
+  border-radius: $radius-full;
   cursor: pointer;
   transition: all $transition-fast;
   min-height: 48px;
@@ -431,33 +514,28 @@
   }
 }
 
-.btnSecondary {
+.btnGlass {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 14px 32px;
   font-size: 15px;
   font-weight: $font-weight-semibold;
-  color: $color-text;
-  background: transparent;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: $radius-full;
   cursor: pointer;
   transition: all $transition-fast;
   min-height: 48px;
 
   &:hover {
-    border-color: $color-border-hover;
-    background: $color-bg-elevated;
+    background: rgba(255, 255, 255, 0.2);
     transform: scale(1.02);
   }
 
   &:active {
     transform: scale(0.98);
   }
-}
-
-.sustainImg {
-  width: 100%;
-  opacity: 0.8;
 }

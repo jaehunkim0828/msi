@@ -3,38 +3,17 @@
 
 import style from "@/styles/page/home.module.scss";
 import Image from "next/image";
-import Product1 from "@/public/images/back1_img.png";
-import Product2 from "@/public/images/product2.png";
 import P_Icon from "@/public/images/product.png";
 import R_Icon from "@/public/images/request.png";
 import S_Icon from "@/public/images/service.png";
 import L_Icon from "@/public/images/location.png";
 import { Dict, Lang } from "../dictionaries";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 interface Props extends Dict {
   lang: Lang;
 }
-
-const heroSlides = [
-  {
-    tag: "NEW",
-    title: "NXTR-S",
-    subtitle: "Unifying Intelligence\nPerformance",
-    image: "/images/NXTR-S.png",
-    bg: "/images/background1.jpg",
-    link: "/product/2",
-  },
-  {
-    tag: "NEW",
-    title: "AIMEXR",
-    subtitle: "Inspiring Everyday\nEfficiency",
-    image: "/images/AIMEXR_product.png",
-    bg: "/images/background2.jpg",
-    link: "/product/1",
-  },
-];
 
 const products = [
   { name: "NXTR-A", tag: "Automation", img: "/images/NXTR_A.png", id: 3 },
@@ -46,16 +25,8 @@ const products = [
 export default function Page({ dict, lang }: Props) {
   const { home } = dict;
   const router = useRouter();
-  const [currentSlide, setCurrentSlide] = useState(0);
   const revealRefs = useRef<HTMLElement[]>([]);
-
-  // Auto-rotate hero slides
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // IntersectionObserver for scroll animations
   useEffect(() => {
@@ -83,7 +54,20 @@ export default function Page({ dict, lang }: Props) {
     }
   }, []);
 
-  const slide = heroSlides[currentSlide];
+  // Pause the hero video while it is scrolled out of view
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   const routings = [
     { name: lang === "ko" ? "제품" : "Product", sub: lang === "ko" ? "장비 보기" : "View equipment", image: P_Icon, path: "/product" },
@@ -92,217 +76,240 @@ export default function Page({ dict, lang }: Props) {
     { name: lang === "ko" ? "오시는 길" : "Location", sub: lang === "ko" ? "방문 안내" : "Visit us", image: L_Icon, path: "/location" },
   ];
 
+  const facts = [
+    {
+      key: lang === "ko" ? "기업명" : "Company",
+      value: lang === "ko" ? "엠에스아이코퍼레이션" : "MSI Corporation",
+    },
+    {
+      key: lang === "ko" ? "설립" : "Founded",
+      value: lang === "ko" ? "1979년" : "1979",
+    },
+    {
+      key: lang === "ko" ? "사업분야" : "Business",
+      value:
+        lang === "ko"
+          ? "SMT 장비 공급 및 기술 서비스"
+          : "SMT equipment supply & technical service",
+    },
+    {
+      key: lang === "ko" ? "본사" : "Headquarters",
+      value:
+        lang === "ko"
+          ? "경기도 오산시 가장산업서로 56-20"
+          : "56-20, Gajangsaneopseo-ro, Osan-si, Gyeonggi-do",
+    },
+    {
+      key: lang === "ko" ? "연락처" : "Contact",
+      value: "Tel 02-553-0903 · Fax 02-555-5584",
+    },
+  ];
+
   return (
     <div className={style.homeContainer}>
       {/* Grain Overlay */}
       <div className="grain-overlay" />
 
-      {/* ===== Hero Section ===== */}
+      {/* ===== Hero — NXTR-A video background ===== */}
       <section className={style.hero}>
-        <div
-          className={style.heroBg}
-          style={{ backgroundImage: `url("${slide.bg}")` }}
-          key={currentSlide}
+        <video
+          ref={videoRef}
+          className={style.heroVideo}
+          src="/videos/nxtr-a.mp4"
+          poster="/images/nxtr-a-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
         />
+        <div className={style.heroOverlay} />
         <div className={style.heroContent}>
-          <div className={style.heroText}>
-            <div className={style.heroTag} ref={addRevealRef}>
-              {slide.tag}
-            </div>
-            <h1>
-              <span className={style.accent}>{slide.title}</span>
-              <br />
-              {slide.subtitle.split("\n").map((line, i) => (
-                <span key={i}>
-                  {line}
-                  {i === 0 && <br />}
-                </span>
-              ))}
-            </h1>
-            <p className={style.heroDesc}>
+          <div className={style.heroBadge}>
+            {lang === "ko" ? "SMT 전문 기업" : "SMT Total Solution"}
+          </div>
+          <h1>
+            <span className={style.heroLine}>
               {lang === "ko"
-                ? "SMT 산업에서 독보적인 기술력으로 최고의 생산성과 품질을 제공합니다."
-                : "Delivering unmatched productivity and quality with dominant technology in the SMT industry."}
-            </p>
-            <div className={style.heroCTA}>
-              <button
-                className={style.btnPrimary}
-                onClick={() => router.push(`/${lang}${slide.link}`)}
-              >
-                {lang === "ko" ? "자세히 보기" : "View Details"}
-                <span>→</span>
-              </button>
-              <button
-                className={style.btnSecondary}
-                onClick={() => router.push(`/${lang}/product`)}
-              >
-                {lang === "ko" ? "전체 제품" : "All Products"}
-              </button>
-            </div>
-          </div>
-          <div className={style.heroImage}>
-            <div className={style.productShowcase}>
-              <img
-                src={slide.image}
-                alt={slide.title}
-                loading="eager"
-              />
-            </div>
+                ? "스마트 팩토리 시대의 실장 기술,"
+                : "SMT technology for the smart factory era,"}
+            </span>
+            <span className={style.heroGradient}>
+              {lang === "ko" ? "MSI가 완성합니다" : "completed by MSI"}
+            </span>
+          </h1>
+          <p className={style.heroDesc}>
+            {lang === "ko"
+              ? "1979년부터 쌓아온 현장 경험과 검증된 SMT 장비로 최고의 생산성과 품질을 약속드립니다."
+              : "With field experience since 1979 and proven SMT equipment, we promise the best productivity and quality."}
+          </p>
+          <div className={style.heroCTA}>
+            <button
+              className={style.btnHeroPrimary}
+              onClick={() => router.push(`/${lang}/product`)}
+            >
+              {lang === "ko" ? "제품 보기" : "View Products"}
+            </button>
+            <button
+              className={style.btnHeroGlass}
+              onClick={() => router.push(`/${lang}/question`)}
+            >
+              {lang === "ko" ? "문의하기" : "Contact Us"}
+            </button>
           </div>
         </div>
-
-        <div className={style.heroIndicators}>
-          {heroSlides.map((_, i) => (
-            <div
-              key={i}
-              className={`${style.indicator} ${
-                i === currentSlide ? style.activeIndicator : ""
-              }`}
-              onClick={() => setCurrentSlide(i)}
-            />
-          ))}
-        </div>
-
         <div className={style.scrollHint}>
           <span>Scroll</span>
           <div className={style.scrollLine} />
         </div>
       </section>
 
-      {/* ===== Quick Links ===== */}
-      <section className={style.quickLinks}>
-        <div className={style.quickLinksInner}>
-          {routings.map((route, i) => (
-            <div
-              key={`quick-${i}`}
-              className={style.quickItem}
-              onClick={() => router.push(`/${lang}${route.path}`)}
-            >
-              <div className={style.quickIcon}>
-                <Image src={route.image} alt={route.name} width={24} height={24} />
-              </div>
-              <div>
-                <div className={style.quickLabel}>{route.name}</div>
-                <div className={style.quickSub}>{route.sub}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ===== Corporation Section ===== */}
-      <section className={style.corporation}>
-        <div className={style.corpInner}>
-          <div className={style.sectionLabel} ref={addRevealRef}>
-            About MSI
-          </div>
-          <h2 className={`${style.corpTitle} reveal`} ref={addRevealRef}>
-            Corporation
-          </h2>
-          <p className={`${style.corpDesc} reveal`} ref={addRevealRef}>
-            {home.corporation.content}
-          </p>
-          <div className={style.corpGrid}>
-            {home.corporation.items.map((item: any, i: number) => (
+      {/* Content scrolls up over the sticky hero */}
+      <div className={style.afterHero}>
+        {/* ===== Quick Links ===== */}
+        <section className={style.quickLinks}>
+          <div className={style.quickLinksInner}>
+            {routings.map((route, i) => (
               <div
-                key={`corp-${i}`}
-                className={`${style.corpCard} reveal`}
-                ref={addRevealRef}
-                style={{ transitionDelay: `${i * 0.1}s` }}
+                key={`quick-${i}`}
+                className={style.quickItem}
+                onClick={() => router.push(`/${lang}${route.path}`)}
               >
-                <div className={style.cardNumber}>0{i + 1}</div>
-                <div className={style.cardTitle}>{item.title}</div>
-                <div className={style.cardDesc}>
-                  {item.desc.map((d: string, j: number) => (
-                    <span key={j}>
-                      {d}
-                      {j < item.desc.length - 1 && <br />}
-                    </span>
-                  ))}
+                <div className={style.quickIcon}>
+                  <Image src={route.image} alt={route.name} width={24} height={24} />
+                </div>
+                <div>
+                  <div className={style.quickLabel}>{route.name}</div>
+                  <div className={style.quickSub}>{route.sub}</div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ===== Marquee Section ===== */}
-      <section className={style.marqueeSection}>
-        <div className={style.marqueeTrack}>
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className={style.marqueeItem}>
-              Think, Evolve, and Act.&nbsp;&nbsp;
-              <span className={style.filled}>Think, Evolve, and Act.</span>
-              &nbsp;&nbsp;
+        {/* ===== About Section ===== */}
+        <section className={style.aboutSection}>
+          <div className={style.inner}>
+            <div className={`${style.sectionHead} reveal`} ref={addRevealRef}>
+              <div className={style.eyebrow}>About MSI</div>
+              <h2>{lang === "ko" ? "회사소개" : "Who We Are"}</h2>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ===== Product Section ===== */}
-      <section className={style.productSection}>
-        <div className={style.productInner}>
-          <div className={style.productHeader}>
-            <div>
-              <div className={style.sectionLabel} ref={addRevealRef}>
-                Products
+            <div className={style.aboutGrid}>
+              <div className={`${style.aboutText} reveal`} ref={addRevealRef}>
+                <h3>
+                  {lang === "ko"
+                    ? "SMT 산업의 든든한 파트너"
+                    : "A trusted partner in the SMT industry"}
+                </h3>
+                <p>{home.corporation.content}</p>
+                <button
+                  className={style.textLink}
+                  onClick={() => router.push(`/${lang}/company`)}
+                >
+                  {lang === "ko" ? "회사소개 더 보기" : "Learn more"}
+                  <span>→</span>
+                </button>
               </div>
-              <h2 className={`${style.productTitle} reveal`} ref={addRevealRef}>
-                Product
-              </h2>
-            </div>
-            <p className={`${style.productDesc} reveal`} ref={addRevealRef}>
-              {home.product.title}
-            </p>
-          </div>
-
-          <div className={style.bentoGrid}>
-            {products.map((product, i) => (
-              <div
-                key={`product-${i}`}
-                className={`${style.bentoItem} reveal`}
-                ref={addRevealRef}
-                style={{ transitionDelay: `${i * 0.1}s` }}
-                onClick={() => router.push(`/${lang}/product/${product.id}`)}
-              >
-                <div className={style.bentoImage}>
-                  <img
-                    src={product.img}
-                    alt={product.name}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <div className={style.bentoInfo}>
-                  <div>
-                    <div className={style.bentoName}>{product.name}</div>
-                    <div className={style.bentoTag}>{product.tag}</div>
+              <dl className={`${style.factTable} reveal`} ref={addRevealRef}>
+                {facts.map((f) => (
+                  <div className={style.factRow} key={f.key}>
+                    <dt>{f.key}</dt>
+                    <dd>{f.value}</dd>
                   </div>
-                  <div className={style.bentoArrow}>↗</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== Global Network Section ===== */}
-      <section className={style.globalSection}>
-        <div className={style.globalInner}>
-          <div className={style.globalInfo}>
-            <div className={style.sectionLabel} ref={addRevealRef}>
-              Network
+                ))}
+              </dl>
             </div>
-            <h2 className={`${style.globalTitle} reveal`} ref={addRevealRef}>
-              Global
-              <br />
-              Network
-            </h2>
-            <p className={`${style.globalDesc} reveal`} ref={addRevealRef}>
-              {lang === "ko"
-                ? "전 세계 52개국 이상의 글로벌 네트워크를 통해 최상의 서비스를 제공합니다."
-                : "Providing the best services through a global network spanning over 52 countries."}
-            </p>
+            <div className={style.corpGrid}>
+              {home.corporation.items.map((item: any, i: number) => (
+                <div
+                  key={`corp-${i}`}
+                  className={`${style.corpCard} reveal`}
+                  ref={addRevealRef}
+                  style={{ transitionDelay: `${i * 0.1}s` }}
+                >
+                  <div className={style.cardNumber}>0{i + 1}</div>
+                  <div className={style.cardTitle}>{item.title}</div>
+                  <div className={style.cardDesc}>
+                    {item.desc.map((d: string, j: number) => (
+                      <span key={j}>
+                        {d}
+                        {j < item.desc.length - 1 && <br />}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ===== Product Section ===== */}
+        <section className={style.productSection}>
+          <div className={style.inner}>
+            <div className={`${style.sectionHead} reveal`} ref={addRevealRef}>
+              <div className={style.eyebrow}>Products</div>
+              <h2>{lang === "ko" ? "제품" : "Products"}</h2>
+              <p>{home.product.title}</p>
+            </div>
+
+            <div className={style.bentoGrid}>
+              {products.map((product, i) => (
+                <div
+                  key={`product-${i}`}
+                  className={`${style.bentoItem} reveal`}
+                  ref={addRevealRef}
+                  style={{ transitionDelay: `${i * 0.1}s` }}
+                  onClick={() => router.push(`/${lang}/product/${product.id}`)}
+                >
+                  <div className={style.bentoImage}>
+                    <img
+                      src={product.img}
+                      alt={product.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className={style.bentoInfo}>
+                    <div>
+                      <div className={style.bentoName}>{product.name}</div>
+                      <div className={style.bentoTag}>{product.tag}</div>
+                    </div>
+                    <div className={style.bentoArrow}>↗</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ===== Global Network — full-bleed image band ===== */}
+        <section className={style.globalSection}>
+          <div className={style.globalBg} />
+          <div className={style.globalOverlay} />
+          <div className={style.inner}>
+            <div className={`${style.sectionHead} reveal`} ref={addRevealRef}>
+              <div className={style.eyebrow}>Global Network</div>
+              <h2>
+                {lang === "ko" ? (
+                  <>
+                    세계 52개국으로
+                    <br />
+                    뻗어 나가는 네트워크
+                  </>
+                ) : (
+                  <>
+                    A network reaching
+                    <br />
+                    52 countries worldwide
+                  </>
+                )}
+              </h2>
+              <p>
+                {lang === "ko"
+                  ? "유럽에서 아메리카까지, 전 세계 글로벌 네트워크를 통해 최상의 서비스를 제공합니다."
+                  : "From Europe to the Americas, we deliver the best services through our worldwide network."}
+              </p>
+            </div>
             <div className={style.statGrid}>
               <div className={`${style.statItem} reveal`} ref={addRevealRef}>
                 <div className={style.statNumber}>32</div>
@@ -322,55 +329,52 @@ export default function Page({ dict, lang }: Props) {
               </div>
             </div>
           </div>
-          <div className={`${style.globalMap} reveal`} ref={addRevealRef}>
-            <img src="/images/map.png" alt="Global Network Map" loading="lazy" decoding="async" />
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ===== CTA Section ===== */}
-      <section className={style.ctaSection}>
-        <div className={style.ctaInner}>
-          <h2 className={`${style.ctaTitle} reveal`} ref={addRevealRef}>
-            {lang === "ko"
-              ? "MSI와 함께 시작하세요"
-              : "Get Started with MSI"}
-          </h2>
-          <p className={`${style.ctaDesc} reveal`} ref={addRevealRef}>
-            {lang === "ko"
-              ? "제품 문의부터 기술 지원까지, 전문 상담을 받아보세요."
-              : "From product inquiries to technical support, get expert consultation."}
-          </p>
-          <div className={`${style.ctaButtons} reveal`} ref={addRevealRef}>
-            <button
-              className={style.btnPrimary}
-              onClick={() => router.push(`/${lang}/question`)}
-            >
-              {lang === "ko" ? "문의하기" : "Contact Us"}
-              <span>→</span>
-            </button>
-            <button
-              className={style.btnSecondary}
-              onClick={() => router.push(`/${lang}/product`)}
-            >
-              {lang === "ko" ? "제품 보기" : "View Products"}
-            </button>
+        {/* ===== CTA Section ===== */}
+        <section className={style.ctaSection}>
+          <div className={style.ctaInner}>
+            <h2 className={`${style.ctaTitle} reveal`} ref={addRevealRef}>
+              {lang === "ko"
+                ? "MSI와 함께 시작하세요"
+                : "Get Started with MSI"}
+            </h2>
+            <p className={`${style.ctaDesc} reveal`} ref={addRevealRef}>
+              {lang === "ko"
+                ? "제품 문의부터 기술 지원까지, 전문 상담을 받아보세요."
+                : "From product inquiries to technical support, get expert consultation."}
+            </p>
+            <div className={`${style.ctaButtons} reveal`} ref={addRevealRef}>
+              <button
+                className={style.btnPrimary}
+                onClick={() => router.push(`/${lang}/question`)}
+              >
+                {lang === "ko" ? "문의하기" : "Contact Us"}
+                <span>→</span>
+              </button>
+              <button
+                className={style.btnSecondary}
+                onClick={() => router.push(`/${lang}/product`)}
+              >
+                {lang === "ko" ? "제품 보기" : "View Products"}
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ===== Contact Info Strip ===== */}
-      <section className={style.contactStrip}>
-        <div className={style.contactInner}>
-          <span>Tel : 02-553-0903</span>
-          <span>Fax : 02-555-5584</span>
-          <span>
-            {lang === "ko"
-              ? "경기도 오산시 가장산업서로 56-20"
-              : "56-20, Gajangsaneopseo-ro, Osan-si, Gyeonggi-do"}
-          </span>
-        </div>
-      </section>
+        {/* ===== Contact Info Strip ===== */}
+        <section className={style.contactStrip}>
+          <div className={style.contactInner}>
+            <span>Tel : 02-553-0903</span>
+            <span>Fax : 02-555-5584</span>
+            <span>
+              {lang === "ko"
+                ? "경기도 오산시 가장산업서로 56-20"
+                : "56-20, Gajangsaneopseo-ro, Osan-si, Gyeonggi-do"}
+            </span>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

@@ -170,7 +170,11 @@ export default function Contact({ dict }: any) {
       )}
 
       <form onSubmit={handleFormSubmit} className={style.contactForm}>
-        <h1>{des.title}</h1>
+        <div className={style.formHeader}>
+          <div className={style.sectionLabel}>Contact</div>
+          <h1>{des.title}</h1>
+          <p className={style.formHeaderDesc}>{dict.contact.desc[1]}</p>
+        </div>
 
         {/* 유형 선택 탭 */}
         <div className={style.section}>

@@ -19,11 +19,50 @@
     font-family: var(--font-display);
     font-size: 48px;
     font-weight: 800;
-    margin-bottom: 80px;
     letter-spacing: -0.03em;
     @include mobile {
       font-size: 32px;
-      margin-bottom: 48px;
+    }
+  }
+
+  .formHeader {
+    @include flex-column(flex-start, flex-start);
+    width: 100%;
+    margin-bottom: 56px;
+
+    @include mobile {
+      margin-bottom: 40px;
+    }
+
+    .sectionLabel {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+
+      &::before {
+        content: "";
+        width: 20px;
+        height: 1px;
+        background: var(--color-accent);
+      }
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .formHeaderDesc {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--color-text-secondary);
+      max-width: 560px;
+      word-break: keep-all;
     }
   }
 

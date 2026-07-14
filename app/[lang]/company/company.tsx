@@ -23,7 +23,7 @@ const stats: Record<string, StatDef[]> = {
     { value: 10, suffix: "+", label: "Global Partners" },
   ],
   ko: [
-    { value: 1979, suffix: "", label: "설립" },
+    { value: 1979, suffix: "년", label: "설립" },
     { value: 20, suffix: "+", label: "제품군" },
     { value: 10, suffix: "+", label: "글로벌 파트너" },
   ],
@@ -103,35 +103,22 @@ export default function Company({ dict, lang }: Props) {
 
   return (
     <div className={style.companyContainer}>
-      {/* ===== Section 1: Hero — Split Layout ===== */}
+      {/* ===== Section 1: Hero — full-bleed image ===== */}
       <section className={style.hero}>
-        <div className={style.inner}>
-          <div className={`${style.sectionLabel} reveal`} ref={addRevealRef}>
-            About Us
-          </div>
-          <div className={style.heroSplit}>
-            <div className={style.heroText}>
-              <h1 className={`${style.heroTitle} reveal`} ref={addRevealRef}>
-                MSI
+        <div className={style.heroBg} />
+        <div className={style.heroContent}>
+          <div className={style.eyebrowLight}>About MSI</div>
+          <h1>MSI Corporation</h1>
+          <div className={style.heroTagline}>{company.desc[0]}</div>
+          <p className={style.heroDesc}>
+            {company.desc[1]}
+            {company.desc[2] && (
+              <>
                 <br />
-                Corporation
-              </h1>
-              <div className={`${style.heroTagline} reveal`} ref={addRevealRef}>
-                {company.desc[0]}
-              </div>
-              <p className={`${style.heroDesc} reveal`} ref={addRevealRef}>
-                {company.desc[1]}
-              </p>
-              {company.desc[2] && (
-                <p className={`${style.heroDesc} reveal`} ref={addRevealRef}>
-                  {company.desc[2]}
-                </p>
-              )}
-            </div>
-            <div className={`${style.heroImage} reveal`} ref={addRevealRef}>
-              <img src="/images/company-hero.jpg" alt="MSI Corporation" />
-            </div>
-          </div>
+                {company.desc[2]}
+              </>
+            )}
+          </p>
         </div>
       </section>
 
@@ -150,7 +137,7 @@ export default function Company({ dict, lang }: Props) {
                 style={{ transitionDelay: `${i * 0.1}s` }}
               >
                 <div className={style.statNumber}>
-                  {counters[i]?.toLocaleString()}
+                  {counters[i]}
                   {stat.suffix}
                 </div>
                 <div className={style.statLabel}>{stat.label}</div>
@@ -163,44 +150,27 @@ export default function Company({ dict, lang }: Props) {
       {/* ===== Section 3: Vision & Mission ===== */}
       <section className={style.vision}>
         <div className={style.inner}>
-          <div className={`${style.sectionLabel} reveal`} ref={addRevealRef}>
-            Vision & Mission
+          <div className={`${style.sectionHead} reveal`} ref={addRevealRef}>
+            <div className={style.eyebrow}>Vision &amp; Mission</div>
+            <h2>{company.vision.desc[0]}</h2>
+            <p>{company.vision.desc[1]}</p>
           </div>
-          <div className={style.visionContent}>
-            <div className={style.visionLeft}>
-              <h2
-                className={`${style.visionTitle} reveal`}
+          <div className={style.visionCards}>
+            {company.vision.items.map((item: any, i: number) => (
+              <div
+                key={`vision-${i}`}
+                className={style.cardReveal}
                 ref={addRevealRef}
+                style={{ transitionDelay: `${i * 0.12}s` }}
               >
-                Vision &
-                <br />
-                Mission
-              </h2>
-              <p className={`${style.visionDesc} reveal`} ref={addRevealRef}>
-                {company.vision.desc[0]}
-              </p>
-              <p className={`${style.visionDesc} reveal`} ref={addRevealRef}>
-                {company.vision.desc[1]}
-              </p>
-            </div>
-            <div className={style.visionRight}>
-              <div className={style.visionCards}>
-                {company.vision.items.map((item: any, i: number) => (
-                  <div
-                    key={`vision-${i}`}
-                    className={style.cardReveal}
-                    ref={addRevealRef}
-                    style={{ transitionDelay: `${i * 0.12}s` }}
-                  >
-                    <h3>{item.title}</h3>
-                    <p>{item.desc}</p>
-                  </div>
-                ))}
+                <div className={style.cardIndex}>0{i + 1}</div>
+                <h3>{item.title.replace("▶ ", "")}</h3>
+                <p>{item.desc}</p>
               </div>
-              <div className={`${style.visionImage} reveal`} ref={addRevealRef}>
-                <img src="/images/company-vision.jpg" alt="Vision" />
-              </div>
-            </div>
+            ))}
+          </div>
+          <div className={`${style.visionImage} reveal`} ref={addRevealRef}>
+            <img src="/images/company-vision.jpg" alt="Vision" />
           </div>
         </div>
       </section>
@@ -238,11 +208,34 @@ export default function Company({ dict, lang }: Props) {
         </div>
       </section>
 
-      {/* ===== Section 5: Sustain + CTA ===== */}
+      {/* ===== Section 5: Sustainability ===== */}
       <section className={style.sustain}>
+        <div className={style.sustainBg} />
+        <div className={style.sustainOverlay} />
         <div className={style.inner}>
-          <div className={`${style.sustainContent} reveal`} ref={addRevealRef}>
-            {company.last}
+          <div
+            className={`${style.sectionHead} ${style.sectionHeadDark} reveal`}
+            ref={addRevealRef}
+          >
+            <div className={style.eyebrowLight}>Sustainability</div>
+            <h2>{company.sustain.title}</h2>
+            <p>{company.last}</p>
+          </div>
+          <div className={style.sustainGrid}>
+            {company.sustain.items.map(
+              (item: { title: string; tag: string; desc: string }, i: number) => (
+                <div
+                  key={`sustain-${i}`}
+                  className={`${style.sustainCard} reveal`}
+                  ref={addRevealRef}
+                  style={{ transitionDelay: `${i * 0.08}s` }}
+                >
+                  <div className={style.sustainTag}>{item.tag}</div>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </div>
+              )
+            )}
           </div>
           <div className={`${style.ctaButtons} reveal`} ref={addRevealRef}>
             <button
@@ -253,18 +246,13 @@ export default function Company({ dict, lang }: Props) {
               <span>→</span>
             </button>
             <button
-              className={style.btnSecondary}
+              className={style.btnGlass}
               onClick={() => router.push(`/${lang}/question`)}
             >
               {lang === "ko" ? "문의하기" : "Contact Us"}
             </button>
           </div>
         </div>
-        <img
-          src="/images/sustain.png"
-          className={style.sustainImg}
-          alt="sustain"
-        />
       </section>
     </div>
   );
